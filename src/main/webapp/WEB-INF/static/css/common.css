@@ -103,7 +103,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index:1;
-	background: url(../img/logo.png) no-repeat 0/100%;
+	background: url(../images/logo.png) no-repeat 0/100%;
 	-webkit-perspective:1; 
 	
 }
@@ -187,54 +187,266 @@
 }
 
 
+/***********모달 로그인 **********/
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+	width: 100%;
+    min-width: 360px;
+	height: auto;
+	min-height: 300px;
+/*    background-color: #fff;*/
+    z-index: 9999999;
+    display: none;
+	scrollx:none;
+	overflow: hidden;
+}
+.modal_on {
+    display: block;
+}
+
+.modal_x {
+	position: relative;
+    width: 40%;
+    height: 45px;
+/*    margin: auto;*/
+    margin-top: -40px;
+	top: 0;
+    background-color: #1eb4cf;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    line-height: 45px;
+    cursor: pointer;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.modal_back {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9;
+}
+.back_on {
+    opacity: 1;
+    visibility: visible;
+}
+.body_lock {
+    height: 100%;
+    overflow: hidden;
+}
+@media (max-width: 740px) {
+.modal {
+	width: 86%;
+	max-height: 90%;
+}
+.modal_x{
+	margin-top: 30px;
+	width: 60%;
+}
+}
 
 
-/*	하위메뉴 삭제로 필요 없어진 코드들 
-.menuM ul ul.sub_menu {
-	display: none;	
+/**********로그인폼 내부***********/
+#login{	
 	position: relative;
 	width: 100%;
 	height: auto;
-	z-index:8871;	
-	
+	min-height: 400px;
+	margin: 0 auto;
+	text-align: center;
 }
 
-.menuM>ul>li.active ul.sub_menu{
-	display: inline-block;		
-	box-sizing: border-box;
+.meminfo{
 	position: relative;
 	width: 100%;
-	height: 100%;
-	float: left;	
+	max-width: 700px;
+	height: auto;
+	min-height: 200px;
+	border: 1px solid #cccccc;
+	border-radius: 20px;
+	margin: 0 auto;
+	padding: 30px 51px;
+	box-sizing: border-box;
+/*	margin-bottom: 50px;*/
+	background-color: #ededed;
 }
 
-.menuM ul ul.sub_menu > li {
-	background-color: #063768;
+.meminfo>#logF{
+	position: relative;
 	width: 100%;
-	height: 100%;
-	min-height: 30px;
-	box-sizing: border-box;	
-	float: left;
-	line-height: 60px;
+	height: auto;
+	min-height: 160px;
 }
-	
-.menuM ul ul.sub_menu > li a{
-	color: #ffffff;
+
+.meminfo>#logF>.memWrap{
+	position: relative;
+	width: 100%;
+	height: auto;
+	min-height: 160px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #373737;	
+}
+
+.meminfo>#logF>.memWrap div{
+	position: relative;
+	width: 70%;
+	height: 50px;
+	line-height: 50px;
+	margin: 10px 0;
+}
+
+/*라벨공통*/
+.meminfo label{
+	position: absolute;
+	display: inline-block;
+	width: 80px;
+	text-align: left;
+	left: 0;	
+}
+
+/* 입력박스 공통*/
+.meminfo input[type=text],
+.meminfo input[type=password]{
+	position: relative;
+	left: 80px;
+	width: 80%;
+	height: 36px;
+	font-size: 16px;
+	border: 1px solid #737373;
+	padding-left: 10px;
+	border-radius: 5px;
+}
+
+#sbtn{
+	position: absolute;
+	display: inline-block;
+    top: 0px;
+    right: 0px;
+	width: 110px;
+	height: 110px;
+	float: right;
+	border: 1px solid #063768;
+	color: #fff;
+	font-size: 1em;
+	font-weight: bold;
+	background-color: #063768;
+	border-radius: 5px;
+}
+
+#sbtn:hover{
+	background-color: #1eb4cf;
+	border:1px solid #1eb4cf;
+}
+
+.meminfo>#logF>.memWrap>.checkWrap{
+	position: absolute;
+	left: 145px;
+	width: 20px;
+	height: 25px;
+	text-align: left;
+	white-space: nowrap;
+}
+
+#chkbox{
+	position: absolute;
+	left: -30px;
+	width: 15px;
+	height: 15px;
+}
+
+/*****버튼2개박스******/
+.meminfo>#logF>.btnWrap{
+/*	overflow:hidden;*/
+	text-align: center;
+	width: 100%;
+	max-width: 700px;
+	height: auto;
+	min-height: 43px;
+	margin-top: 25px;
+	box-sizing: border-box;
 	
 }
 
-.menuM ul ul.sub_menu > li:hover >a{
-	color: #41495c;		
-}	
+.meminfo>#logF ul li{
+	display: inline-block;
+	width: 47.5%;
+	float: inherit;
+	height: 40px;
+	border:1px solid #41495c;
+	box-sizing: border-box;
+	margin: 3px;
+	background-color: #fff;
+	border-radius: 5px;
+}
 
-.menuM ul ul.sub_menu > li a{		
+.meminfo>#logF>.btnWrap a{
+	font-size: 13px;
+	line-height: 40px;
+	white-space: nowrap;
+}
+
+.meminfo>#logF ul li:hover{
+	border:1px solid #1eb4cf;
+	background-color: #1eb4cf;
+}
+
+.meminfo>#logF ul li:hover a{
+	color: #fff;
+}
+
+
+/***************모바일*****************/
+@media only screen and (max-width: 740px){	
+
+.meminfo .memWrap{/*로그인폼 내부 */
 	font-size: 14px;
 }
-*/
+.meminfo input[type=text],
+.meminfo input[type=password]{
+	position: relative;
+	right: 20px;	
+	width: 100%;
+	font-size: 13px;	
+	padding-left: 0px;
+}
+	
+.meminfo>#logF>.memWrap>.checkWrap{
+	left: 105px;
+}
 
+#chkbox{	
+	left: -30px;
+	
+}
+#sbtn{/*로그인 버튼*/
+top: 180px;
+right: 0px;
+width: 100%;
+height: 40px;
+}
+	
 
-/******** 메뉴 끝  *******/
+.meminfo>#logF>.btnWrap{
+	margin-top: 75px;}
+	
+}
+	
+@media only screen and (max-width: 500px)	{
+.meminfo>#logF ul li{
+	width:100%;
+}
+}
 
+/***************모달 로그인 끝  ******************/
 
 
 /******************************검색******************/
@@ -595,7 +807,7 @@
 	height: 80px;
 	margin: 0 auto;
 	z-index:1;
-	background: url(../img/logo.png) no-repeat 0/90%;
+	background: url(../images/logo.png) no-repeat 0/90%;
 	-webkit-perspective:1; 
 }
 
