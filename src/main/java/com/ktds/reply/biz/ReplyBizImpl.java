@@ -23,6 +23,11 @@ public class ReplyBizImpl implements ReplyBiz {
 	public List<ReplyVO> selectReplyList(String qnaId) {
 		return this.replyDao.selectReplyList(qnaId);
 	}
+
+	@Override
+	public int updateReply(ReplyVO replyVO) {
+		return this.replyDao.updateReply(replyVO);
+	}
 	
 	
 }

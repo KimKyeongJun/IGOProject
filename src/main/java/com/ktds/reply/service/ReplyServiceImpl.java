@@ -17,4 +17,9 @@ public class ReplyServiceImpl implements ReplyService {
 		return this.replyBiz.insertReply(replyVO) > 0;
 	}
 
+	@Override
+	public boolean modifyReply(ReplyVO replyVO) {
+		return this.replyBiz.updateReply(replyVO) > 0;
+	}
+
 }

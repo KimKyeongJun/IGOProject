@@ -3,13 +3,16 @@ package com.ktds.reply.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -27,7 +30,14 @@ public class ReplyController {
 	@PostMapping("/reply/write")
 	@ResponseBody
 	public Map<String, Object> doReplyWriteAction (@Valid @ModelAttribute ReplyVO replyVO, Errors error
-													, @SessionAttribute(Session.USER) MemberVO memberVO) {
+													, HttpSession session) {
+		
+		String sessionToken = (String) session.getAttribute(Session.TOKEN);
+		if(!replyVO.getToken().equalsIgnoreCase(sessionToken)) {
+			throw new RuntimeException("");
+		}
+		
+		MemberVO memberVO = (MemberVO) session.getAttribute(Session.USER);
 		
 		Map<String, Object> result = new HashMap<>();
 		
@@ -45,4 +55,23 @@ public class ReplyController {
 		return result;
 	}
 	
+	@PostMapping("/reply/modify/{replyId}")
+	@ResponseBody
+	public boolean doReplyModifyAction(@PathVariable String replyId, @RequestParam String qnaId, 
+												@RequestParam String content, @RequestParam String token, HttpSession session) {
+		String sessionToken = (String) session.getAttribute(Session.TOKEN);
+		if(!token.equalsIgnoreCase(sessionToken)) {
+			throw new RuntimeException("");
+		}
+		
+		ReplyVO replyVO = new ReplyVO();
+		replyVO.setReplyId(replyId);
+		replyVO.setContent(content);
+		replyVO.setQnaId(qnaId);
+		
+		boolean isSuccess = this.replyService.modifyReply(replyVO);
+	
+		return isSuccess;
+	}
+
 }
