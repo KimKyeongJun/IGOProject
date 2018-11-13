@@ -22,4 +22,9 @@ public class ReplyServiceImpl implements ReplyService {
 		return this.replyBiz.updateReply(replyVO) > 0;
 	}
 
+	@Override
+	public boolean deleteReply(String replyId) {
+		return this.replyBiz.deleteReply(replyId) > 0;
+	}
+
 }

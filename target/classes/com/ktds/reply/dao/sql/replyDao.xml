@@ -59,5 +59,11 @@
   		WHERE	QNA_ID = #{qnaId}
   		AND		REPLY_ID = #{replyId}
   	</update>
+
+	<delete id="deleteReply" parameterType="string">
+		DELETE
+		FROM	REPLY
+		WHERE	REPLY_ID = #{replyId}
+	</delete>  	
   	
   </mapper>
