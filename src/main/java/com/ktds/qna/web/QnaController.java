@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.common.Session;
+import com.ktds.member.vo.MemberVO;
 import com.ktds.qna.service.QnaService;
 import com.ktds.qna.vo.QnaSearchVO;
 import com.ktds.qna.vo.QnaVO;
@@ -48,7 +50,8 @@ public class QnaController {
 	}
 	
 	@RequestMapping("/qna")
-	public ModelAndView viewQnaListPage(@ModelAttribute QnaSearchVO qnaSearchVO, HttpServletRequest request, HttpSession session) {
+	public ModelAndView viewQnaListPage(@ModelAttribute QnaSearchVO qnaSearchVO, HttpServletRequest request
+			, HttpSession session) {
 				if ( qnaSearchVO.getSearchKeyword() == null ) {
 					qnaSearchVO = (QnaSearchVO) session.getAttribute(Session.QNASEARCH);
 					if ( qnaSearchVO == null ) {
