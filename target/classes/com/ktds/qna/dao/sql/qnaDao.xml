@@ -18,7 +18,7 @@ VALUES				(
 						, #{title}
 						, #{content}
 						, SYSDATE
-						, 'rudwnsdl93@naver.com'
+						, #{email}
 					)
 </insert>
 

@@ -47,6 +47,7 @@
 	
 	<c:url var="qnaResist"  value="/qna/regist" />
 	<form id="registForm">
+		<input type="hidden" id="token" name="token" value="${sessionScope._TOKEN_}" />
 		<div>
 			<input type="text" id="qnaTitle" name="title" placeholder="제목을 입력하세요."/>
 		</div>

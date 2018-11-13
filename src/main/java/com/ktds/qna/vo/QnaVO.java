@@ -14,6 +14,8 @@ public class QnaVO {
 
 	private MemberVO memberVO;
 
+	private String token;
+
 	public int getRnum() {
 		return rnum;
 	}
@@ -70,6 +72,14 @@ public class QnaVO {
 
 	public void setMemberVO(MemberVO memberVO) {
 		this.memberVO = memberVO;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }
