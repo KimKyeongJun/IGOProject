@@ -315,6 +315,7 @@
 
 /* 입력박스 공통*/
 .meminfo input[type=text],
+.meminfo input[type=email],
 .meminfo input[type=password]{
 	position: relative;
 	left: 80px;
@@ -411,6 +412,7 @@
 	font-size: 14px;
 }
 .meminfo input[type=text],
+.meminfo input[type=email],
 .meminfo input[type=password]{
 	position: relative;
 	right: 20px;	
