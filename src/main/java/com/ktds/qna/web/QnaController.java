@@ -43,7 +43,15 @@ public class QnaController {
 	
 	@PostMapping("/qna/regist")
 	@ResponseBody
-	public boolean doOneQnaRegistAction(@ModelAttribute QnaVO qnaVO) {
+	public boolean doOneQnaRegistAction(@ModelAttribute QnaVO qnaVO, HttpSession session) {
+		
+		String sessionToken = (String) session.getAttribute(Session.TOKEN);
+		if(!qnaVO.getToken().equalsIgnoreCase(sessionToken)) {
+			throw new RuntimeException("");
+		}
+		
+		MemberVO memberVO = (MemberVO) session.getAttribute(Session.USER);
+		qnaVO.setEmail(memberVO.getEmail());
 		boolean isRegist = this.qnaService.registOneQna(qnaVO);
 		System.out.println("QnaController" + qnaVO.getContent());
 		return isRegist;
