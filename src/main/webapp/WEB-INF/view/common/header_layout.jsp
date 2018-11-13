@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,23 +63,33 @@
 				<span class="close" onclick="searchToggle(this, event);"></span> <a
 					href="search.html"><div class="result-container"></div></a>
 			</div>
-			<a href="#" id="logo"></a>
+			<a href="<c:url value="/index"/>" id="logo"></a>
 		</div>
 
 
 		<div class="nav_wrapperM">
 			<nav id="navM" class="menuM">
 				<ul class="active">
-					<li class="tmenu" id="loginClick"><a href="#" title="LOGIN"><i
-							class="fa fa-sign-in MLIco"></i>LOGIN</a></li>
-					<li class="tmenu"><a href="#" title="메뉴1"> <i
-							class="icon ion-md-business MLIco"></i>회원가입
-					</a></li>
+					<c:choose>
+						<c:when test="${empty sessionScope._USER_}">
+							<li class="tmenu" id="loginClick"><a href="#" title="LOGIN"><i
+									class="fa fa-sign-in MLIco"></i>LOGIN</a></li>
+							<li class="tmenu"><a href="/IGOProject/member/regist" title="메뉴1"> <i
+									class="icon ion-md-business MLIco"></i>회원가입
+							</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="tmenu"><a href="#" title="INFO"><i
+									class="fa fa-sign-in MLIco"></i>${sessionScope._USER_.name}님</a></li>
+							<li class="tmenu"><a href="/IGOProject/member/logout2" title="LOGOUT"><i
+									class="fa fa-sign-in MLIco"></i>LOGOUT</a></li>
+						</c:otherwise>
+					</c:choose>
 					<li class="tmenu"><a href="#" title="메뉴2"> <i
 							class="icon ion-ios-business MLIco"></i>공지사항
 					</a></li>
 
-					<li class="tmenu"><a href="#" title="이벤트"><i
+					<li class="tmenu"><a href="/IGOProject/qna" title="이벤트"><i
 							class="far fa-flag MLIco"></i>Q & A</a></li>
 				</ul>
 			</nav>
