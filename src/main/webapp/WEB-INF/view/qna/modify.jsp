@@ -33,6 +33,18 @@
 	});
 </script>
 <body>
+
+	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+	
+	<div class="sub_common">
+		<div class="headImg1"><h2>Q & A</h2></div>
+			<div class="headBox">
+			
+				<div class="heading"><h2 class="headTxt">Q & A</h2>
+				</div>	
+		</div>
+	</div>
+	
 	<c:url var="qnaResist"  value="/qna/regist" />
 	<form id="registForm">
 		<div>
@@ -46,5 +58,8 @@
 			<input type="button" id="qnaBtn" value="수정" />
 		</div>
 	</form>
+	
+	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
+	
 </body>
 </html>

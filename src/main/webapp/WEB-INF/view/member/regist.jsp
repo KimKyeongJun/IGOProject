@@ -14,6 +14,17 @@
 </script>
 <body>
 
+	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+	
+	<div class="sub_common">
+		<div class="headImg1"><h2>회원가입</h2></div>
+			<div class="headBox">
+			
+				<div class="heading"><h2 class="headTxt">회원가입</h2>
+				</div>	
+		</div>
+	</div>
+
 	<form:form id="memberRegistForm" modelAttribute="memberVO"  method="post" action="/IGOProject/member/regist">
 			<div>
 				<input type="email" id="email" name="email" placeholder="E-Mail" /> <!-- 동영상 파일만 선택되도록 설정 -->
@@ -42,6 +53,8 @@
 				<input type="submit" id="registBtn" value="등록"/>
 			</div>
 		</form:form>
+		
+	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
 
 </body>
 </html>

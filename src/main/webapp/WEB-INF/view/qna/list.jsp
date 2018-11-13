@@ -8,6 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+	
+	<div class="sub_common">
+		<div class="headImg1"><h2>Q & A</h2></div>
+			<div class="headBox">
+			
+				<div class="heading"><h2 class="headTxt">Q & A</h2>
+				</div>	
+		</div>
+	</div>
 	
 	<div>
 		<span>글 번호</span>
@@ -27,13 +38,19 @@
 	</c:forEach>
 	
 	<div class="padded">
-      	<form id="searchForm" onsubmit="javascript:movePage(0);">
-      		${pagenation}
-      		<div>
-      			<input type="text" name="searchKeyword" value="${qnaSearchVO.searchKeyword}" placeholder="제목">
-      			<a href="<c:url value='/qna/init'/>">검색 초기화</a>
-      		</div>
-      	</form>
-      </div>
+		<form id="searchForm" onsubmit="javascript:movePage(0);">
+			${pagenation}
+			<div>
+				<input type="text" name="searchKeyword" value="${qnaSearchVO.searchKeyword}" placeholder="제목">
+				<a href="<c:url value='/qna/init'/>">검색 초기화</a>
+			</div>
+		</form>
+	</div>
+	
+	<div>
+		<a href="<c:url value='/qna/regist'/>">글 작성</a>
+	</div>
+
+	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
 </body>
 </html>
