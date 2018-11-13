@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +22,45 @@
 					, $("#replyData").serialize()
 					, function(response) {
 						if(response.status == 'ok') {
-							//alert(response.content + " " + response.email);
-							$(".reply").append('<div>' + response.name + " : " + response.content + '</div>')
+							$("#content").val("");
+							$(".reply").append('<div>' + response.name + ' : <span class="content">' + response.content + '</span> <a class="replyModi">|수정|</a></div>');
 						} else {
 							alert("댓글 등록 실패");
+						}
+					}
+			);
+			
+		});
+		
+		$(".reply").on("click", ".replyModi", function() {
+			var content_text = $(this).parent().find(".content").text();
+			$(this).parent().find(".content").hide();
+			$(this).parent().find(".replyModi").hide();
+			
+			var modi_text = '<textarea class="modiContent">' + content_text + '</textarea> <input type="button" class="replyModiBtn" value="수정" />'
+			$(this).parent().find(".replyModi").after(modi_text);
+		});
+		
+		$(".reply").on("click", ".replyModiBtn", function() {
+			var reply_id = $(this).parent().find("#replyId").val();
+			var modiContent = $(this).parent().find(".modiContent").val();
+			
+			if(modiContent == "") {
+				alert("수정할 내용을 입력하세용!!");
+				$(this).parent().find(".modiContent").focus();
+				return;
+			}
+			
+			$.post("<c:url value='/reply/modify/" + reply_id + "' />"
+					, {
+						qnaId : '${qnaVO.qnaId}'
+						, content : modiContent
+						, token : '${sessionScope._TOKEN_}'
+					}, function(response) {
+						if(response) {
+							window.location.reload();
+						} else {
+							alert("댓글 수정 실패");
 						}
 					}
 			);
@@ -54,13 +88,18 @@
 	
 	<div class="reply">
 		<c:forEach items="${replyList}" var="reply">
-		<div>${reply.memberVO.name} : ${reply.content}</div>
+		<div>${reply.memberVO.name} : <span class="content">${reply.content}</span>
+			<input type="hidden" id="replyId" name="replyId" value="${reply.replyId}" />
+			<c:if test="${reply.email eq sessionScope._USER_.email}">
+			<a class="replyModi">|수정|</a>
+			</c:if>
+		</div>
 		</c:forEach>
 	</div>
 	
 	<div class="replyWrite">
 		<form:form id="replyData" modelAttribute="replyVO">
-			<input type="hidden" id="token" name="token" value="1" />
+			<input type="hidden" id="token" name="token" value="${sessionScope._TOKEN_}" />
 			<input type="hidden" id="qnaId" name="qnaId" value="${qnaVO.qnaId}" />
 			<textarea id="content" name="content"></textarea>
 			<input type="button" id="replyReg" value="등록" />
