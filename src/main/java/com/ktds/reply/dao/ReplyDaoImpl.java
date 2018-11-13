@@ -27,4 +27,9 @@ public class ReplyDaoImpl extends SqlSessionDaoSupport implements ReplyDao{
 	public List<ReplyVO> selectReplyList(String qnaId) {
 		return this.getSqlSession().selectList("ReplyDao.selectReplyList", qnaId);
 	}
+
+	@Override
+	public int updateReply(ReplyVO replyVO) {
+		return this.getSqlSession().update("ReplyDao.updateReply", replyVO);
+	}
 }
