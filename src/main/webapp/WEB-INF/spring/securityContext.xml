@@ -30,7 +30,7 @@
 			invalidate-session="true"
 		/>
 		<!-- 중복 로그인 제어 -->
-		<s:session-management invalid-session-url="/test">
+		<s:session-management invalid-session-url="/index">
 			<s:concurrency-control
 				max-sessions="1"
 				expired-url="/member/login"
