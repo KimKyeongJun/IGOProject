@@ -43,7 +43,7 @@ public class AuthenticationFailureController implements AuthenticationFailureHan
 			}
 		}
 		else {
-			out.write("fail");
+			out.write("loginFail");
 		}
 		out.flush();
 	}
