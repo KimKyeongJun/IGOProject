@@ -11,4 +11,6 @@ public interface ReplyBiz {
 	public List<ReplyVO> selectReplyList(String qnaId);
 	
 	public int updateReply(ReplyVO replyVO);
+	
+	public int deleteReply(String replyId);
 }

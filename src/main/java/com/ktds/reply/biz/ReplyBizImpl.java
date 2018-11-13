@@ -28,6 +28,11 @@ public class ReplyBizImpl implements ReplyBiz {
 	public int updateReply(ReplyVO replyVO) {
 		return this.replyDao.updateReply(replyVO);
 	}
+
+	@Override
+	public int deleteReply(String replyId) {
+		return this.replyDao.deleteReply(replyId);
+	}
 	
 	
 }

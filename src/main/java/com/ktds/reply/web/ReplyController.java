@@ -74,4 +74,15 @@ public class ReplyController {
 		return isSuccess;
 	}
 
+	@PostMapping("/reply/delete/{replyId}")
+	@ResponseBody
+	public boolean doReplyDeleteAction(@PathVariable String replyId, @RequestParam String token, HttpSession session) {
+		
+		String sessionToken = (String) session.getAttribute(Session.TOKEN);
+		if(!token.equalsIgnoreCase(sessionToken)) {
+			throw new RuntimeException("");
+		}
+		
+		return this.replyService.deleteReply(replyId);
+	}
 }

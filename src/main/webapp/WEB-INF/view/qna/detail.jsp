@@ -36,6 +36,7 @@
 			var content_text = $(this).parent().find(".content").text();
 			$(this).parent().find(".content").hide();
 			$(this).parent().find(".replyModi").hide();
+			$(this).parent().find(".replyDel").hide();
 			
 			var modi_text = '<textarea class="modiContent">' + content_text + '</textarea> <input type="button" class="replyModiBtn" value="수정" />'
 			$(this).parent().find(".replyModi").after(modi_text);
@@ -66,6 +67,21 @@
 			);
 			
 		});
+		
+		$(".reply").on("click", ".replyDel", function() {
+			var reply_id = $(this).parent().find("#replyId").val();
+			$.post("<c:url value='/reply/delete/" + reply_id + "' />"
+					, {
+						token : '${sessionScope._TOKEN_}'
+					}, function(response) {
+						if(response) {
+							window.location.reload();
+						} else {
+							alert("댓글 삭제 실패");
+						}
+					}
+			);
+		});
 	});
 </script>
 </head>
@@ -91,7 +107,7 @@
 		<div>${reply.memberVO.name} : <span class="content">${reply.content}</span>
 			<input type="hidden" id="replyId" name="replyId" value="${reply.replyId}" />
 			<c:if test="${reply.email eq sessionScope._USER_.email}">
-			<a class="replyModi">|수정|</a>
+			<a class="replyModi">|수정|</a><a class="replyDel">삭제|</a>
 			</c:if>
 		</div>
 		</c:forEach>

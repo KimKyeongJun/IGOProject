@@ -32,4 +32,9 @@ public class ReplyDaoImpl extends SqlSessionDaoSupport implements ReplyDao{
 	public int updateReply(ReplyVO replyVO) {
 		return this.getSqlSession().update("ReplyDao.updateReply", replyVO);
 	}
+
+	@Override
+	public int deleteReply(String replyId) {
+		return this.getSqlSession().delete("ReplyDao.deleteReply", replyId);
+	}
 }

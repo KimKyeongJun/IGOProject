@@ -7,5 +7,7 @@ public interface ReplyService {
 	public boolean writeReply(ReplyVO replyVO);
 	
 	public boolean modifyReply(ReplyVO replyVO);
+	
+	public boolean deleteReply(String replyId);
 
 }
