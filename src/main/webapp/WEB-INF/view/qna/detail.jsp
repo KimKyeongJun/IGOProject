@@ -11,6 +11,7 @@
 <script src="<c:url value='/js/jquery-3.3.1.min.js'/>" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
+
 		$("#replyReg").click(function() {
 			if($("#content").val() == "") {
 				alert("댓글 내용을 입력하세용!!");
@@ -98,32 +99,32 @@
 		</div>
 	</div>
 
-	<div>	
+	<div>
 		${qnaVO.title}
 	</div>
-	<div>	
+	<div>   
 		${qnaVO.memberVO.name}
 	</div>
-	<div>	
+	<div>   
 		${qnaVO.regDate}
 	</div>
-	<div>	
+	<div>   
 		${qnaVO.content}
 	</div>
-	
+
 	<hr/>
-	
+
 	<div class="reply">
 		<c:forEach items="${replyList}" var="reply">
-		<div>${reply.memberVO.name} : <span class="content">${reply.content}</span>
-			<input type="hidden" id="replyId" name="replyId" value="${reply.replyId}" />
-			<c:if test="${reply.email eq sessionScope._USER_.email}">
-			<a class="replyModi">|수정|</a><a class="replyDel">삭제|</a>
-			</c:if>
-		</div>
+			<div>${reply.memberVO.name} : <span class="content">${reply.content}</span>
+				<input type="hidden" id="replyId" name="replyId" value="${reply.replyId}" />
+				<c:if test="${reply.email eq sessionScope._USER_.email}">
+				<a class="replyModi">|수정|</a><a class="replyDel">삭제|</a>
+				</c:if>
+			</div>
 		</c:forEach>
 	</div>
-	
+
 	<div class="replyWrite">
 		<form:form id="replyData" modelAttribute="replyVO">
 			<input type="hidden" id="token" name="token" value="${sessionScope._TOKEN_}" />
@@ -136,6 +137,7 @@
 		<a href="<c:url value="/qna"/>">목록</a>
 		<a href="<c:url value="/qna/modify/${qnaVO.qnaId}"/>">수정</a>
 	</div>
+
 	
 	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
 	
