@@ -82,10 +82,15 @@ public class MemberController {
 	public Map<String, Object> doCheckDuplicateEmail(@RequestParam String email){
 		boolean selectCheckEmail = memberService.readOneEmail(email);
 		Map<String, Object> result = new HashMap<>();
-		if (selectCheckEmail) {
+		System.out.println("듀플체크"+ selectCheckEmail);
+		result.put("duplicated", selectCheckEmail);  
+		/*if (selectCheckEmail) {
 			result.put("status","이미 등록된 이메일입니다.");
 			result.put("duplicated", selectCheckEmail);  
 		}
+		else {
+			result.put("", value)
+		}*/
 		return result;
 	}
 	

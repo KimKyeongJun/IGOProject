@@ -33,6 +33,7 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 
 	@Override
 	public int selectOneEmail(String email) {
+		System.out.println("듀플체크"+ getSqlSession().selectOne("MemberDao.selectOneEmail", email));
 		return getSqlSession().selectOne("MemberDao.selectOneEmail", email);
 	}
 

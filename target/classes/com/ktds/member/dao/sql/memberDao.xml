@@ -51,8 +51,8 @@
 		WHERE	EMAIL = #{email}
 	</select>
 	
-	<select id="selectOneEmail" parameterType="string" resultType="_int">
-		SELECT	COUNT(1)
+	<select id="selectOneEmail" parameterType="string" resultType="int">
+		SELECT	COUNT(*)
 		FROM	MEMBER
 		WHERE	EMAIL=#{email}
 	</select>

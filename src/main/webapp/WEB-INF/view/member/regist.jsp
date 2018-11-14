@@ -21,6 +21,7 @@
 		var emailRegexboolAfter = $(`<div class="error"> E-Mail 이미 존재합니다.</div>`);
 		var passwordConfirmAfter = $(`<div class="error"> 비밀번호를 확인해 주세요. </div>`);
 		var phoneAfter = $(`<div class="error"> 연락처를 입력해 주세요. </div>`);
+		var emmailConfirmCheckAfter = $(`<div class="error"> E-Mail을 확인해주세요. </div>`);
 		
 		$("#emailError").prepend(emailAfter);
 		$("#nameError").prepend(nameAfter);
@@ -34,6 +35,7 @@
 		var passwordEmpty = false;
 		var emailRegexbool = false;
 		var passwordConfirmEmpty = false;
+		var emailComfirmCheck = false;
 		
 		function EmptyCheck(){
 			emailEmpty = false;
@@ -42,7 +44,7 @@
 			passwordEmpty = false;
 			passwordConfirmEmpty = false;
 			
-			if ($("#email").val() == "") {
+			if ($("#emailR").val() == "") {
 				emailEmpty = true;
 			}
 			if ($("#name").val() == "") {
@@ -51,7 +53,7 @@
 			if ($("#phone").val() == "") {
 				phoneEmpty = true;
 			}
-			if ($("#password").val() == "") {
+			if ($("#passwordR").val() == "") {
 				passwordEmpty = true;
 			}
 			if ($("#passwordConfirm").val() == "") {
@@ -61,7 +63,7 @@
 		
 		function errorDivAdd() {
 			EmptyCheck();
-			//duplicate();
+			
 			var result = false;
 			if (emailEmpty || nameEmpty || phoneEmpty || passwordEmpty || passwordConfirmEmpty) {
 				$(".error").remove();
@@ -69,11 +71,17 @@
 					$("#emailError").prepend(emailAfter);
 				}
 				else {
-					if ( !emailRegex.test($("#email").val()) ) {
+					if ( !emailRegex.test($("#emailR").val()) ) {
 						$("#emailError").prepend(emailRegexAfter);
 		            }
 					else { 
-						if ( emailRegexbool ) {
+						if ( !emailComfirmCheck && !emailRegexbool ) {
+							$("#emailError").prepend(emmailConfirmCheckAfter);
+						}
+						else if ( emailComfirmCheck && emailRegexbool ) {
+							$("#emailError").prepend(emailRegexboolAfter);
+						}
+						else if ( !emailComfirmCheck && emailRegexbool ) {
 							$("#emailError").prepend(emailRegexboolAfter);
 						}
 					}
@@ -88,7 +96,7 @@
 					$("#passwordError").prepend(passwordAfter);
 				}
 				else {
-					if ( !passwordRegex.test($("#password").val()) ) {
+					if ( !passwordRegex.test($("#passwordR").val()) ) {
 						$("#passwordError").prepend(passwordRegexAter);
 			        }
 				}
@@ -96,7 +104,7 @@
 					$("#passwordConfirmError").prepend(passwordConfirmAfter);
 				}
 				else {
-					if ( $("#password").val() != $("#passwordConfirm").val() ) {
+					if ( $("#passwordR").val() != $("#passwordConfirm").val() ) {
 						$("#passwordConfirmError").prepend(passwordConfirmAfter);
 					}
 				}
@@ -104,7 +112,7 @@
 			}
 			else {
 				$(".error").remove();
-				if ( !passwordRegex.test($("#password").val()) ) {
+				if ( !passwordRegex.test($("#passwordR").val()) ) {
 					$("#passwordError").prepend(passwordRegexAter);
 					result = true;
 		        }
@@ -113,12 +121,20 @@
 					result = true;
 	            }
 				else {
-					if ( emailRegexbool ) {
+					if ( !emailComfirmCheck && !emailRegexbool ) {
+						$("#emailError").prepend(emmailConfirmCheckAfter);
+						result = true;
+					}
+					else if ( emailComfirmCheck && emailRegexbool ) {
+						$("#emailError").prepend(emailRegexboolAfter);
+						result = true;
+					}
+					else if ( !emailComfirmCheck && emailRegexbool ) {
 						$("#emailError").prepend(emailRegexboolAfter);
 						result = true;
 					}
 				}
-				if ( $("#password").val() != $("#passwordConfirm").val() ) {
+				if ( $("#passwordR").val() != $("#passwordConfirm").val() ) {
 					$("#passwordConfirmError").prepend(passwordConfirmAfter);
 					result = true;
 				}
@@ -129,7 +145,7 @@
 		
 		function duplicate() {
 			$.post("/IGOProject/member/duplicate", {
-	            "email" : $("#email").val()
+	            "email" : $("#emailR").val()
 	         }, function(response) {
 	        	 alert(response.duplicated);
 	            if (response.duplicated) {
@@ -151,6 +167,12 @@
 
 		$("#emailComfirmBtn").click(function(){
 			duplicate();
+			if ( emailRegexbool ) {
+				emailComfirmCheck = false;
+			}
+			else {
+				emailComfirmCheck = true;
+			}
 			errorDivAdd();
 		})
 		
@@ -166,7 +188,7 @@
 				"action" : "/IGOProject/member/regist",
 			}).submit();
 		});
-		$("#email").blur( function() {
+		$("#emailR").blur( function() {
 			errorDivAdd();
 			return;
 	    });
@@ -178,7 +200,7 @@
 			errorDivAdd();
 			return;
 		});
-		$("#password").blur(function(){
+		$("#passwordR").blur(function(){
 			errorDivAdd();
 			return;
 		});
@@ -186,8 +208,10 @@
 			errorDivAdd();
 			return;
 		});
-		
-		function onlyNumber(event){
+		$("#emailComfirmBtn").click(function(){
+			console.log($("#emailR").val());
+		})
+		/* function onlyNumber(event){
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
 			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
@@ -203,7 +227,8 @@
 				return;
 			else
 				event.target.value = event.target.value.replace(/[^0-9]/g, "");
-		}
+		} */
+		
 	})
 </script>
 <body>
@@ -219,9 +244,9 @@
 		</div>
 	</div>
 
-	<form:form id="memberRegistForm" modelAttribute="memberVO"  method="post" action="/IGOProject/member/regist">
+	<form:form id="memberRegistForm" modelAttribute="memberVO" > <%-- method="post" action="/IGOProject/member/regist" --%>
 			<div>
-				<input type="email" id="email" name="email" placeholder="E-Mail" /> <input type="button" id="emailComfirmBtn" value="이메일 확인"/>
+				<input type="email" id="emailR" name="email" placeholder="E-Mail" /> <input type="button" id="emailComfirmBtn" value="이메일 확인"/>
 			</div>
 			<div id="emailError">
 			</div>
@@ -237,7 +262,7 @@
 				<form:errors path="name"/>
 			</div>
 			<div>
-				<input type="text" id="phone" name="phone" placeholder="PHONE" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'/>
+				<input type="text" id="phone" name="phone" placeholder="PHONE" /> <!-- onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' -->
 			</div>
 			<div id = "phoneError">
 			</div>
@@ -245,7 +270,7 @@
 				<form:errors path="phone"/>
 			</div>
 			<div>
-				<input type="password" id="password" name="password" placeholder="PASSWORD" />
+				<input type="password" id="passwordR" name="password" placeholder="PASSWORD" />
 			</div>
 			<div id = "passwordError">
 			</div>
