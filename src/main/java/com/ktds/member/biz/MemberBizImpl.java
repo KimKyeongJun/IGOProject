@@ -79,4 +79,9 @@ public class MemberBizImpl implements MemberBiz{
 		return this.memberDao.updateMemberUpdate(memberVO) > 0;
 	}
 
+	@Override
+	public boolean changeApprovalStatus(String email) {
+		return this.memberDao.updateApprovalStatus(email) > 0;
+	}
+
 }

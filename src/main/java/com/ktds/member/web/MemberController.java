@@ -2,6 +2,7 @@ package com.ktds.member.web;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ktds.approval.vo.ApprovalVO;
 import com.ktds.common.Session;
 import com.ktds.member.service.MemberService;
 import com.ktds.member.validator.MemberValidator;
@@ -55,8 +57,25 @@ public class MemberController {
 		if ( !isSuccess ) {
 			view.setViewName("member/regist");
 			return view;
+		} else {
+			ApprovalVO approvalVO = null;
+			try {
+				approvalVO = new ApprovalVO(memberVO.getEmail(), create_key());
+				memberService.setApprovalKey(approvalVO);
+			} catch (Exception e) {
+			}
 		}
 		return view;
+	}
+	
+	public String create_key() throws Exception {
+		String key = "";
+		Random rd = new Random();
+
+		for (int i = 0; i < 10; i++) {
+			key += rd.nextInt(10);
+		}
+		return key;
 	}
 	
 	@PostMapping("/member/duplicate")
@@ -64,10 +83,15 @@ public class MemberController {
 	public Map<String, Object> doCheckDuplicateEmail(@RequestParam String email){
 		boolean selectCheckEmail = memberService.readOneEmail(email);
 		Map<String, Object> result = new HashMap<>();
-		if (selectCheckEmail) {
+		System.out.println("듀플체크"+ selectCheckEmail);
+		result.put("duplicated", selectCheckEmail);  
+		/*if (selectCheckEmail) {
 			result.put("status","이미 등록된 이메일입니다.");
 			result.put("duplicated", selectCheckEmail);  
 		}
+		else {
+			result.put("", value)
+		}*/
 		return result;
 	}
 	

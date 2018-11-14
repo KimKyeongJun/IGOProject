@@ -1,5 +1,6 @@
 package com.ktds.member.service;
 
+import com.ktds.approval.vo.ApprovalVO;
 import com.ktds.member.vo.MemberVO;
 
 public interface MemberService {
@@ -11,6 +12,8 @@ public interface MemberService {
 	public boolean readOneEmail(String email);
 	
 	public boolean isBlockUser(String email);
+	
+	public boolean setApprovalKey(ApprovalVO approvalVO);
 	
 	public boolean modifyMemberUpdate(MemberVO memberVO);
 }

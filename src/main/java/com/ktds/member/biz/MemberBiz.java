@@ -16,5 +16,7 @@ public interface MemberBiz {
 	
 	public boolean unblockUser(String email);
 	
+	public boolean changeApprovalStatus (String email);
+	
 	public boolean modifyMemberUpdate(MemberVO memberVO);
 }

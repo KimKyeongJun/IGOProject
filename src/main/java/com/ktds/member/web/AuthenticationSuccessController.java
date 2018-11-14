@@ -44,6 +44,10 @@ public class AuthenticationSuccessController implements AuthenticationSuccessHan
 		
 		PrintWriter out = response.getWriter();
 		if ( loginMember != null ) {
+			if(loginMember.getApprovalStatus().equalsIgnoreCase("N")) {
+				out.write("approvalFail");
+				return ;
+			}
 			session.setAttribute(Session.TOKEN, user.getToken());
 			session.setAttribute(Session.USER, loginMember);
 			out.write("loginSuccess");

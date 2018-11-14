@@ -18,6 +18,8 @@ public interface MemberDao {
 		
 	public int increaseLoginFailCount(String email);
 	
+	public int updateApprovalStatus(String email);
+	
 	public int updateMemberUpdate(MemberVO memberVO);
 	
 }

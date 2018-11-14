@@ -107,6 +107,9 @@
 				    } 
 				    else if (response == "block") {
 				    	alert("Password 3회이상 실패하여 1시간 동안 계정이 잠겼습니다. ");
+				    } 
+				    else if (response == "approvalFail") {
+				    	alert("이메일 인증을 확인하세요.");
 				    }
 		    //alert(response.message);
 		 		});    
