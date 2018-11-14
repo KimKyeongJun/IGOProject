@@ -28,7 +28,73 @@
 <script src="/IGOProject/js/swiper.min.js" type="text/javascript"></script>
  <script type="text/javascript">
 	$().ready(function(){
+		
+		// cookie에서 이메일 받아와서 변수에 넣기
+		var cookieId= getLogin();
+		
+		// cookie에 이메일 값이 있으면 email입력 form에 입력하고 checkbox 체크
+		if ( cookieId != "" ) {
+			$("#email").val(cookieId);
+			$("#chkbox").prop("checked", true);
+		}
+		
+		// checkbox 체크 여부 확인
+		$("#chkbox").click(function() {
+			var idChkbox = this;
+			var isRemember;
+			
+			if ( $(idChkbox).is(":checked") ) {
+				isRemember = confirm("이 PC에 로그인 정보를 저장하시겠습니까?\n PC방 등의 공공장소에서는 개인정보가 유출될 수 있으니 주의해주십시오.");
+				
+				if(!isRemember) {
+					$(idChkbox).prop("checked", false);
+				}
+			}
+		});
+		
+		// email form email주소 저장
+		function saveLogin(id) {
+			if ( id != "" ) {
+				setSave("userid", id, 7);
+			}
+			else {
+				setSave("userid", id, -1);
+			}
+		}
+		
+		// cookie에 email값 넣기
+		function setSave(name, value, expiredays) {
+			var today = new Date();
+			today.setDate( today.getDate() + expiredays );
+			document.cookie = name + "=" + escape(value) + "; path/; expires=" + today.toGMTString() + ";"
+		}
+		
+		// cookie에서 이메일 값 받아오기
+		function getLogin() {
+			var cook = document.cookie+";";
+			var idx = cook.indexOf("userid", 0);
+			var val = "";
+			
+			if ( idx != -1 ){
+				cook = cook.substring(idx, cook.length);
+				begin = cook.indexOf("=",0) + 1;
+				end = cook.indexOf(";", begin);
+				val = unescape(cook.substring(begin,end));
+			}
+			
+			return val;
+		}
+		
 		$("#sbtn").click(function(){
+			
+			// checkbox 체크되어있으면 로그인 정보 저장
+			if ( $("#chkbox").is(":checked") ) {
+				saveLogin($("#email").val());
+			}
+			else {
+				saveLogin("");
+			}
+			
 			$.post("/IGOProject/memberlogin", 
 					$(`#logF`).serialize()
 					, function(response) {

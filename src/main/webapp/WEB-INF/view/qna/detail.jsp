@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,15 +124,19 @@
 			</div>
 		</c:forEach>
 	</div>
-
-	<div class="replyWrite">
-		<form:form id="replyData" modelAttribute="replyVO">
-			<input type="hidden" id="token" name="token" value="${sessionScope._TOKEN_}" />
-			<input type="hidden" id="qnaId" name="qnaId" value="${qnaVO.qnaId}" />
-			<textarea id="content" name="content"></textarea>
-			<input type="button" id="replyReg" value="등록" />
-		</form:form>
-	</div>
+	
+	<s:authorize access="hasRole('ROLE_ADMIN')" var="isAdmin" />
+	<c:if test="${isAdmin || qnaVO.email eq sessionScope._USER_.email}">
+		<div class="replyWrite">
+			<form:form id="replyData" modelAttribute="replyVO">
+				<input type="hidden" id="token" name="token" value="${sessionScope._TOKEN_}" />
+				<input type="hidden" id="qnaId" name="qnaId" value="${qnaVO.qnaId}" />
+				<textarea id="content" name="content"></textarea>
+				<input type="button" id="replyReg" value="등록" />
+			</form:form>
+		</div>
+	</c:if>
+	
 	<div>
 		<a href="<c:url value="/qna"/>">목록</a>
 		<a href="<c:url value="/qna/modify/${qnaVO.qnaId}"/>">수정</a>
