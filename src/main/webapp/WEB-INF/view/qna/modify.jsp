@@ -26,7 +26,10 @@
 					, $("#registForm").serialize()
 					, function(response) {
 						if(response) {
-							location.href='<c:url value="/qna"/>';
+							location.href='<c:url value="/qna/detail/${qnaVO.qnaId}"/>';
+						}
+						else {
+							alert("수정 실패");
 						}
 			});
 		});
@@ -49,6 +52,7 @@
 	<form id="registForm">
 		<div>
 			<input type="hidden" name="qnaId" value="${qnaVO.qnaId}"/>
+			<input type="hidden" name="token" value="${sessionScope._TOKEN_}"/>
 			<input type="text" id="qnaTitle" name="title" placeholder="제목을 입력하세요." value="${qnaVO.title}"/>
 		</div>
 		<div>

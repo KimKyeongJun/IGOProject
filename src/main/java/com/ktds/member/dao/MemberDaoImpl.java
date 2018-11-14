@@ -51,4 +51,9 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 		return getSqlSession().update("MemberDao.increaseLoginFailCount", email);
 	}
 	
+	@Override
+	public int updateMemberUpdate(MemberVO memberVO) {
+		return getSqlSession().update("MemberDao.updateMemberUpdate", memberVO);
+	}
+	
 }

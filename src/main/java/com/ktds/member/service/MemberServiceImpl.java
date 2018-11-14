@@ -31,5 +31,10 @@ public class MemberServiceImpl implements MemberService {
 	public boolean isBlockUser(String email) {
 		return memberBiz.isBlockUser(email);
 	}
+	
+	@Override
+	public boolean modifyMemberUpdate(MemberVO memberVO) {
+		return this.memberBiz.modifyMemberUpdate(memberVO);
+	}
 
 }

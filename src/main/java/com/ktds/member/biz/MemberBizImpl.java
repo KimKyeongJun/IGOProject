@@ -63,5 +63,21 @@ public class MemberBizImpl implements MemberBiz{
 	public boolean unblockUser(String email) {
 		return memberDao.unblockUser(email) > 0;
 	}
+	
+	@Override
+	public boolean modifyMemberUpdate(MemberVO memberVO) {
+		if ( memberVO.getPassword() != null && memberVO.getPassword() != "" ) {
+			String salt = SHA256Util.generateSalt();
+			String password = this.getHashedPassword(salt, memberVO.getPassword());
+			memberVO.setPassword(password);
+			memberVO.setSalt(salt);
+		}
+		else {
+			memberVO.setPassword(null);
+			memberVO.setSalt(null);
+		}
+		System.out.println("!!!!!MemberBiz 출력" + memberVO.getPassword());
+		return this.memberDao.updateMemberUpdate(memberVO) > 0;
+	}
 
 }

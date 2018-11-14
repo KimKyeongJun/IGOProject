@@ -11,4 +11,6 @@ public interface MemberService {
 	public boolean readOneEmail(String email);
 	
 	public boolean isBlockUser(String email);
+	
+	public boolean modifyMemberUpdate(MemberVO memberVO);
 }

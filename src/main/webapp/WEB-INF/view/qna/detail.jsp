@@ -139,7 +139,9 @@
 	
 	<div>
 		<a href="<c:url value="/qna"/>">목록</a>
-		<a href="<c:url value="/qna/modify/${qnaVO.qnaId}"/>">수정</a>
+		<c:if test="${qnaVO.email eq sessionScope._USER_.email}">
+			<a href="<c:url value="/qna/modify/${qnaVO.qnaId}"/>">수정</a>
+		</c:if>
 	</div>
 
 	
