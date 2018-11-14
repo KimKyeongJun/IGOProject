@@ -24,6 +24,9 @@ public class MemberVO {
 	private int loginFailCount;
 	private String lastLogin;
 	private String adminYN;
+	private String approvalStatus;
+	@NotEmpty(message="연락처는 필수 입력 값입니다.", groups= {MemberValidator.Regist.class})
+	private String phone;
 
 	public String getEmail() {
 		return email;
@@ -81,10 +84,26 @@ public class MemberVO {
 		this.adminYN = adminYN;
 	}
 
+	public String getApprovalStatus() {
+		return approvalStatus;
+	}
+
+	public void setApprovalStatus(String approvalStatus) {
+		this.approvalStatus = approvalStatus;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [email=" + email + ", name=" + name + ", password=" + password + ", salt=" + salt
-				+ ", loginFailCount=" + loginFailCount + ", lastLogin=" + lastLogin + ", adminYN=" + adminYN + "]";
+				+ ", loginFailCount=" + loginFailCount + ", lastLogin=" + lastLogin + ", adminYN=" + adminYN
+				+ ", approvalStatus=" + approvalStatus + ", phone=" + phone + "]";
 	}
-
 }

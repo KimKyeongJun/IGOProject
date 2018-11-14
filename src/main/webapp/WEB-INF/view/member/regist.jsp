@@ -39,16 +39,23 @@
 				<form:errors path="name"/>
 			</div>
 			<div>
+				<input type="text" id="phone" name="phone" placeholder="PHONE" />
+			</div>
+			<div>
+				<form:errors path="phone"/>
+			</div>
+			<div>
 				<input type="password" id="password" name="password" placeholder="PASSWORD" />
 			</div>
-			<!-- <div>
-				<input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="PASSWORD CONFIRM"/>
-			</div>
-			<div id="passwordConfirmError">
-			</div> -->
 			<div>
 				<form:errors path="password"/>
 			</div>
+			<div>
+				<input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="PASSWORD CONFIRM"/>
+			</div>
+			<!-- <div id="passwordConfirmError">
+			</div> -->
+			
 			<div>
 				<input type="submit" id="registBtn" value="등록"/>
 			</div>

@@ -14,6 +14,8 @@
 									, LOGIN_FAIL_COUNT
 									, LAST_LOGIN
                                     , ADMIN_YN
+									, APPROVAL_STATUS	
+									, PHONE
 								 )
 		VALUES					 (
 									#{email}
@@ -23,6 +25,8 @@
 									, 0
 									, SYSDATE
                                     , 'N'
+									, 'N'
+									, #{phone}
 								 )
     </insert>
 
