@@ -76,7 +76,6 @@ public class MemberBizImpl implements MemberBiz{
 			memberVO.setPassword(null);
 			memberVO.setSalt(null);
 		}
-		System.out.println("!!!!!MemberBiz 출력" + memberVO.getPassword());
 		return this.memberDao.updateMemberUpdate(memberVO) > 0;
 	}
 
