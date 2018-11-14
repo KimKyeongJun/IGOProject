@@ -38,6 +38,8 @@
 				, LOGIN_FAIL_COUNT loginFailCount
                 , LAST_LOGIN lastLogin
                 , ADMIN_YN adminYN
+				, APPROVAL_STATUS	approvalStatus
+				, PHONE phone
 		FROM	MEMBER
 		WHERE	EMAIL = #{email}
 		AND 	PASSWORD = #{password}
