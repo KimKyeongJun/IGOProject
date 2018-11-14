@@ -83,4 +83,18 @@
 		WHERE	EMAIL = #{email}
 	</update>
 
+	<select id="findMemberEmail" parameterType="MemberVO" resultType="MemberVO">
+		SELECT	EMAIL email
+				, NAME name
+				, PASSWORD password
+				, SALT salt
+				, LOGIN_FAIL_COUNT loginFailCount
+                , LAST_LOGIN lastLogin
+                , ADMIN_YN adminYN
+				, APPROVAL_STATUS	approvalStatus
+				, PHONE phone
+		FROM	MEMBER
+		WHERE	NAME = #{name}
+		AND		PHONE = #{phone}
+	</select>
 </mapper>

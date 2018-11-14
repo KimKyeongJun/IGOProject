@@ -95,4 +95,9 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	@Override
+	public MemberVO findMemberEmail(MemberVO memberVO) {
+		return this.memberBiz.findMemberEmail(memberVO);
+	}
+
 }

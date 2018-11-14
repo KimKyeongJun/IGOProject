@@ -117,4 +117,26 @@ public class MemberController {
 		return view;
 	}
 	
+	@GetMapping("/member/find")
+	public String viewFindPage() {
+		return "member/find";
+	}
+	
+	@PostMapping("/member/find")
+	@ResponseBody
+	public Map<String, Object> doEmailFindAction (@ModelAttribute MemberVO memberVO) {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		MemberVO findMemberVO = this.memberService.findMemberEmail(memberVO);
+		
+		if(findMemberVO != null) {
+			result.put("findEmail", findMemberVO.getEmail());
+		} else {
+			result.put("status", "fail");
+		}
+		
+		return result;
+	}
+	
 }

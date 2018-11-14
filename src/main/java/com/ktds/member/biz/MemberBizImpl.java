@@ -69,4 +69,9 @@ public class MemberBizImpl implements MemberBiz{
 		return this.memberDao.updateApprovalStatus(email) > 0;
 	}
 
+	@Override
+	public MemberVO findMemberEmail(MemberVO memberVO) {
+		return this.memberDao.findMemberEmail(memberVO);
+	}
+
 }
