@@ -76,5 +76,11 @@
 				, LAST_LOGIN = SYSDATE
 		WHERE	EMAIL = #{eamil}
 	</update>
+	
+	<update id="updateApprovalStatus" parameterType="string">
+		UPDATE	MEMBER
+		SET		APPROVAL_STATUS = 'Y'
+		WHERE	EMAIL = #{email}
+	</update>
 
 </mapper>

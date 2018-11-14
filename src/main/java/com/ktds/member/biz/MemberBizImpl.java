@@ -64,4 +64,9 @@ public class MemberBizImpl implements MemberBiz{
 		return memberDao.unblockUser(email) > 0;
 	}
 
+	@Override
+	public boolean changeApprovalStatus(String email) {
+		return this.memberDao.updateApprovalStatus(email) > 0;
+	}
+
 }

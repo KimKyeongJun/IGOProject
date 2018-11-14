@@ -50,5 +50,10 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 	public int increaseLoginFailCount(String email) {
 		return getSqlSession().update("MemberDao.increaseLoginFailCount", email);
 	}
+
+	@Override
+	public int updateApprovalStatus(String email) {
+		return this.getSqlSession().update("MemberDao.updateApprovalStatus", email);
+	}
 	
 }

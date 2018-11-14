@@ -2,6 +2,7 @@ package com.ktds.member.web;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ktds.approval.vo.ApprovalVO;
 import com.ktds.common.Session;
 import com.ktds.member.service.MemberService;
 import com.ktds.member.validator.MemberValidator;
@@ -54,8 +56,25 @@ public class MemberController {
 		if ( !isSuccess ) {
 			view.setViewName("member/regist");
 			return view;
+		} else {
+			ApprovalVO approvalVO = null;
+			try {
+				approvalVO = new ApprovalVO(memberVO.getEmail(), create_key());
+				memberService.setApprovalKey(approvalVO);
+			} catch (Exception e) {
+			}
 		}
 		return view;
+	}
+	
+	public String create_key() throws Exception {
+		String key = "";
+		Random rd = new Random();
+
+		for (int i = 0; i < 10; i++) {
+			key += rd.nextInt(10);
+		}
+		return key;
 	}
 	
 	@PostMapping("/member/duplicate")

@@ -15,4 +15,6 @@ public interface MemberBiz {
 	public boolean increaseLoginFailCount(String email);
 	
 	public boolean unblockUser(String email);
+	
+	public boolean changeApprovalStatus (String email);
 }
