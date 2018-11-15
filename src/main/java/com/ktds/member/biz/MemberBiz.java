@@ -18,5 +18,5 @@ public interface MemberBiz {
 	
 	public boolean changeApprovalStatus (String email);
 	
-	public MemberVO findMemberEmail(MemberVO memberVO);
+	public boolean modifyMemberUpdate(MemberVO memberVO);
 }

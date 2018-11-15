@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.approval.vo.ApprovalVO;
@@ -82,10 +83,15 @@ public class MemberController {
 	public Map<String, Object> doCheckDuplicateEmail(@RequestParam String email){
 		boolean selectCheckEmail = memberService.readOneEmail(email);
 		Map<String, Object> result = new HashMap<>();
-		if (selectCheckEmail) {
+		System.out.println("듀플체크"+ selectCheckEmail);
+		result.put("duplicated", selectCheckEmail);  
+		/*if (selectCheckEmail) {
 			result.put("status","이미 등록된 이메일입니다.");
 			result.put("duplicated", selectCheckEmail);  
 		}
+		else {
+			result.put("", value)
+		}*/
 		return result;
 	}
 	
@@ -117,26 +123,32 @@ public class MemberController {
 		return view;
 	}
 	
-	@GetMapping("/member/find")
-	public String viewFindPage() {
-		return "member/find";
+	@GetMapping("/member/modify")
+	public String viewMemberModifyPage(@SessionAttribute(Session.USER)MemberVO memberVO) {
+		return "member/modify";
 	}
 	
-	@PostMapping("/member/find")
+	@PostMapping("/member/modify")
 	@ResponseBody
-	public Map<String, Object> doEmailFindAction (@ModelAttribute MemberVO memberVO) {
-		
-		Map<String, Object> result = new HashMap<>();
-		
-		MemberVO findMemberVO = this.memberService.findMemberEmail(memberVO);
-		
-		if(findMemberVO != null) {
-			result.put("findEmail", findMemberVO.getEmail());
-		} else {
-			result.put("status", "fail");
+	public boolean doMemberModifyAction(@ModelAttribute MemberVO memberVO) {
+		boolean isModify = this.memberService.modifyMemberUpdate(memberVO);
+		return isModify;
+	}
+	
+	@GetMapping("/member/passwordconfirm")
+	public String viewPasswordConfirmPage() {
+		return "member/passwordconfirm";
+	}
+	
+	@PostMapping("/member/passwordconfirm")
+	@ResponseBody
+	public boolean doPasswordConfirmAction(@ModelAttribute MemberVO memberVO) {
+		MemberVO passwordMemberVO = this.memberService.readOneMember(memberVO);
+		if (passwordMemberVO != null) {
+			return true;
 		}
-		
-		return result;
+		return false;
+>>>>>>> 5d779e9e41220af20749af8923fc20aff0ceb1af
 	}
 	
 }

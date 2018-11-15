@@ -20,6 +20,10 @@ public interface MemberDao {
 	
 	public int updateApprovalStatus(String email);
 	
+<<<<<<< HEAD
 	public MemberVO findMemberEmail(MemberVO memberVO);
+=======
+	public int updateMemberUpdate(MemberVO memberVO);
+>>>>>>> 5d779e9e41220af20749af8923fc20aff0ceb1af
 	
 }

@@ -51,8 +51,8 @@
 		WHERE	EMAIL = #{email}
 	</select>
 	
-	<select id="selectOneEmail" parameterType="string" resultType="_int">
-		SELECT	COUNT(1)
+	<select id="selectOneEmail" parameterType="string" resultType="int">
+		SELECT	COUNT(*)
 		FROM	MEMBER
 		WHERE	EMAIL=#{email}
 	</select>
@@ -82,6 +82,17 @@
 		SET		APPROVAL_STATUS = 'Y'
 		WHERE	EMAIL = #{email}
 	</update>
+	
+	<update id="updateMemberUpdate" parameterType="MemberVO">
+		UPDATE	MEMBER
+		SET		NAME = #{name}
+		<if test="password != null">
+				, PASSWORD = #{password}
+				, SALT = #{salt}
+		</if>
+				, PHONE = #{phone}
+	</update>
+	
 
 	<select id="findMemberEmail" parameterType="MemberVO" resultType="MemberVO">
 		SELECT	EMAIL email

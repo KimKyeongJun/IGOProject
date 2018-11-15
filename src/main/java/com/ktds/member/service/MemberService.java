@@ -15,5 +15,5 @@ public interface MemberService {
 	
 	public boolean setApprovalKey(ApprovalVO approvalVO);
 	
-	public MemberVO findMemberEmail(MemberVO memberVO);
+	public boolean modifyMemberUpdate(MemberVO memberVO);
 }

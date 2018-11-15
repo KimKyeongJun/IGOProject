@@ -47,33 +47,33 @@ public class MemberServiceImpl implements MemberService {
 		return this.approvalBiz.insertApprovalKey(approvalVO) > 0;
 	}
 	
-	// ÀÌ¸ÞÀÏ ¹ß¼Û
+	// ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ß¼ï¿½
 	public void send_mail(ApprovalVO approvalVO) throws Exception {
-		// Mail Server ¼³Á¤
+		// Mail Server ï¿½ï¿½ï¿½ï¿½
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.naver.com";
 		String hostSMTPid = "igoproj@naver.com";
 		String hostSMTPpwd = "projectigo201!";
 
-		// º¸³»´Â »ç¶÷ EMail, Á¦¸ñ, ³»¿ë
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ EMail, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½
 		String fromEmail = "igoproj@naver.com";
 		String fromName = "I GO";
 		String subject = "";
 		String msg = "";
 
-		// È¸¿ø°¡ÀÔ ¸ÞÀÏ ³»¿ë
-		subject = "I GO È¸¿ø°¡ÀÔ ÀÎÁõ ¸ÞÀÏÀÔ´Ï´Ù.";
+		// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		subject = "I GO È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.";
 		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 		msg += "<h3 style='color: blue;'>";
-		msg += approvalVO.getEmail().split("@")[0] + "´Ô È¸¿ø°¡ÀÔÀ» È¯¿µÇÕ´Ï´Ù.</h3>";
+		msg += approvalVO.getEmail().split("@")[0] + "ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ï¿½Õ´Ï´ï¿½.</h3>";
 		msg += "<div style='font-size: 130%'>";
-		msg += "ÇÏ´ÜÀÇ ÀÎÁõ ¹öÆ° Å¬¸¯ ½Ã Á¤»óÀûÀ¸·Î È¸¿ø°¡ÀÔÀÌ ¿Ï·áµË´Ï´Ù.</div><br/>";
+		msg += "ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ë´Ï´ï¿½.</div><br/>";
 		msg += "<form method='post' action='http://localhost:8080/IGOProject/approval/send'>";
 		msg += "<input type='hidden' name='email' value='" + approvalVO.getEmail() + "'>";
 		msg += "<input type='hidden' name='key' value='" + approvalVO.getKey() + "'>";
-		msg += "<input type='submit' value='ÀÎÁõ'></form><br/></div>";
+		msg += "<input type='submit' value='ï¿½ï¿½ï¿½ï¿½'></form><br/></div>";
 
-		// ¹Þ´Â »ç¶÷ E-Mail ÁÖ¼Ò
+		// ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ E-Mail ï¿½Ö¼ï¿½
 		String mail = approvalVO.getEmail();
 		try {
 			HtmlEmail email = new HtmlEmail();
@@ -91,8 +91,13 @@ public class MemberServiceImpl implements MemberService {
 			email.setHtmlMsg(msg);
 			email.send();
 		} catch (Exception e) {
-			System.out.println("¸ÞÀÏ¹ß¼Û ½ÇÆÐ : " + e);
+			System.out.println("ï¿½ï¿½ï¿½Ï¹ß¼ï¿½ ï¿½ï¿½ï¿½ï¿½ : " + e);
 		}
+	}
+	
+	@Override
+	public boolean modifyMemberUpdate(MemberVO memberVO) {
+		return this.memberBiz.modifyMemberUpdate(memberVO);
 	}
 
 	@Override

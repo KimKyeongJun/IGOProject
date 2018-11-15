@@ -33,6 +33,7 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 
 	@Override
 	public int selectOneEmail(String email) {
+		System.out.println("���뵆泥댄겕"+ getSqlSession().selectOne("MemberDao.selectOneEmail", email));
 		return getSqlSession().selectOne("MemberDao.selectOneEmail", email);
 	}
 
@@ -55,10 +56,10 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 	public int updateApprovalStatus(String email) {
 		return this.getSqlSession().update("MemberDao.updateApprovalStatus", email);
 	}
-
+	
 	@Override
-	public MemberVO findMemberEmail(MemberVO memberVO) {
-		return this.getSqlSession().selectOne("MemberDao.findMemberEmail", memberVO);
+	public int updateMemberUpdate(MemberVO memberVO) {
+		return getSqlSession().update("MemberDao.updateMemberUpdate", memberVO);
 	}
 	
 }
