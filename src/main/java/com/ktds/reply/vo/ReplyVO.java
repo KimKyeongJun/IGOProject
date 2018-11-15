@@ -3,6 +3,7 @@ package com.ktds.reply.vo;
 import javax.validation.constraints.NotEmpty;
 
 import com.ktds.member.vo.MemberVO;
+import com.nhncorp.lucy.security.xss.XssFilter;
 
 public class ReplyVO {
 
@@ -26,7 +27,8 @@ public class ReplyVO {
 	}
 
 	public String getContent() {
-		return content;
+		XssFilter filter = XssFilter.getInstance("lucy-xss-superset.xml");
+		return filter.doFilter(content);
 	}
 
 	public void setContent(String content) {

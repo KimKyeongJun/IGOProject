@@ -21,4 +21,8 @@ public interface MemberBiz {
 	public boolean modifyMemberUpdate(MemberVO memberVO);
 	
 	public MemberVO findMemberEmail(MemberVO memberVO);
+	
+	public boolean findMember(MemberVO memberVO);
+	
+	public boolean changeMemberPw(MemberVO memberVO);
 }

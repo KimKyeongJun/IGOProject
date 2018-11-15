@@ -102,11 +102,26 @@
 				, LOGIN_FAIL_COUNT loginFailCount
                 , LAST_LOGIN lastLogin
                 , ADMIN_YN adminYN
-				, APPROVAL_STATUS	approvalStatus
+				, APPROVAL_STATUS approvalStatus
 				, PHONE phone
 		FROM	MEMBER
 		WHERE	NAME = #{name}
 		AND		PHONE = #{phone}
 	</select>
+	
+	<select id="selectMember" parameterType="MemberVO" resultType="_int">
+		SELECT	COUNT(1)
+		FROM	MEMBER
+		WHERE	EMAIL = #{email}
+		AND		NAME = #{name}
+		AND		PHONE = #{phone}
+	</select>
+	
+	<update id="updateMemberPw" parameterType="MemberVO">
+		UPDATE	MEMBER
+		SET		PASSWORD = #{password}
+				, SALT = #{salt}
+		WHERE	EMAIL = #{email}
+	</update>
 
 </mapper>

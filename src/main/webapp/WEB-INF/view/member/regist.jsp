@@ -147,7 +147,6 @@
 			$.post("/IGOProject/member/duplicate", {
 	            "email" : $("#duplicatedEmail").val()
 	         }, function(response) {
-	        	 alert(response.duplicated);
 	            if (response.duplicated) {
 	            	emailRegexbool  = true;
 	            }

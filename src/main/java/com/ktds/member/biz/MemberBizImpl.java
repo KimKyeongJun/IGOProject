@@ -89,4 +89,18 @@ public class MemberBizImpl implements MemberBiz{
 		return this.memberDao.selectMemberEmail(memberVO);
 	}
 
+	@Override
+	public boolean findMember(MemberVO memberVO) {
+		return this.memberDao.selectMember(memberVO) > 0;
+	}
+
+	@Override
+	public boolean changeMemberPw(MemberVO memberVO) {
+		String salt = SHA256Util.generateSalt();
+		String password = this.getHashedPassword(salt, memberVO.getPassword());
+		memberVO.setPassword(password);
+		memberVO.setSalt(salt);
+		return this.memberDao.updateMemberPw(memberVO) > 0;
+	}
+
 }
