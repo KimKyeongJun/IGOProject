@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.approval.vo.ApprovalVO;
@@ -120,6 +121,33 @@ public class MemberController {
 		ModelAndView view = new ModelAndView("member/login");
 		view.addObject("error", error);
 		return view;
+	}
+	
+	@GetMapping("/member/modify")
+	public String viewMemberModifyPage(@SessionAttribute(Session.USER)MemberVO memberVO) {
+		return "member/modify";
+	}
+	
+	@PostMapping("/member/modify")
+	@ResponseBody
+	public boolean doMemberModifyAction(@ModelAttribute MemberVO memberVO) {
+		boolean isModify = this.memberService.modifyMemberUpdate(memberVO);
+		return isModify;
+	}
+	
+	@GetMapping("/member/passwordconfirm")
+	public String viewPasswordConfirmPage() {
+		return "member/passwordconfirm";
+	}
+	
+	@PostMapping("/member/passwordconfirm")
+	@ResponseBody
+	public boolean doPasswordConfirmAction(@ModelAttribute MemberVO memberVO) {
+		MemberVO passwordMemberVO = this.memberService.readOneMember(memberVO);
+		if (passwordMemberVO != null) {
+			return true;
+		}
+		return false;
 	}
 	
 }

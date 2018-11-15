@@ -14,4 +14,6 @@ public interface MemberService {
 	public boolean isBlockUser(String email);
 	
 	public boolean setApprovalKey(ApprovalVO approvalVO);
+	
+	public boolean modifyMemberUpdate(MemberVO memberVO);
 }

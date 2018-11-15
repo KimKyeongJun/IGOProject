@@ -82,5 +82,16 @@
 		SET		APPROVAL_STATUS = 'Y'
 		WHERE	EMAIL = #{email}
 	</update>
+	
+	<update id="updateMemberUpdate" parameterType="MemberVO">
+		UPDATE	MEMBER
+		SET		NAME = #{name}
+		<if test="password != null">
+				, PASSWORD = #{password}
+				, SALT = #{salt}
+		</if>
+				, PHONE = #{phone}
+	</update>
+	
 
 </mapper>

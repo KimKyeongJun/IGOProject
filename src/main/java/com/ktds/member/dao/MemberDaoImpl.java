@@ -57,4 +57,9 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao {
 		return this.getSqlSession().update("MemberDao.updateApprovalStatus", email);
 	}
 	
+	@Override
+	public int updateMemberUpdate(MemberVO memberVO) {
+		return getSqlSession().update("MemberDao.updateMemberUpdate", memberVO);
+	}
+	
 }

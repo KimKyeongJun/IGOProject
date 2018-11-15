@@ -68,5 +68,20 @@ public class MemberBizImpl implements MemberBiz{
 	public boolean changeApprovalStatus(String email) {
 		return this.memberDao.updateApprovalStatus(email) > 0;
 	}
+	
+	@Override
+	public boolean modifyMemberUpdate(MemberVO memberVO) {
+		if ( memberVO.getPassword() != null && memberVO.getPassword() != "" ) {
+			String salt = SHA256Util.generateSalt();
+			String password = this.getHashedPassword(salt, memberVO.getPassword());
+			memberVO.setPassword(password);
+			memberVO.setSalt(salt);
+		}
+		else {
+			memberVO.setPassword(null);
+			memberVO.setSalt(null);
+		}
+		return this.memberDao.updateMemberUpdate(memberVO) > 0;
+	}
 
 }
