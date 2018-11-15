@@ -9,6 +9,37 @@
 <script src="<c:url value="/js/jquery-3.3.1.min.js" />" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
+		
+		$("#newPassPhone").keyup(function(event){
+			if ( !onlyNumber(event) ) {
+				removeChar(event)
+			}
+		});
+		
+		$("#findPhone").keyup(function(event){
+			if ( !onlyNumber(event) ) {
+				removeChar(event)
+			}
+		});
+		
+		function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+		
+		function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+		}
+		
 		$("#setNewPassData").hide();
 		
 		$("#newPassBtn").click(function() {
@@ -68,6 +99,11 @@
 				$("#findPhone").focus();
 				return ;
 			}
+			if ($("#newPassword").val() != newPasswordConfirm.val()) {
+				alert("패스워드를 다시 확인해 주세요.")
+				$("#newPassword").focus();
+				return;
+			}
 			
 			$.post("<c:url value='/member/findEmail' />"
 					, $("#EmailFindData").serialize()
@@ -80,6 +116,18 @@
 					}
 			);
 		});
+		
+		$("#findPhone").blur( function() {
+	         var num = $("#findPhone").val();
+	         var phone_num = num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+	         $("#findPhone").val(phone_num);
+	    });
+		
+		$("#newPassPhone").blur( function() {
+	         var num = $("#newPassPhone").val();
+	         var phone_num = num.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+	         $("#newPassPhone").val(phone_num);
+	    });
 	}); 
 </script>
 </head>
@@ -94,7 +142,7 @@
 				이름 <input type="text" id="findName" name="name" placeholder="이름" />
 			</div>
 			<div>
-				전화번호 <input type="text" id="findPhone" name="phone" placeholder="전화번호" />
+				전화번호 <input type="text" id="findPhone" name="phone" placeholder="전화번호" maxlength=11/>
 			</div>
 			<div>
 				<input type="button" id="EmailFindBtn" value="찾기" />
@@ -117,7 +165,7 @@
 				이름 <input type="text" id="newPassName" name="name" placeholder="이름" />
 			</div>
 			<div>
-				전화번호 <input type="text" id="newPassPhone" name="phone" placeholder="전화번호" />
+				전화번호 <input type="text" id="newPassPhone" name="phone" placeholder="전화번호" maxlength=11/>
 			</div>
 			<div>
 				<input type="button" id="newPassBtn" value="찾기" />
