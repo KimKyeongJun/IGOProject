@@ -154,7 +154,7 @@ public class MemberController {
 		return "member/find";
 	}
 	
-	@PostMapping("/member/find")
+	@PostMapping("/member/findEmail")
 	@ResponseBody
 	public Map<String, Object> doEmailFindAction (@ModelAttribute MemberVO memberVO) {
 		
@@ -171,4 +171,25 @@ public class MemberController {
 		return result;
 	}
 	
+	@PostMapping("/member/findMember")
+	@ResponseBody
+	public Map<String, Object> dofindMemberAction (@ModelAttribute MemberVO memberVO) {
+		Map<String, Object> result = new HashMap<>();
+		
+		boolean isMember = this.memberService.findMember(memberVO);
+		
+		if(isMember) {
+			result.put("memberEmail", memberVO.getEmail());
+		} else {
+			result.put("status", "fail");
+		}
+		
+		return result;
+	}
+	
+	@PostMapping("/member/updatePw")
+	@ResponseBody
+	public boolean doUpdatePWAction (@ModelAttribute MemberVO memberVO) {
+		return this.memberService.changeMemberPw(memberVO);
+	}
 }
