@@ -44,7 +44,7 @@
 			passwordEmpty = false;
 			passwordConfirmEmpty = false;
 			
-			if ($("#emailR").val() == "") {
+			if ($("#duplicatedEmail").val() == "") {
 				emailEmpty = true;
 			}
 			if ($("#name").val() == "") {
@@ -53,7 +53,7 @@
 			if ($("#phone").val() == "") {
 				phoneEmpty = true;
 			}
-			if ($("#passwordR").val() == "") {
+			if ($("#registPassword").val() == "") {
 				passwordEmpty = true;
 			}
 			if ($("#passwordConfirm").val() == "") {
@@ -71,7 +71,7 @@
 					$("#emailError").prepend(emailAfter);
 				}
 				else {
-					if ( !emailRegex.test($("#emailR").val()) ) {
+					if ( !emailRegex.test($("#duplicatedEmail").val()) ) {
 						$("#emailError").prepend(emailRegexAfter);
 		            }
 					else { 
@@ -96,7 +96,7 @@
 					$("#passwordError").prepend(passwordAfter);
 				}
 				else {
-					if ( !passwordRegex.test($("#passwordR").val()) ) {
+					if ( !passwordRegex.test($("#registPassword").val()) ) {
 						$("#passwordError").prepend(passwordRegexAter);
 			        }
 				}
@@ -104,7 +104,7 @@
 					$("#passwordConfirmError").prepend(passwordConfirmAfter);
 				}
 				else {
-					if ( $("#passwordR").val() != $("#passwordConfirm").val() ) {
+					if ( $("#registPassword").val() != $("#passwordConfirm").val() ) {
 						$("#passwordConfirmError").prepend(passwordConfirmAfter);
 					}
 				}
@@ -112,11 +112,11 @@
 			}
 			else {
 				$(".error").remove();
-				if ( !passwordRegex.test($("#passwordR").val()) ) {
+				if ( !passwordRegex.test($("#registPassword").val()) ) {
 					$("#passwordError").prepend(passwordRegexAter);
 					result = true;
 		        }
-				if ( !emailRegex.test($("#email").val()) ) {
+				if ( !emailRegex.test($("#duplicatedEmail").val()) ) {
 					$("#emailError").prepend(emailRegexAfter);
 					result = true;
 	            }
@@ -134,7 +134,7 @@
 						result = true;
 					}
 				}
-				if ( $("#passwordR").val() != $("#passwordConfirm").val() ) {
+				if ( $("#registPassword").val() != $("#passwordConfirm").val() ) {
 					$("#passwordConfirmError").prepend(passwordConfirmAfter);
 					result = true;
 				}
@@ -145,7 +145,7 @@
 		
 		function duplicate() {
 			$.post("/IGOProject/member/duplicate", {
-	            "email" : $("#emailR").val()
+	            "email" : $("#duplicatedEmail").val()
 	         }, function(response) {
 	        	 alert(response.duplicated);
 	            if (response.duplicated) {
@@ -188,7 +188,7 @@
 				"action" : "/IGOProject/member/regist",
 			}).submit();
 		});
-		$("#emailR").blur( function() {
+		$("#duplicatedEmail").blur( function() {
 			errorDivAdd();
 			return;
 	    });
@@ -200,7 +200,7 @@
 			errorDivAdd();
 			return;
 		});
-		$("#passwordR").blur(function(){
+		$("#registPassword").blur(function(){
 			errorDivAdd();
 			return;
 		});
@@ -208,10 +208,14 @@
 			errorDivAdd();
 			return;
 		});
-		$("#emailComfirmBtn").click(function(){
-			console.log($("#emailR").val());
-		})
-		/* function onlyNumber(event){
+		
+		$("#phone").keyup(function(event){
+			if ( !onlyNumber(event) ) {
+				removeChar(event)
+			}
+		});
+		
+		function onlyNumber(event){
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
 			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
@@ -219,7 +223,6 @@
 			else
 				return false;
 		}
-		
 		function removeChar(event) {
 			event = event || window.event;
 			var keyID = (event.which) ? event.which : event.keyCode;
@@ -227,7 +230,7 @@
 				return;
 			else
 				event.target.value = event.target.value.replace(/[^0-9]/g, "");
-		} */
+		}
 		
 	})
 </script>
@@ -246,7 +249,7 @@
 
 	<form:form id="memberRegistForm" modelAttribute="memberVO" > <%-- method="post" action="/IGOProject/member/regist" --%>
 			<div>
-				<input type="email" id="emailR" name="email" placeholder="E-Mail" /> <input type="button" id="emailComfirmBtn" value="이메일 확인"/>
+				<input type="email" id="duplicatedEmail" name="email" placeholder="E-Mail" /> <input type="button" id="emailComfirmBtn" value="이메일 확인"/>
 			</div>
 			<div id="emailError">
 			</div>
@@ -262,7 +265,7 @@
 				<form:errors path="name"/>
 			</div>
 			<div>
-				<input type="text" id="phone" name="phone" placeholder="PHONE" /> <!-- onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' -->
+				<input type="text" id="phone" name="phone" placeholder="PHONE"  maxlength=11 /> 
 			</div>
 			<div id = "phoneError">
 			</div>
@@ -270,7 +273,7 @@
 				<form:errors path="phone"/>
 			</div>
 			<div>
-				<input type="password" id="passwordR" name="password" placeholder="PASSWORD" />
+				<input type="password" id="registPassword" name="password" placeholder="PASSWORD" />
 			</div>
 			<div id = "passwordError">
 			</div>
