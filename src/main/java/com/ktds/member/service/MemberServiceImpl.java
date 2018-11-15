@@ -68,9 +68,9 @@ public class MemberServiceImpl implements MemberService {
 		msg += approvalVO.getEmail().split("@")[0] + "님 회원가입을 환영합니다.</h3>";
 		msg += "<div style='font-size: 130%'>";
 		msg += "하단의 인증 버튼 클릭 시 정상적으로 회원가입이 완료됩니다.</div><br/>";
-		msg += "<form method='post' action='http://localhost:8081/homepage/member/approval_member.do'>";
+		msg += "<form method='post' action='http://localhost:8080/IGOProject/approval/send'>";
 		msg += "<input type='hidden' name='email' value='" + approvalVO.getEmail() + "'>";
-		msg += "<input type='hidden' name='approval_key' value='" + approvalVO.getKey() + "'>";
+		msg += "<input type='hidden' name='key' value='" + approvalVO.getKey() + "'>";
 		msg += "<input type='submit' value='인증'></form><br/></div>";
 
 

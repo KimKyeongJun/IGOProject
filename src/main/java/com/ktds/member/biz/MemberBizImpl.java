@@ -86,7 +86,7 @@ public class MemberBizImpl implements MemberBiz{
 
 	@Override
 	public MemberVO findMemberEmail(MemberVO memberVO) {
-		return null;
+		return this.memberDao.selectMemberEmail(memberVO);
 	}
 
 }

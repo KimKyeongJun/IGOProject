@@ -191,7 +191,7 @@
 					<div class="btnWrap">
 						<ul>
 							<li class="joinBtn"><a href="/IGOProject/member/regist" class="on">회원가입</a></li>
-							<li class="joinBtn joinBtn2"><a href="idpw.jsp">ID/PW 찾기</a></li>
+							<li class="joinBtn joinBtn2"><a href="/IGOProject/member/find">ID/PW 찾기</a></li>
 						</ul>
 					</div>
 				</form>

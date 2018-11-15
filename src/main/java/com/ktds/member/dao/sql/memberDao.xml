@@ -93,7 +93,7 @@
 				, PHONE = #{phone}
 	</update>
 	
-	<select id="findMemberEmail" parameterType="MemberVO" resultType="MemberVO">
+	<select id="selectMemberEmail" parameterType="MemberVO" resultType="MemberVO">
 		SELECT	EMAIL email
 				, NAME name
 				, PASSWORD password
