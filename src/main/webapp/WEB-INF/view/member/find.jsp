@@ -9,16 +9,22 @@
 <script src="<c:url value="/js/jquery-3.3.1.min.js" />" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
+		$("#setNewPass").hide();
+		
+		$("#newPassBtn").click(function() {
+			$("#setNewPass").show();
+		});
+		
 		$("#EmailFindBtn").click(function() {
-			if($("#name").val() == "") {
+			if($("#findName").val() == "") {
 				alert("이름을 입력하세용!!");
-				$("#name").focus();
+				$("#findName").focus();
 				return ;
 			}
 			
-			if($("#phone").val() == "") {
+			if($("#findPhone").val() == "") {
 				alert("전화번호를 입력하세용!!");
-				$("#phone").focus();
+				$("#findPhone").focus();
 				return ;
 			}
 			
@@ -44,34 +50,46 @@
 		</div>
 		<form id="EmailFindData">
 			<div>
-				이름 <input type="text" id="name" name="name" placeholder="이름" />
+				이름 <input type="text" id="findName" name="name" placeholder="이름" />
 			</div>
 			<div>
-				전화번호 <input type="text" id="phone" name="phone" placeholder="전화번호" />
+				전화번호 <input type="text" id="findPhone" name="phone" placeholder="전화번호" />
 			</div>
 			<div>
 				<input type="button" id="EmailFindBtn" value="찾기" />
 			</div>
-			<div>
-				이메일 <input type="text" id="findEmail" />
-			</div>
 		</form>
+		<div>
+			이메일 <input type="text" id="findEmail" />
+		</div>
 	</div>
 	<hr>
 	<div>
 		<div>
 			비밀번호 재설정
 		</div>
-		<form>
+		<form id="newPassData">
 			<div>
+				이메일 <input type="text" id="newPassEmail" name="name" placeholder="이메일" />
 			</div>
 			<div>
+				이름 <input type="text" id="newPassName" name="name" placeholder="이름" />
 			</div>
 			<div>
+				전화번호 <input type="text" id="newPassPhone" name="phone" placeholder="전화번호" />
 			</div>
 			<div>
+				<input type="button" id="newPassBtn" value="비밀번호 재설정" />
 			</div>
 		</form>
+		<div id="setNewPass">
+			<div>
+				새 비밀번호 <input type="password" id="newPassword" name="password" placeholder="New Password" />
+			</div>
+			<div>
+				새 비밀번호 확인 <input type="password" id="newPasswordConfirm" name="newPasswordConfirm" placeholder="New Password Confirm"/>
+			</div>
+		</div>
 	</div>
 
 </body>
