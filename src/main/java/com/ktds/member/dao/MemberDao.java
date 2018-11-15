@@ -22,4 +22,6 @@ public interface MemberDao {
 	
 	public int updateMemberUpdate(MemberVO memberVO);
 	
+	public MemberVO selectMemberEmail(MemberVO memberVO);
+	
 }

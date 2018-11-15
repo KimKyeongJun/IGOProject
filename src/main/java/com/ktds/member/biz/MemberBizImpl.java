@@ -84,4 +84,9 @@ public class MemberBizImpl implements MemberBiz{
 		return this.memberDao.updateMemberUpdate(memberVO) > 0;
 	}
 
+	@Override
+	public MemberVO findMemberEmail(MemberVO memberVO) {
+		return null;
+	}
+
 }
