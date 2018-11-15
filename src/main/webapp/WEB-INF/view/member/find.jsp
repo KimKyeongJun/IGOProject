@@ -9,10 +9,51 @@
 <script src="<c:url value="/js/jquery-3.3.1.min.js" />" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
-		$("#setNewPass").hide();
+		$("#setNewPassData").hide();
 		
 		$("#newPassBtn").click(function() {
-			$("#setNewPass").show();
+			
+			if($("#newPassEmail").val() == "") {
+				alert("이메일을 입력하세용!!");
+				$("#newPassEmail").focus();
+				return ;
+			}
+			
+			if($("#newPassName").val() == "") {
+				alert("이름을 입력하세용!!");
+				$("#newPassName").focus();
+				return ;
+			}
+			
+			if($("#newPassPhone").val() == "") {
+				alert("전화번호를 입력하세용!!");
+				$("#newPassPhone").focus();
+				return ;
+			}
+			
+			$.post("<c:url value='/member/findMember' />"
+					, $("#newPassData").serialize()
+					, function(response) {
+						if(response.status == "fail") {
+							alert("존재하지 않는 회원입니다.");
+						} else {
+							$("#setNewPassData").show();
+							$("#emailForNewPass").val(response.memberEmail);
+						}
+					}
+			);
+			
+		});
+		
+		$("#setNewPassBtn").click(function() {
+			$.post("<c:url value='/member/updatePw' />"
+					,$("#setNewPassData").serialize()
+					, function(response) {
+						if(response) {
+							location.href="<c:url value='/index' />";
+						}
+					}
+			);
 		});
 		
 		$("#EmailFindBtn").click(function() {
@@ -28,7 +69,7 @@
 				return ;
 			}
 			
-			$.post("<c:url value='/member/find' />"
+			$.post("<c:url value='/member/findEmail' />"
 					, $("#EmailFindData").serialize()
 					, function(response) {
 						if(response.status == "fail") {
@@ -70,7 +111,7 @@
 		</div>
 		<form id="newPassData">
 			<div>
-				이메일 <input type="text" id="newPassEmail" name="name" placeholder="이메일" />
+				이메일 <input type="email" id="newPassEmail" name="email" placeholder="이메일" />
 			</div>
 			<div>
 				이름 <input type="text" id="newPassName" name="name" placeholder="이름" />
@@ -79,17 +120,21 @@
 				전화번호 <input type="text" id="newPassPhone" name="phone" placeholder="전화번호" />
 			</div>
 			<div>
-				<input type="button" id="newPassBtn" value="비밀번호 재설정" />
+				<input type="button" id="newPassBtn" value="찾기" />
 			</div>
 		</form>
-		<div id="setNewPass">
+		<form id="setNewPassData">
+			<input type="text" id="emailForNewPass" name="email" />
 			<div>
 				새 비밀번호 <input type="password" id="newPassword" name="password" placeholder="New Password" />
 			</div>
 			<div>
 				새 비밀번호 확인 <input type="password" id="newPasswordConfirm" name="newPasswordConfirm" placeholder="New Password Confirm"/>
 			</div>
-		</div>
+			<div>
+				<input type="button" id="setNewPassBtn" value="비밀번호 재설정" />
+			</div>
+		</form>
 	</div>
 
 </body>

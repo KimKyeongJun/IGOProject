@@ -106,4 +106,14 @@ public class MemberServiceImpl implements MemberService {
 		return this.memberBiz.findMemberEmail(memberVO);
 	}
 
+	@Override
+	public boolean findMember(MemberVO memberVO) {
+		return this.memberBiz.findMember(memberVO);
+	}
+
+	@Override
+	public boolean changeMemberPw(MemberVO memberVO) {
+		return this.memberBiz.changeMemberPw(memberVO);
+	}
+
 }
