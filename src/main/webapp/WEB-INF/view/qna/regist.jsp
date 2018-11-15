@@ -12,9 +12,9 @@
 <script type="text/javascript">
 	$().ready(function() {
 		$("#qnaBtn").click(function() {
-			if ($("#qnaTitle").val() == ""){
+			if ($("#wr_title").val() == ""){
 				alert("제목을 입력하세요");
-				$("#qnaTitle").focus();
+				$("#wr_title").focus();
 				return;
 			}
 			
@@ -47,16 +47,6 @@
 	</div>
 	
 	<c:url var="qnaResist"  value="/qna/regist" />
-	<%-- <form id="registForm">
-		<input type="hidden" id="token" name="token" value="${sessionScope._TOKEN_}" />
-		<div>
-			<input type="text" id="qnaTitle" name="title" placeholder="제목을 입력하세요."/>
-		</div>
-		
-		<div>
-			<input type="button" id="qnaBtn" value="등록" />
-		</div>
-	</form> --%>
 	
 	<section id="bo_w">
 		<h2 class="sound_only">자유게시판 글쓰기</h2>
@@ -82,7 +72,7 @@
 		</div> 
 
 		<div class="btn_confirm write_div">
-			<a href="/IGOProject/qna" class="btn_cancel btn"><i class="icon ion-md-close" aria-hidden="true"></i>취소</a>
+			<a href="<c:url value="/qna"/>" class="btn_cancel btn"><i class="icon ion-md-close" aria-hidden="true"></i>취소</a>
 			<button value="작성완료" id="qnaBtn" accesskey="s" class="btn_submit btn"><i class="icon ion-md-create"></i>등록</button>
 		</div>
 	</form>

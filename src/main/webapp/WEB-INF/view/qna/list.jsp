@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/IGOProject/css/board.css" rel="stylesheet" type="text/css">
+<script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script>
+	$().ready(function() {
+		$(".detail").click(function() {			
+			location.href = "/IGOProject/qna/detail/"+$(this).data('qnaid');
+		});
+	});
+</script>
 </head>
 <body>
 
@@ -15,9 +23,8 @@
 	<div class="sub_common">
 		<div class="headImg1"><h2>Q & A</h2></div>
 			<div class="headBox">
-			
 				<div class="heading"><h2 class="headTxt">Q & A</h2>
-				</div>	
+			</div>	
 		</div>
 	</div>
 	
@@ -43,7 +50,7 @@
                 <div class="contentWrapper">
                   <tr class="">
                     <td class="tac number box">${qnaVO.rnum}</td>
-                    <td class="subject box"><a href="<c:url value='/qna/detail/${qnaVO.qnaId}'/>">${qnaVO.title}</a></td>
+                    <td class="subject box detail" data-qnaid="${qnaVO.qnaId}"><%-- <a href="<c:url value='/qna/detail/${qnaVO.qnaId}'/>"> --%>${qnaVO.title}<!-- </a> --></td>
                     <td class="tac sv_use writer box">${qnaVO.memberVO.name}</td>
                     <td class="tac create-date box">${qnaVO.regDate}</td>
                   </tr>
@@ -62,7 +69,9 @@
     
     <div class="padded pg_wrap">
       <form id="searchForm" class="pagination" onsubmit="javascript:movePage(0);">
-         <div class="pageNum">${pagenation}</div>
+         <div class="pageNum">
+         	${pagenation}
+         </div>
          <div class="bottonSearch">
             <input type="text" name="searchKeyword" value="${qnaSearchVO.searchKeyword}" placeholder="제목" class="bsInput">
             <button type="submit" value="검색" class="bsBtn"><i class="icon ion-md-search"></i></button>
@@ -73,7 +82,9 @@
 	
     <div class="btn_confirm">
       <ul class="btn_bo_user">
-        <li class="btnWrite"><a href="<c:url value='/qna/regist'/>">글쓰기</a></li>
+      	<c:if test="${not empty sessionScope._USER_}">
+        	<li class="btnWrite"><a href="<c:url value='/qna/regist'/>">글쓰기</a></li>
+      	</c:if>
       </ul>
     </div>
     

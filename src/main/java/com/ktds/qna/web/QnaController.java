@@ -107,8 +107,11 @@ public class QnaController {
 	
 	@PostMapping("/qna/modify")
 	@ResponseBody
-	public boolean doOneQnaModifyAction(QnaVO qnaVO) {
-		boolean isModify = this.qnaService.modifyOneQna(qnaVO);
+	public boolean doOneQnaModifyAction(QnaVO qnaVO, @SessionAttribute(Session.TOKEN) String token) {
+		boolean isModify = false;
+		if ( token.equals(qnaVO.getToken()) ){
+			isModify = this.qnaService.modifyOneQna(qnaVO);	
+		}
 		return isModify;
 	}
 	

@@ -157,7 +157,7 @@
 						<c:otherwise>
 							<li class="tmenu"><a href="/IGOProject/member/logout2" title="LOGOUT"><i
 									class="fa fa-sign-in MLIco"></i>LOGOUT</a></li>
-							<li class="tmenu"><a href="#" title="INFO">
+							<li class="tmenu"><a href="/IGOProject/member/passwordconfirm" title="INFO">
 							<i class="icon ion-md-person MLIco"></i>${sessionScope._USER_.name}님</a></li>
 						</c:otherwise>
 					</c:choose>
