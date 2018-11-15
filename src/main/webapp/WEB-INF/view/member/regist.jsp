@@ -182,10 +182,12 @@
 			if ( emailRegexbool ) {
 				return;
 			}
+			alert("회원가입 인증 메일을 발송했습니다. \n인증 확인 후 이용해주세요.");
 			$("#memberRegistForm").attr({
 				"method" : "post",
 				"action" : "/IGOProject/member/regist",
 			}).submit();
+			
 		});
 		$("#duplicatedEmail").blur( function() {
 			errorDivAdd();
