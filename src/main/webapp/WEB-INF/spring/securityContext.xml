@@ -16,7 +16,7 @@
 		<s:csrf disabled="true" />
 		<s:form-login 
 			login-page="/member/login"
-			username-parameter="email"
+			username-parameter="securityEmail"
 			password-parameter="password"
 			login-processing-url="/memberlogin" 
 			authentication-success-handler-ref="authenticationSuccessController"

@@ -91,6 +91,7 @@
 				, SALT = #{salt}
 		</if>
 				, PHONE = #{phone}
+		WHERE	EMAIL = #{email}
 	</update>
 	
 	<select id="selectMemberEmail" parameterType="MemberVO" resultType="MemberVO">

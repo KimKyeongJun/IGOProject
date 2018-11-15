@@ -38,7 +38,7 @@ public class AuthenticationSuccessController implements AuthenticationSuccessHan
 		//memberVO.setPassword(request.getParameter("password"));
 		
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getDetails();
-		memberVO.setEmail(user.getEmail());
+		memberVO.setEmail(user.getSecurityEmail());
 		memberVO.setPassword(user.getPassword());
 		MemberVO loginMember = memberService.readOneMember(memberVO);
 		

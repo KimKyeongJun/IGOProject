@@ -29,6 +29,13 @@
  <script type="text/javascript">
 	$().ready(function(){
 		
+		
+		$(".joinBtn1").click(function() {
+			location.href="/IGOProject/member/regist";
+		})
+		$(".joinBtn2").click(function() {
+			location.href="/IGOProject/member/find";
+		})
 		// cookie에서 이메일 받아와서 변수에 넣기
 		var cookieId= getLogin();
 		
@@ -148,10 +155,10 @@
 							</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="tmenu"><a href="#" title="INFO"><i
-									class="fa fa-sign-in MLIco"></i>${sessionScope._USER_.name}님</a></li>
 							<li class="tmenu"><a href="/IGOProject/member/logout2" title="LOGOUT"><i
 									class="fa fa-sign-in MLIco"></i>LOGOUT</a></li>
+							<li class="tmenu"><a href="#" title="INFO">
+							<i class="icon ion-md-person MLIco"></i>${sessionScope._USER_.name}님</a></li>
 						</c:otherwise>
 					</c:choose>
 					<li class="tmenu"><a href="#" title="공지사항"> <i
@@ -175,7 +182,7 @@
 						<div class="minput">
 							<!--아이디-->
 							<label for="mid">아이디</label> <input type="email" id="email"
-								name="email" maxlength="40" placeholder="이메일을 입력하세요" value="${memberVO.email}"/>
+								name="securityEmail" maxlength="40" placeholder="이메일을 입력하세요" value="${memberVO.email}"/>
 						</div>
 						<div class="minput">
 							<!--비번-->
@@ -190,8 +197,8 @@
 					<!--버튼2개박스-->
 					<div class="btnWrap">
 						<ul>
-							<li class="joinBtn"><a href="/IGOProject/member/regist" class="on">회원가입</a></li>
-							<li class="joinBtn joinBtn2"><a href="/IGOProject/member/find">ID/PW 찾기</a></li>
+							<li class="joinBtn joinBtn1">회원가입</li>
+							<li class="joinBtn joinBtn2">ID/PW 찾기</li>
 						</ul>
 					</div>
 				</form>

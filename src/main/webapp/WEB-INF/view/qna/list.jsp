@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/IGOProject/css/board.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -20,36 +21,66 @@
 		</div>
 	</div>
 	
-	<div>
-		<span>글 번호</span>
-		<span>제목</span>
-		<span>작성자</span>
-		<span>작성일</span>
-	</div>
+	<div id="con_lf"> 
+  
+  <!-- 게시판 목록 시작 { -->
+  <div id="bo_list" style="width:100%">
+    <div class="tbl_head01 tbl_wrap">
+      <table>
+       
+        <thead>
+          <tr>
+            <th scope="col" class="number header box">번호</th>
+            <th scope="col" class="subject header box">제목</th>
+            <th scope="col" class="writer header box">글쓴이</th>
+            <th scope="col" class="create-date header box">작성일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <c:choose>
+            <c:when test="${not empty qnaList}">
+              <c:forEach items="${qnaList}" var="qnaVO">
+                <div class="contentWrapper">
+                  <tr class="">
+                    <td class="tac number box">${qnaVO.rnum}</td>
+                    <td class="subject box"><a href="<c:url value='/qna/detail/${qnaVO.qnaId}'/>">${qnaVO.title}</a></td>
+                    <td class="tac sv_use writer box">${qnaVO.memberVO.name}</td>
+                    <td class="tac create-date box">${qnaVO.regDate}</td>
+                  </tr>
+                </div>
+              </c:forEach>
+            </c:when>
+            <c:otherwise>
+              <div id="no-articles">
+                <div style="text-align:center;"> 등록된 게시글이 없습니다. </div>
+              </div>
+            </c:otherwise>
+          </c:choose>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="padded pg_wrap">
+      <form id="searchForm" class="pagination" onsubmit="javascript:movePage(0);">
+         <div class="pageNum">${pagenation}</div>
+         <div class="bottonSearch">
+            <input type="text" name="searchKeyword" value="${qnaSearchVO.searchKeyword}" placeholder="제목" class="bsInput">
+            <button type="submit" value="검색" class="bsBtn"><i class="icon ion-md-search"></i></button>
+			 <a href="<c:url value='/qna/init'/>" class="bsResetBtn"><i class="icon ion-md-refresh"></i></a>			 
+         </div>           
+      </form>
+   </div>
 	
+    <div class="btn_confirm">
+      <ul class="btn_bo_user">
+        <li class="btnWrite"><a href="<c:url value='/qna/regist'/>">글쓰기</a></li>
+      </ul>
+    </div>
+    
+  
+</div>
+</div>
 	
-	<c:forEach items="${qnaList}" var="qnaVO">
-		<div>
-			<span>${qnaVO.rnum}</span>
-			<span><a href="<c:url value='/qna/detail/${qnaVO.qnaId}'/>">${qnaVO.title}</a></span>
-			<span>${qnaVO.memberVO.name}</span>
-			<span>${qnaVO.regDate}</span>
-		</div>
-	</c:forEach>
-	
-	<div class="padded">
-		<form id="searchForm" onsubmit="javascript:movePage(0);">
-			${pagenation}
-			<div>
-				<input type="text" name="searchKeyword" value="${qnaSearchVO.searchKeyword}" placeholder="제목">
-				<a href="<c:url value='/qna/init'/>">검색 초기화</a>
-			</div>
-		</form>
-	</div>
-	
-	<div>
-		<a href="<c:url value='/qna/regist'/>">글 작성</a>
-	</div>
 
 	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
 </body>

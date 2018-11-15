@@ -10,26 +10,26 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class User implements UserDetails {
 
-	private String email;
+	private String securityEmail;
 	private String userPassword;
 	private String grade;
 	private boolean isBlockAccount;
 	private String token;
 
-	public User(String email, String userPassword, String grade, boolean isBlockAccount, String token) {
-		this.email = email;
+	public User(String securityEmail, String userPassword, String grade, boolean isBlockAccount, String token) {
+		this.securityEmail = securityEmail;
 		this.userPassword = userPassword;
 		this.grade = grade;
 		this.isBlockAccount = isBlockAccount;
 		this.token = token;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getSecurityEmail() {
+		return securityEmail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setSecurityEmail(String securityEmail) {
+		this.securityEmail = securityEmail;
 	}
 
 	public String getGrade() {
@@ -56,9 +56,9 @@ public class User implements UserDetails {
 		this.token = token;
 	}
 
-	/*public String getUserPassword() {
-		return userPassword;
-	}*/
+	/*
+	 * public String getUserPassword() { return userPassword; }
+	 */
 
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
@@ -81,7 +81,7 @@ public class User implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.email;
+		return this.securityEmail;
 	}
 
 	@Override

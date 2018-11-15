@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/IGOProject/css/board.css" rel="stylesheet" type="text/css">
 <script src="<c:url value='/js/jquery-3.3.1.min.js'/>" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
@@ -141,6 +142,40 @@
 		<a href="<c:url value="/qna"/>">목록</a>
 		<a href="<c:url value="/qna/modify/${qnaVO.qnaId}"/>">수정</a>
 	</div>
+	
+	<article id="bo_v" style="width:100%">
+    <header>
+        <h2 id="bo_v_title">
+                        <span class="bo_v_tit">${qnaVO.title}</span>
+        </h2>
+    </header>
+
+    <section id="bo_v_info">
+        <h2>페이지 정보</h2>
+        <span class="sound_only">작성자</span> <strong><span class="sv_member">${qnaVO.memberVO.name}</span></strong>
+        <strong class="if_date" ><span class="sound_only">작성일</span><i class="fa fa-clock-o" aria-hidden="true"></i> ${qnaVO.regDate}</strong>
+
+    </section>
+
+    <section id="bo_v_atc">
+        <h2 id="bo_v_atc_title">본문</h2>
+
+        <!-- 본문 내용 시작 { -->
+        <div id="bo_v_con">${qnaVO.content}</div>
+          <!-- } 본문 내용 끝 -->
+    </section>    
+    <!-- 게시물 상단 버튼 시작 { -->
+    <div id="bo_v_top">
+        <ul class="bo_v_com">
+           <li><a href="/IGOProject/qna" class="btn_b01 btn"><i class="fa fa-list" aria-hidden="true"></i> 목록</a></li>
+           <c:if test="${sessionScope._USER_.email eq qnaVO.email}">           
+				<li><a href="<c:url value="/qna/modify/${qnaVO.qnaId}"/>" class="btn_b02 btn"><i class="icon ion-md-close" aria-hidden="true"></i> 수정</a></li>    
+				<li><a href="<c:url value="/qna/delete/${qnaVO.qnaId}"/>" class="btn_b02 btn"><i class="icon ion-md-close" aria-hidden="true"></i> 삭제</a></li>    
+           </c:if>
+		</ul>    
+	</div>
+    <!-- } 게시물 상단 버튼 끝 -->
+</article>
 
 	
 	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
