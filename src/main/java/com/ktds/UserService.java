@@ -31,6 +31,9 @@ public class UserService implements AuthenticationProvider{
 		memberVO.setEmail(email);
 		memberVO.setPassword(userPassword);
 		
+		System.out.println("!!!!!!!!!!!!UserService 출력" + email);
+		System.out.println("!!!!!!!!!!!!UserService 출력" + userPassword);
+		
 		boolean isBlockAccount = memberBiz.isBlockUser(memberVO.getEmail());
 		MemberVO isLoginSuccess = new MemberVO();
 		
@@ -74,6 +77,7 @@ public class UserService implements AuthenticationProvider{
 			throw new BadCredentialsException("잘못된 인증");
 		}
 		return result;
+		
 	}
 
 	@Override

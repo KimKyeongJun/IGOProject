@@ -28,7 +28,7 @@ public class AuthenticationFailureController implements AuthenticationFailureHan
 		
 		MemberVO memberVO = new MemberVO();
 		
-		memberVO.setEmail(request.getParameter("email"));
+		memberVO.setEmail(request.getParameter("securityEmail"));
 		memberVO.setPassword(request.getParameter("password"));
 		
 		boolean isBlockUser = memberService.isBlockUser(memberVO.getEmail());

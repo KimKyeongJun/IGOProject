@@ -57,7 +57,7 @@
 		WHERE	EMAIL=#{email}
 	</select>
 	
-	<select id="isBlockUser" parameterType="string" resultType="_int">
+	<select id="isBlockUser" parameterType="string" resultType="int">
 		SELECT	LOGIN_FAIL_COUNT
 		FROM	MEMBER
 		WHERE	EMAIL=#{email}

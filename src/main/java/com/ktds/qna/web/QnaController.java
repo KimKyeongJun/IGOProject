@@ -53,7 +53,6 @@ public class QnaController {
 		MemberVO memberVO = (MemberVO) session.getAttribute(Session.USER);
 		qnaVO.setEmail(memberVO.getEmail());
 		boolean isRegist = this.qnaService.registOneQna(qnaVO);
-		System.out.println("QnaController" + qnaVO.getContent());
 		return isRegist;
 	}
 	

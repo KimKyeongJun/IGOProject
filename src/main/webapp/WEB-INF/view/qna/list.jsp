@@ -57,9 +57,9 @@
               </c:forEach>
             </c:when>
             <c:otherwise>
-              <div id="no-articles">
-                <div style="text-align:center;"> 등록된 게시글이 없습니다. </div>
-              </div>
+              <tr id="no-articles">
+                <td colspan="4" style="text-align:center;"> 등록된 게시글이 없습니다. </td>
+              </tr>
             </c:otherwise>
           </c:choose>
         </tbody>

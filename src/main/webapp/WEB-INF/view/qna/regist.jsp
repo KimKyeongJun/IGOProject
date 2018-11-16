@@ -72,7 +72,7 @@
 
 		<div class="btn_confirm write_div">
 			<a href="<c:url value="/qna"/>" class="btn_cancel btn"><i class="icon ion-md-close" aria-hidden="true"></i>취소</a>
-			<button value="작성완료" id="qnaBtn" accesskey="s" class="btn_submit btn"><i class="icon ion-md-create"></i>등록</button>
+			<button type="button" value="작성완료" id="qnaBtn" accesskey="s" class="btn_submit btn"><i class="icon ion-md-create"></i>등록</button>
 		</div>
 	</form>
 </section>
