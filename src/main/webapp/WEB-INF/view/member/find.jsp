@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <script src="<c:url value="/js/jquery-3.3.1.min.js" />" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
@@ -313,11 +312,17 @@
 </script>
 </head>
 <body>
-	<%-- <jsp:include page="/WEB-INF/view/common/header_layout.jsp" /> --%>
-	<div>
-		<div>
-			Email 찾기
+	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+	
+	<div class="sub_common">
+		<div class="headImg1"><h2>회원 정보 찾기</h2></div>
+			<div class="headBox">
+			
+				<div class="heading"><h2 class="headTxt">회원 정보 찾기</h2>
+				</div>	
 		</div>
+	</div>
+	<div>		
 		<form id="EmailFindData">
 			<div>
 				이름 <input type="text" id="findName" name="name" placeholder="이름" />
@@ -379,6 +384,8 @@
 			</div>
 		</form>
 	</div>
+	
+	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
 
 </body>
 </html>

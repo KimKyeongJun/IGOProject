@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>IGO</title>
 <link href="/IGOProject/css/main.css" rel="stylesheet" type="text/css">
 <link href="/IGOProject/css/common.css" rel="stylesheet" type="text/css">
 <link href="/IGOProject/css/core.css" rel="stylesheet" type="text/css">
@@ -31,10 +31,10 @@
 		
 		
 		$(".joinBtn1").click(function() {
-			location.href="/IGOProject/member/regist";
+			location.href = "<c:url value='/member/regist'/>";
 		})
 		$(".joinBtn2").click(function() {
-			location.href="/IGOProject/member/find";
+			location.href = "<c:url value='/member/find'/>";
 		})
 		// cookie에서 이메일 받아와서 변수에 넣기
 		var cookieId= getLogin();
@@ -150,14 +150,14 @@
 						<c:when test="${empty sessionScope._USER_}">
 							<li class="tmenu" id="loginClick"><a href="#" title="LOGIN"><i
 									class="fa fa-sign-in MLIco"></i>LOGIN</a></li>
-							<li class="tmenu"><a href="/IGOProject/member/regist" title="회원가입"> <i
+							<li class="tmenu"><a href="<c:url value='/member/regist'/>" title="회원가입"> <i
 									class="icon ion-md-business MLIco"></i>회원가입
 							</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="tmenu"><a href="/IGOProject/member/logout2" title="LOGOUT"><i
+							<li class="tmenu"><a href="<c:url value='/member/logout2'/>" title="LOGOUT"><i
 									class="fa fa-sign-in MLIco"></i>LOGOUT</a></li>
-							<li class="tmenu"><a href="/IGOProject/member/passwordconfirm" title="INFO">
+							<li class="tmenu"><a href="<c:url value='/member/passwordconfirm'/>" title="INFO">
 							<i class="icon ion-md-person MLIco"></i>${sessionScope._USER_.name}님</a></li>
 						</c:otherwise>
 					</c:choose>
@@ -165,7 +165,7 @@
 							class="icon ion-ios-business MLIco"></i>공지사항
 					</a></li>
 
-					<li class="tmenu"><a href="/IGOProject/qna" title="Q & A"><i
+					<li class="tmenu"><a href="<c:url value='/qna'/>" title="Q & A"><i
 							class="far fa-flag MLIco"></i>Q & A</a></li>
 				</ul>
 			</nav>

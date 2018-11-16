@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <link href="/IGOProject/css/board.css" rel="stylesheet" type="text/css">
 <script src="<c:url value='/js/jquery-3.3.1.min.js'/>" type="text/javascript"></script>
 <script type="text/javascript">
@@ -142,7 +141,7 @@
 		<a href="<c:url value="/qna"/>">목록</a>
 		<a href="<c:url value="/qna/modify/${qnaVO.qnaId}"/>">수정</a>
 	</div>
-	
+	<%-- 
 	<article id="bo_v" style="width:100%">
     <header>
         <h2 id="bo_v_title">
@@ -176,7 +175,7 @@
 	</div>
     <!-- } 게시물 상단 버튼 끝 -->
 </article>
-
+ --%>
 	
 	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
 	

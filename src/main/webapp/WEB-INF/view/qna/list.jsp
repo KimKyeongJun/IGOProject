@@ -5,13 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <link href="/IGOProject/css/board.css" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script>
 	$().ready(function() {
 		$(".detail").click(function() {			
-			location.href = "/IGOProject/qna/detail/"+$(this).data('qnaid');
+			location.href = "<c:url value='/qna/detail/'/>"+$(this).data('qnaid');
 		});
 	});
 </script>

@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <link href="/IGOProject/css/board.css" rel="stylesheet" type="text/css">
 </head>
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>" type="text/javascript"></script>
