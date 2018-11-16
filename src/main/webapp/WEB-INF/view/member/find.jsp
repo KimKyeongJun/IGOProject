@@ -69,9 +69,9 @@
 					pFindPhoneEmpty = true;
 				}
 			}
-			else {
+			else if ( status == 3 ) {
 				if ($("#newPassword").val() == "") {
-					newPasswordEmpty = true; 
+					newPassEmpty = true; 
 				}
 				if ($("#newPasswordConfirm").val() == "") {
 					newPassConfirmEmpty = true; 
@@ -133,11 +133,11 @@
 				}
 				
 			}
-			else {
-				if ( newPasswordEmpty || newPassConfirmEmpty ) {
+			else if ( status == 3 ) {
+				if ( newPassEmpty || newPassConfirmEmpty ) {
 					$("#newPassError").find(".error").remove();
 					$("#newPassConfirmError").find(".error").remove();
-					if ( newPasswordEmpty ) {
+					if ( newPassEmpty ) {
 						$("#newPassError").prepend(passwordAfter);
 					}
 					else {
@@ -148,6 +148,11 @@
 					if ( newPassConfirmEmpty ) {
 						$("#newPassConfirmError").prepend(passwordConfirmAfter);
 					}
+					else {
+						if ($("#newPassword").val() != $("#newPasswordConfirm").val()) {
+							$("#newPassConfirmError").prepend(passwordConfirmAfter);
+						}
+					}
 					result = true;
 				}
 				else {
@@ -155,8 +160,12 @@
 					$("#newPassConfirmError").find(".error").remove();
 					if ( !passwordRegex.test($("#newPassword").val()) ) {
 						$("#newPassError").prepend(passwordRegexAter);
+						result = true;
 			        }
-					
+					if ($("#newPassword").val() != $("#newPasswordConfirm").val()) {
+						$("#newPassConfirmError").prepend(passwordConfirmAfter);
+						result = true;
+					}
 				}
 			}
 			return result;
@@ -198,23 +207,6 @@
 			if ( errorDivAdd(2) ) {
 				return;
 			}
-			/* if($("#newPassEmail").val() == "") {
-				alert("이메일을 입력하세용!!");
-				$("#newPassEmail").focus();
-				return ;
-			}
-			
-			if($("#newPassName").val() == "") {
-				alert("이름을 입력하세용!!");
-				$("#newPassName").focus();
-				return ;
-			}
-			
-			if($("#newPassPhone").val() == "") {
-				alert("전화번호를 입력하세용!!");
-				$("#newPassPhone").focus();
-				return ;
-			} */
 			
 			$.post("<c:url value='/member/findMember' />"
 					, $("#newPassData").serialize()
@@ -234,10 +226,7 @@
 			if ( errorDivAdd(3) ) {
 				return;
 			}
-			if ($("#newPassword").val() != $("#newPasswordConfirm").val()) {
-				alert("패스워드를 다시 확인해 주세요.");
-				return;
-			}
+			
 			$.post("<c:url value='/member/updatePw' />"
 					,$("#setNewPassData").serialize()
 					, function(response) {
