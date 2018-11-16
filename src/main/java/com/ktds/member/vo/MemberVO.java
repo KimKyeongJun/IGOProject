@@ -7,6 +7,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 import com.ktds.member.validator.MemberValidator;
+import com.nhncorp.lucy.security.xss.XssFilter;
 
 
 public class MemberVO {
@@ -27,9 +28,10 @@ public class MemberVO {
 	private String approvalStatus;
 	@NotEmpty(message="연락처는 필수 입력 값입니다.", groups= {MemberValidator.Regist.class})
 	private String phone;
-
+	
+	XssFilter filter = XssFilter.getInstance("lucy-xss-superset.xml");
 	public String getEmail() {
-		return email;
+		return filter.doFilter(email);
 	}
 
 	public void setEmail(String email) {
@@ -37,7 +39,7 @@ public class MemberVO {
 	}
 
 	public String getName() {
-		return name;
+		return filter.doFilter(name);
 	}
 
 	public void setName(String name) {
@@ -45,7 +47,7 @@ public class MemberVO {
 	}
 
 	public String getPassword() {
-		return password;
+		return filter.doFilter(password);
 	}
 
 	public void setPassword(String password) {
@@ -97,7 +99,7 @@ public class MemberVO {
 	}
 
 	public void setPhone(String phone) {
-		this.phone = phone;
+		this.phone = filter.doFilter(phone);
 	}
 
 	@Override
