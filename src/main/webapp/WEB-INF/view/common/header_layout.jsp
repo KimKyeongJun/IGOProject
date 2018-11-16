@@ -102,7 +102,7 @@
 				saveLogin("");
 			}
 			
-			$.post("/IGOProject/memberlogin", 
+			$.post("<c:url value='/memberlogin'/>", 
 					$(`#logF`).serialize()
 					, function(response) {
 				    if (response == "loginFail") {
@@ -110,7 +110,7 @@
 				    }
 				    else if (response == "loginSuccess"){
 						alert("로그인에 성공하였습니다.");
-						location.href="/IGOProject/index";
+						location.href="<c:url value ='/index'/>";
 				    } 
 				    else if (response == "block") {
 				    	alert("Password 3회이상 실패하여 1시간 동안 계정이 잠겼습니다. ");

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="/IGOProject/css/board.css" rel="stylesheet" type="text/css">
+<link href="<c:url value='/css/board.css'/>" rel="stylesheet" type="text/css">
 </head>
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>" type="text/javascript"></script>
 <script type="text/javascript">

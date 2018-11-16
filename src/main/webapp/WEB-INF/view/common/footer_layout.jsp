@@ -20,7 +20,7 @@
 			</ul>
 		</div>
 		<div class="fTop">
-			<a href="/IGOProject/index"><div id="fLogo"></div></a>
+			<a href="<c:url value="/index"/>"><div id="fLogo"></div></a>
 		</div>
 		<div class="fMtxt">
 			<address>
