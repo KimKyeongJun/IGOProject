@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ktds.member.service.MemberService;
 import com.ktds.member.vo.MemberVO;
 
-@Controller("authenticationFailureController")
+@Controller
 public class AuthenticationFailureController implements AuthenticationFailureHandler {
 
 	@Autowired
