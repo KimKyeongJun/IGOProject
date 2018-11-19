@@ -5,21 +5,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="<c:url value='/css/member.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js" />" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
-		var emailAfter = $(`<div class="error"> E-Mail을 입력해 주세요.</div>`);
-		var emailFindnameAfter = $(`<div class="error"> 이름을 입력해 주세요.</div>`);
-		var passwordFindnameAfter = $(`<div class="error"> 이름을 입력해 주세요.</div>`);
-		var passwordAfter = $(`<div class="error"> Password를 입력해 주세요.</div>`);
+		var emailAfter = $(`<div class="error"> <span class=redPoint>* </span> E-Mail을 입력해 주세요.</div>`);
+		var emailFindnameAfter = $(`<div class="error"> <span class=redPoint>* </span> 이름을 입력해 주세요.</div>`);
+		var passwordFindnameAfter = $(`<div class="error"> <span class=redPoint>* </span> 이름을 입력해 주세요.</div>`);
+		var passwordAfter = $(`<div class="error"> <span class=redPoint>* </span> Password를 입력해 주세요.</div>`);
 		var emailRegex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-		var emailRegexAfter = $(`<div class="error"> E-Mail 형식이 맞지 않습니다.</div>`);
+		var emailRegexAfter = $(`<div class="error"> <span class=redPoint>* </span> E-Mail 형식이 맞지 않습니다.</div>`);
 		var passwordRegex = /^(?=.*[a-zA-z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}/;
-		var passwordRegexAter = $(`<div class="error"> 비밀번호는 8글자 이상 20글자 이하 <br/>  대소문자, 숫자, 특수문자를 포함해야 합니다.</div>`);
-		var passwordConfirmAfter = $(`<div class="error"> 비밀번호를 확인해 주세요. </div>`);
-		var emailFindphoneAfter = $(`<div class="error"> 연락처를 입력해 주세요. </div>`);
-		var passwordFindphoneAfter = $(`<div class="error"> 연락처를 입력해 주세요. </div>`);
-		var emmailConfirmCheckAfter = $(`<div class="error"> E-Mail을 확인해주세요. </div>`);
+		var passwordRegexAter = $(`<div class="error"> <span class=redPoint>* </span> 비밀번호는 8글자 이상 20글자 이하 <br/>  대소문자, 숫자, 특수문자를 포함해야 합니다.</div>`);
+		var passwordConfirmAfter = $(`<div class="error"> <span class=redPoint>* </span> 비밀번호를 확인해 주세요. </div>`);
+		var emailFindphoneAfter = $(`<div class="error"> <span class=redPoint>* </span> 연락처를 입력해 주세요. </div>`);
+		var passwordFindphoneAfter = $(`<div class="error"> <span class=redPoint>* </span> 연락처를 입력해 주세요. </div>`);
+		var emmailConfirmCheckAfter = $(`<div class="error"> <span class=redPoint>* </span> E-Mail을 확인해주세요. </div>`);
 		
 		$("#eFindNameError").prepend(emailFindnameAfter);
 		$("#eFindPhoneError").prepend(emailFindphoneAfter);
@@ -322,68 +323,102 @@
 				</div>	
 		</div>
 	</div>
-	<div>		
-		<form id="EmailFindData">
-			<div>
-				이름 <input type="text" id="findName" name="name" placeholder="이름" />
-			</div>
-			<div id="eFindNameError">
-			</div>
-			<div>
-				전화번호 <input type="text" id="findPhone" name="phone" placeholder="전화번호" maxlength=11/>
-			</div>
-			<div id="eFindPhoneError">
-			</div>
-			<div>
-				<input type="button" id="EmailFindBtn" value="찾기" />
-			</div>
-		</form>
-		<div>
-			이메일 <input type="text" id="findEmail" />
-		</div>
-	</div>
-	<hr>
-	<div>
-		<div>
-			비밀번호 재설정
-		</div>
-		<form id="newPassData">
-			<div>
-				이메일 <input type="email" id="newPassEmail" name="email" placeholder="이메일" />
-			</div>
-			<div id="pFindEmailError">
-			</div>
-			<div>
-				이름 <input type="text" id="newPassName" name="name" placeholder="이름" />
-			</div>
-			<div id="pFindNameError">
-			</div>
-			<div>
-				전화번호 <input type="text" id="newPassPhone" name="phone" placeholder="전화번호" maxlength=11/>
-			</div>
-			<div id="pFindPhoneError">
-			</div>
-			<div>
-				<input type="button" id="newPassBtn" value="찾기" />
-			</div>
-		</form>
-		<form id="setNewPassData">
-			<input type="text" id="emailForNewPass" name="email" />
-			<div>
-				새 비밀번호 <input type="password" id="newPassword" name="password" placeholder="New Password" />
-			</div>
-			<div id="newPassError">
-			</div>
-			<div>
-				새 비밀번호 확인 <input type="password" id="newPasswordConfirm" name="newPasswordConfirm" placeholder="New Password Confirm"/>
-			</div>
-			<div id="newPassConfirmError">
-			</div>
-			<div>
-				<input type="button" id="setNewPassBtn" value="비밀번호 재설정" />
-			</div>
-		</form>
-	</div>
+	<section id="memFindWrap">
+  <div id="memFindForm">
+    <div class="memFindEmail">
+      <div class="mfsubTitle"> Email 찾기 </div>
+      <form id="EmailFindData">
+        <ul>
+          <li>
+            
+				<label for="findName">이름</label>
+            <input type="text" id="findName" name="name" placeholder="이름" />
+           
+            <div id="eFindNameError" class="errMsg"></div>
+          </li>
+          <li>
+            <div>
+              <label for="findPhone">전화번호</label>
+              <input type="text" id="findPhone" name="phone" placeholder="전화번호" maxlength="11"/>
+            </div>
+            <div id="eFindPhoneError" class="errMsg"> </div>
+          </li>
+          <li>
+            <div class="btnCommon">
+              <input type="button" id="EmailFindBtn" value="찾기" />
+            </div>
+          </li>
+          <li>
+            <div>
+              <label for="findEmail">이메일</label>
+              <input type="text" id="findEmail" readonly/>
+            </div>
+          </li>
+        </ul>
+      </form>
+    </div>
+    <hr class="bld">
+    <div class="memFindPass">
+      <div class="mfsubTitle"> 비밀번호 재설정 </div>
+      <form id="newPassData">
+        <ul>
+          <li>
+            <div>
+              <label for="newPassEmail">이메일</label>
+              <input type="email" id="newPassEmail" name="email" placeholder="이메일" />
+            </div>
+            <div id="pFindEmailError" class="errMsg"> </div>
+          </li>
+          <li>
+            <div>
+              <label for="newPassName">이름</label>
+              <input type="text" id="newPassName" name="name" placeholder="이름" />
+            </div>
+            <div id="pFindNameError" class="errMsg"> </div>
+          </li>
+          <li>
+            <div>
+              <label for="newPassPhone">전화번호</label>
+              <input type="text" id="newPassPhone" name="phone" placeholder="전화번호" maxlength="11"/>
+            </div>
+            <div id="pFindPhoneError" class="errMsg"> </div>
+          </li>
+          <li>
+            <div class="btnCommon">
+              <input type="button" id="newPassBtn" value="찾기" />
+            </div>
+          </li>
+        </ul>
+      </form>
+      <form id="setNewPassData">
+        <ul>
+          <li>
+            <input type="hidden" id="emailForNewPass" name="email" class="bld" />
+          </li>
+          <li>
+            <div>
+              <label for="newPassword">새 비밀번호</label>
+              <input type="password" id="newPassword" name="password" placeholder="New Password" />
+            </div>
+            <div id="newPassError" class="errMsg"> </div>
+          </li>
+          <li>
+            <div>
+              <label for="newPasswordConfirm">비밀번호 확인</label>
+             <input type="password" id="newPasswordConfirm" name="newPasswordConfirm" placeholder="New Password Confirm"/>
+           </div>
+            <div id="newPassConfirmError" class="errMsg"> </div>
+          </li>
+          <li>
+            <div class="btnCommon">
+              <input type="button" id="setNewPassBtn" value="비밀번호 재설정" />
+            </div>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</section>
 	
 	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
 

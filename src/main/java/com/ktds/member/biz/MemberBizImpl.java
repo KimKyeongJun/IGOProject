@@ -71,15 +71,12 @@ public class MemberBizImpl implements MemberBiz{
 	
 	@Override
 	public boolean modifyMemberUpdate(MemberVO memberVO) {
-		if ( memberVO.getPassword() != null && memberVO.getPassword() != "" ) {
+		if ( !memberVO.getPassword().equals("") ) {
+			System.out.println("!!!!!!!!!!!!!!!");
 			String salt = SHA256Util.generateSalt();
 			String password = this.getHashedPassword(salt, memberVO.getPassword());
 			memberVO.setPassword(password);
 			memberVO.setSalt(salt);
-		}
-		else {
-			memberVO.setPassword(null);
-			memberVO.setSalt(null);
 		}
 		return this.memberDao.updateMemberUpdate(memberVO) > 0;
 	}

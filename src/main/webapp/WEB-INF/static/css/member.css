@@ -2,6 +2,11 @@
 /* I GO member.CSS  */
 
 
+
+
+
+
+/************ regist ******************/
 #memWrap{
 	position: relative;
 	width: 100%;
@@ -38,9 +43,8 @@
 	margin-right: 3px;
 }
 
-
 #memberRegistForm input[type=text],
-#memberRegistForm input[type=password] {
+#memberRegistForm input[type=password]  {
 	width: 98%;
 	height: 36px;
 	font-size: 13px;
@@ -51,10 +55,8 @@
 }
 
 #memberRegistForm input[type=button]{
-	height: 38px;	
-	
+	height: 38px;		
 	font-size: 14px;	
-	
 }
 
 #emailComfirmBtn{
@@ -64,6 +66,7 @@
 	background-color: rgba(0, 51, 102, 0.8);
 	color: #fff;
 	border-radius: 3px;
+	cursor: pointer;
 }
 
 .bottomBtn2{
@@ -82,6 +85,7 @@
 	border: 1px solid #355B84;
 	background-color: rgba(0, 51, 102, 0.8);
 	color: #fff;
+	cursor: pointer;
 }
 
 .bottomBtn2>.cancelBtn{
@@ -93,18 +97,24 @@
 	color: #063768;
 	border-radius: 3px;
 	border: 1px solid #355B84;
+	cursor: pointer;
 }
 
-#emailError,
-#nameError,
-#phoneError,
-#passwordError,
-#passwordConfirmError{
+#registBtn:hover, #emailComfirmBtn:hover{
+	color:#355B84;
+	background-color: #fff;
+}
+.cancelBtn:hover{
+	color:#063768;
+	background-color: #ccc;
+}
+
+#emailError,#nameError,#phoneError,#passwordError,#passwordConfirmError{
 	font-size: 12px;
 	margin: 0 0 10px 5px;
 	vertical-align: middle;
-
 }
+
 .redPoint{
 	color:#ed6478;
 	font-size: 18px;
@@ -112,7 +122,6 @@
 	vertical-align: middle;
 }
 
-	
 @media only screen and (max-width: 1045px){
 #memForm{	
 	padding: 20px 5px;	
@@ -135,10 +144,317 @@
 }
 	
 	
+/****** passwordConfirmForm ******/	
+#pwconWrap{
+	position: relative;
+	width: 100%;
+	max-width: 1200px;
+	height: auto;
+	min-height: 300px;
+	margin: 0 auto;
+	text-align: center;	
+	top: 30px;
+}
+
+#pwconForm{
+	width: 95%;
+	max-width: 800px;
+	height: auto;
+	min-height: 250px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin: 0 auto;
+	padding: 20px 25px;
+	box-sizing: border-box;
+	text-align: left;
+	margin-bottom: 150px;
+}
+
+#passwordConfirmForm{
+	max-height: 200px;
+}
+
+#passwordConfirmForm label{
+	position: relative;
+	display: inline-block;   
+    width: 20%;
+    text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0 0 0 10px;
+	white-space: nowrap;
+}
+#passwordConfirmForm input[type=text],
+#passwordConfirmForm input[type=password] {
+	position: relative;
+	width: 58%;
+	height: 36px;
+	font-size: 13px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 5px;
+	padding-left: 5px;
+	display: inline-block;
+	margin: 30px 0 0 25px;
+}
+
+#confirmBtn	{
+	position: relative;
+	width: 58%;
+	max-width: 200px;
+	margin-top: 30px;	
+	border-radius: 3px;
+	border: 1px solid #355B84;
+	background-color: rgba(0, 51, 102, 0.8);
+	color: #fff;
+	height: 38px;
+	left: 50%;
+	transform: translateX(-50%);
+	cursor: pointer;
+}	
+
+#confirmBtn:hover{
+	color:#355B84;
+	background-color: #fff;
+}
+
+@media only screen and (max-width: 520px)	{
+	#passwordConfirmForm label{
+		margin: 0;
+	}
 	
 	
+#passwordConfirmForm input[type=text],
+#passwordConfirmForm input[type=email],
+#passwordConfirmForm input[type=password]{
+		width: 65%;
+		margin-left: 25px;
+	}
+
+}
+
+/****************** modify ******************/	
+#modifyWrap{
+	position: relative;
+	width: 100%;
+	max-width: 1200px;
+	height: auto;
+	min-height: 450px;
+	margin: 0 auto;
+	text-align: center;	
+	top: 30px;
+}
+
+#modifyForm{
+	width: 95%;
+	max-width: 800px;
+	height: auto;
+	min-height: 430px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin: 0 auto;
+	padding: 20px 25px;
+	box-sizing: border-box;
+	text-align: left;
+	margin-bottom: 150px;
+}
+
+#modifyForm ul li{
+	width: 100%;
+}
+
+#modifyForm ul li label{
+	position: relative;
+	display: inline-block;   
+    width: 15%;
+    text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0 0 0 15px;
+	white-space: nowrap;
+}
+#memberModifyForm input[type=text],
+#memberModifyForm input[type=password] {
+	position: relative;
+	width: 60%;
+	height: 36px;
+	font-size: 13px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 5px;
+	padding-left: 5px;
+	display: inline-block;
+	margin: 30px 0 0 30px;
+	right: 0;
+}
+
+#modifyBtn {
+	position: relative;
+	width: 58%;
+	max-width: 200px;
+	margin-top: 40px;	
+	border-radius: 3px;
+	border: 1px solid #355B84;
+	background-color: rgba(0, 51, 102, 0.8);
+	color: #fff;
+	height: 38px;
+	left: 50%;
+	transform: translateX(-50%);
+	cursor: pointer;
+}	
+
+#modifyBtn:hover{
+	color:#355B84;
+	background-color: #fff;
+}
+
+#passwordError,#passwordConfirmError,#nameError,#phoneError{
+	margin-left: 22%;
+}
+
+@media only screen and (max-width: 600px){
+#passwordError,#passwordConfirmError,#nameError,#phoneError{
+	margin-left: 0;
+}
+}
+
+@media only screen and (max-width: 520px){
+	#memberModifyForm input[type=text],
+	#memberModifyForm input[type=password]{
+		margin-left: 45px;
+	}
 	
-	
-	
-	
+
+}
+
+/****************** Find ******************/	
+#memFindWrap{
+	position: relative;
+	width: 100%;
+	max-width: 1200px;
+	height: auto;
+	min-height: 800px;
+	margin: 0 auto;
+	text-align: center;	
+	top: 30px;
+}
+
+#memFindForm{
+	width: 95%;
+	max-width: 800px;
+	height: auto;
+	min-height: 800px;
+	margin: 0 auto;
+	box-sizing: border-box;
+	text-align: left;
+	margin-bottom: 150px;
+}
+
+.memFindEmail, .memFindPass{
+	width: 49%;
+	max-width: 800px;
+	height: auto;
+	min-height: 440px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin: 0 auto;	
+	box-sizing: border-box;
+	text-align: left;
+	margin-bottom: 50px;
+	padding: 20px 10px;
+	float:left;	
+}
+
+#memFindForm ul li{
+	width: 100%;
+	float: left;
+	display: inline-block;
+}
+
+#memFindForm ul li label{
+	position: relative;
+	display: inline-block;   
+    width: 15%;
+    text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0 0 0 15px;
+	white-space: nowrap;
+}
+
+#memFindForm input[type=text],
+#memFindForm input[type=email],
+#memFindForm input[type=password] {
+	position: relative;
+	width: 60%;
+	height: 36px;
+	font-size: 13px;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 5px;
+	padding-left: 5px;
+	display: inline-block;
+	margin: 30px 0 0 30px;
+}
+
+.mfsubTitle{
+	text-align: center;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.memFindEmail{
+	margin-bottom: 30px;
+}
+
+
+.errMsg{
+	font-size: 12px;
+	margin-bottom:10px;
+	vertical-align: middle;
+	position: relative;
+	left: 28%;
+}
+#EmailFindBtn, #newPassBtn, #setNewPassBtn {
+	position: relative;
+	width: 58%;
+	max-width: 200px;
+	margin-top: 30px;	
+	border-radius: 3px;
+	border: 1px solid #355B84;
+	background-color: rgba(0, 51, 102, 0.8);
+	color: #fff;
+	height: 38px;
+	left: 50%;
+	transform: translateX(-50%);
+	cursor: pointer;
+}	
+
+#EmailFindBtn:hover, #newPassBtn:hover, #setNewPassBtn:hover{
+	color:#355B84;
+	background-color: #fff;
+}
+
+
+.memFindPass{
+	margin-left: 15px;
+}
+
+@media only screen and (max-width: 1080px){
+
+}
+
+@media only screen and (max-width: 770px){
+	.memFindEmail, .memFindPass{
+		width: 99%;}
+	.errMsg{
+		left: 25%;
+	}
+}
+
+
+@media only screen and (max-width: 520px)	{
+	#memFindForm ul li label{
+		margin: 0;
+	}
+
+}
+
 

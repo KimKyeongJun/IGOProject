@@ -86,7 +86,7 @@
 	<update id="updateMemberUpdate" parameterType="MemberVO">
 		UPDATE	MEMBER
 		SET		NAME = #{name}
-		<if test="password != null">
+		<if test="password !=''">
 				, PASSWORD = #{password}
 				, SALT = #{salt}
 		</if>
