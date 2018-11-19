@@ -24,6 +24,7 @@ import com.ktds.member.vo.MemberVO;
 @Component("authenticationHandler")
 public class AuthenticationSuccessController implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
 	
+	@Autowired
 	private MemberService memberService;
 	
 	
