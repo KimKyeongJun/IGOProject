@@ -9,7 +9,14 @@
 <script src="/IGOProject/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
-		$("#searchBtn").click(function() {			
+		
+		$("#searchBtn").click(function() {		
+			if($("#searchKeyword").val() == '') {
+				alert("검색어를 입력해주세요.");
+				$("#searchKeyword").focus();
+				return;
+			}
+			
 			var url = "<c:url value='/search/naver/' /> " + $("#searchKeyword").val();
 			location.href = url;
 		});

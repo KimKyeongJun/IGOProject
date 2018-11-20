@@ -1,5 +1,7 @@
 package com.ktds.naver.vo;
 
+import java.util.Date;
+
 public class ArticleVO {
 
 	private String title;
@@ -7,8 +9,9 @@ public class ArticleVO {
 	private String link; // 검색 결과 문서의 제공 네이버 하이퍼텍스트 link
 	private String description; // 검색 결과 문서의 내용을 요약한 패시지 정보이다. 문서 전체의 내용은 link를 따라가면 읽을 수 있다.
 								// 패시지에서 검색어와 일치하는 부분은 태그로 감싸져 있다.
-	private String pubDate; // 검색 결과 문서가 네이버에 제공된 시간
-
+	//private String pubDate; // 검색 결과 문서가 네이버에 제공된 시간
+	private Date pubDate;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -41,18 +44,27 @@ public class ArticleVO {
 		this.description = description;
 	}
 
-	public String getPubDate() {
+	/*public String getPubDate() {
 		return pubDate;
 	}
 
 	public void setPubDate(String pubDate) {
 		this.pubDate = pubDate;
 	}
-
+*/
+	
 	@Override
 	public String toString() {
 		return "ArticleVO [title=" + title + ", originallink=" + originallink + ", link=" + link + ", description="
 				+ description + ", pubDate=" + pubDate + "]";
+	}
+
+	public Date getPubDate() {
+		return pubDate;
+	}
+
+	public void setPubDate(Date pubDate) {
+		this.pubDate = pubDate;
 	}
 
 }

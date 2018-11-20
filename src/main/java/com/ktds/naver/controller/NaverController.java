@@ -72,6 +72,7 @@ public class NaverController {
             naverVO.setItems(articleList);
             br.close();
             view.addObject("naverVO", naverVO);
+            view.addObject("keyword", keyword);
         } catch (Exception e) {
             System.out.println(e);
         }
