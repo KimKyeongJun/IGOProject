@@ -18,6 +18,8 @@
 		mapping="/img/**" />
 	<mvc:resources location="/WEB-INF/static/css/"
 		mapping="/css/**" />
+	<mvc:resources location="/WEB-INF/static/html/"
+		mapping="/html/**" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -182,6 +182,11 @@
 			if ( emailRegexbool ) {
 				return;
 			}
+			var isCheck = $("#agreeChkBox").prop("checked");
+			if ( !isCheck ) {
+				alert("이용약관에 동의해주세요.");
+				return;
+			}
 			alert("회원가입 인증 메일을 발송했습니다. \n인증 확인 후 이용해주세요.");
 			$("#memberRegistForm").attr({
 				"method" : "post",
@@ -253,53 +258,74 @@
 	</div>
 
 	<section id="memWrap">
-	<div id="memForm">
-	
-	
-	
-  <form:form id="memberRegistForm" modelAttribute="memberVO" >
-    <div>
-      <input type="email" id="duplicatedEmail" name="email" placeholder="E-Mail" />
-      <input type="button" id="emailComfirmBtn" value="이메일 확인"/>
-    </div>
-   <div id="emailError"> </div>
-    <div>
-      <form:errors path="email"/>
-    </div>
-    <div>
-      <input type="text" id="name" name="name" placeholder="NAME" />
-    </div>
-    <div id="nameError"> </div>
-    <div>
-      <form:errors path="name"/>
-    </div>
-    <div>
-      <input type="text" id="phone" name="phone" placeholder="PHONE"  maxlength="11" />
-    </div>
-    <div id="phoneError"> </div>
-    <div>
-      <form:errors path="phone"/>
-    </div>
-    <div>
-      <input type="password" id="registPassword" name="password" placeholder="PASSWORD" />
-    </div>
-    <div id="passwordError"> </div>
-    <div>
-      <form:errors path="password"/>
-    </div>
-    <div>
-      <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="PASSWORD CONFIRM"/>
-    </div>
-    <div id="passwordConfirmError"> </div>
-    <!-- <div id="passwordConfirmError">
-			</div> -->
-    
-    <div class="bottomBtn2">
-		<input type="button" class="cancelBtn" value="취소" />
-      <input type="button" id="registBtn" value="등록"/>		
-    </div>
-  </form:form>
-		</div>
+  <div id="memForm">
+    <form:form id="memberRegistForm" modelAttribute="memberVO" >
+      <ul>
+        <li>
+          <div>
+            <label for="duplicatedEmail">이메일</label>
+            <input type="email" id="duplicatedEmail" name="email" placeholder="E-Mail" />
+            <input type="button" id="emailComfirmBtn" value="이메일 확인"/>
+          </div>
+          <div id="emailError" class="regError"> </div>
+          <div>
+            <form:errors path="email"/>
+          </div>
+        </li>
+        <li>
+          <div>
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" placeholder="NAME" />
+          </div>
+          <div id="nameError" class="regError"> </div>
+          <div>
+            <form:errors path="name"/>
+          </div>
+        </li>
+        <li>
+          <div>
+            <label for="phone">연락처</label>
+            <input type="text" id="phone" name="phone" placeholder="PHONE"  maxlength="11" />
+          </div>
+          <div id="phoneError" class="regError"> </div>
+          <div>
+            <form:errors path="phone"/>
+          </div>
+        </li>
+        <li>
+          <div>
+            <label for="registPassword">비밀번호</label>
+            <input type="password" id="registPassword" name="password" placeholder="PASSWORD" />
+          </div>
+          <div id="passwordError" class="regError"> </div>
+          <div>
+            <form:errors path="password"/>
+          </div>
+        </li>
+        <li>
+          <div>
+            <label for="passwordConfirm">비밀번호 확인</label>
+            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="PASSWORD CONFIRM"/>
+          </div>
+          <div id="passwordConfirmError" class="regError"> </div>
+          <!-- <div id="passwordConfirmError">
+			</div> --> 
+          
+        </li>
+        <li>
+          <div class="checkWrap">
+            <input type="checkbox" id="agreeChkBox" class="agreeChkBox">
+            이용약관에 동의 <a href="<c:url value='/html/terms.html'/>" target="_blank" class="viewBtn">이용약관보기 <i class="ion-md-search viewBtnI"></i></a> </div>
+        </li>
+        <li>
+          <div class="bottomBtn2">
+            <input type="button" class="cancelBtn" value="취소" />
+            <input type="button" id="registBtn" value="등록"/>
+          </div>
+        </li>
+      </ul>
+    </form:form>
+  </div>
 </section>
 		
 	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
