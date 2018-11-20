@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 </head>
+<script src="/IGOProject/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$().ready(function() {
+		$("#searchBtn").click(function() {			
+			var url = "<c:url value='/search/naver/' /> " + $("#searchKeyword").val();
+			location.href = url;
+		});
+	});
+</script>
 <body>
 	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 
@@ -47,7 +57,7 @@
 		<h2>실시간 검색 하기</h2>
 		<h3>많이 검색 해 주세요!</h3>
 		<div class="searchBox">
-			<input type="text" class="searchBar" /> <a href="#searchList"><i
+			<input type="text" class="searchBar" id="searchKeyword" /> <a id="searchBtn"><i
 				class="ion-md-search"></i></a>
 		</div>
 		<div class="searchList">
