@@ -26,10 +26,10 @@ public class TwitterController {
 	public QueryResult getTwitterData(String searchKeyword) {
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-			.setOAuthConsumerKey("0N5Yc63DQ6u4w1LiHPJEEoKeZ")
-			.setOAuthConsumerSecret("YTY1QwqLmdiWfKNdqFsAAomWAUxDpo8iFk3obaCjqDHJLaZR4b")
-			.setOAuthAccessToken("1063292174236696576-ISr0oChBU5qhDdij1u49gPG3NFB1Xy")
-			.setOAuthAccessTokenSecret("oi35iKbVJI7AUvBHD5YDOeDbjgwTgCVMh4tndGUbIrIDR");
+			.setOAuthConsumerKey("")
+			.setOAuthConsumerSecret("")
+			.setOAuthAccessToken("")
+			.setOAuthAccessTokenSecret("");
 		
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
