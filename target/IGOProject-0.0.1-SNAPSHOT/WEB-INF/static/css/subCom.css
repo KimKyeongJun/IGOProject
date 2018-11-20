@@ -22,11 +22,11 @@
 }
 
 .sub_common>.headImg1{	
-	background: url(../images/headImg_search.jpg)no-repeat 0/cover;	
+	background: url(../img/headImg_search.jpg)no-repeat 0/cover;	
 }
 
 .sub_common>.headImg2{	
-	background: url(../images/headImg_login2.jpg)no-repeat 0/cover;
+	background: url(../img/headImg_login2.jpg)no-repeat 0/cover;
 }
 
 
@@ -99,57 +99,82 @@
 }
 
 /****************** pagination ********************/	
-#pagiWrap{
+.pg_wrap{
 	position: relative;
 	width: 100%;
-/*	max-width: 760px;*/
 	height: auto;
-	top: 10px;
-	
+	top: 20px;
 	min-height: 100px;
 	margin: 0 auto;
 	text-align: center;
-/*	outline: 1px solid blue;*/
-	overflow: hidden;
+	overflow: hidden;	
+	margin-bottom: 30px;
 }	
 	
-#pagiWrap .pagination{
-	position: absolute;
-	display: inherit;
-	color: #fff;
-	line-height: 50px;
-	min-width: 320px;
-/*	min-width: 320px;*/
+.pg_wrap .pagination{
+	position: relative;
+	display: block;
+	color: #063768;
+	line-height: 30px;	
 	margin: 0 auto;
-	left: 50%;
-	transform: translateX(-50%);
-	white-space: nowrap;	
-/*	outline: 1px solid red;*/
-/*	bottom: 50px;*/
+	white-space: nowrap;
+	width: 100%;
+	min-width: 30px;
+	height: 50px;	
+	margin-bottom: 5px;
+	text-align: center;
+}
+.pageNum:before{
+	content: "";
+	display: block;
+	clear: both;
+	top: 30px;
+}
+.pageNum{
+	position: relative;
+	display: inline-block;	
+	height:45px;
+	top:10px;	
+	margin: 0 auto;
+	text-align: center;	
 }
 
-.pagination a {
-    color: #41495c;
+.pagination a {  
+	position: relative;
+	display: inline-block;
+	color: #063768;
     float: left;
-    padding: 8px 16px;
+    padding: 3px 12px;
     text-decoration: none;
-/*	line-height: 100px;*/
-	
+	margin: 0 auto;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 12.5px;
+	width: auto;
+	margin-right: 3px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
 }
 
 .pagination a.active {
-    background-color: #7accc8;
+    background-color: #1eb4cf;
     color: #fff;
     border-radius: 5px;
+	
 }
 
 .pagination a:hover:not(.active) {
-    background-color: #7accc8;
+    background-color: #1eb4cf;
+	border:1px solid #1eb4cf;
     border-radius: 5px;
 	color: #fff;
 }
 
-
+.pagination a .prevButton{
+	
+}
 
 /*리스트로 가기 버튼*/
 
@@ -190,17 +215,111 @@
 	background-color:#7accc8;
 }
 
+.bottonSearch:before{
+	content: "";
+	display: block;
+	clear: both;
+	margin-top: 40px;
+}
+.bottonSearch{
+	position: relative;
+	display: block;
+	width: 90%;
+	height: 50px;
+	max-width: 800px;
+	min-width: 200px;	
+	margin: 0 auto;
+}
 
+.bottonSearch>.bsInput, .bottonSearch>.bsResetBtn, .bsBtn {
+	position: relative;
+	display: inline-block;
+	float: left;
+	margin: 0 3px;
+	line-height: 40px;
+	height: 40px;
+	padding: 0 5px !important;
+	border-radius: 5px;
+	box-sizing: border-box;
+	
+}
+.bottonSearch>.bsInput{
+	width: 83%;
+	min-width: 150px;
+	border:1px solid #666;	
+}
+.bsBtn, .bottonSearch>.bsResetBtn{
+	width: 40px;
+	height: 40px;
+	border: 1px solid #ccc;
+	border: 1px solid #063768;
+	float: left;
+	color: #063768;
+}
 
+.bottonSearch i{
+	position: relative;
+	display: block;
+	color: #063768;
+	text-align: center;	
+	vertical-align: middle;
+	line-height: 30px;
+	font-size: 100%;
+	font: normal 26px "Ionicons";
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	z-index: 99;	
+	border-radius: 15px;
+	background: none;
+	font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+}
+
+.bsBtn>.ion-md-search{		
+	top: 0;
+	left: 0;
+}
+.bsBtn:hover{
+	background-color: #063768;
+}
+.bsBtn:hover .ion-md-search{
+	color: #fff;
+}
+.bsResetBtn>.ion-md-refresh{
+	top: 5px;
+}
+.bsResetBtn:hover .ion-md-refresh{
+	color: #fff;
+}
 
 /******** 모바일 *********/
-@media only screen and (max-width: 740px){
+
+@media only screen and (max-width: 840px){
+	.bottonSearch>.bsInput{
+		width: 80%;
+	}
+}
+@media only screen and (max-width: 770px){
 .sub_common>.headImg,
 .sub_common>.headImg2,
 .sub_common>.headImg3,
 .sub_common>.headImg4,
 .sub_common>.headImg5{
 	margin-top: 60px;
-}		
+}
+.bottonSearch>.bsInput{
+		width: 73%;
+	}
+}
 
+
+@media only screen and (max-width: 580px){
+	.bottonSearch>.bsInput{
+		width: 60%;
+	}
 }

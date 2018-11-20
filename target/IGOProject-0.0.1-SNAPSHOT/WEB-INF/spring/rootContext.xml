@@ -35,7 +35,7 @@
 		class="org.apache.commons.dbcp.BasicDataSource">
 
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.201.16:1521:XE" />
 		<property name="username" value="IGO" />
 		<property name="password" value="IGO" />
 	</bean>

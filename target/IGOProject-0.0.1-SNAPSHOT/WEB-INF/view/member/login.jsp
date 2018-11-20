@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function(){
@@ -16,11 +15,16 @@
 				, function(response) {
 			    if (response == "loginFail") {
 			    	alert("로그인에 실패하였습니다.");
+			    	location.href="/IGOProject/member/login";
 			    }
 			    else if (response == "loginSuccess"){
 					alert("로그인에 성공하였습니다.");
-					location.href="/IGOProject/qna"
+					location.href="/IGOProject/index";
 			    } 
+			    else if (response == "block") {
+			    	alert("Password 3회이상 실패하여 1시간 동안 계정이 잠겼습니다. ");
+			    	location.href="/IGOProject/member/login";
+			    }
 	    //alert(response.message);
 	 		});     
 		});
