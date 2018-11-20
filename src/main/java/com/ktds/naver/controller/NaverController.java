@@ -5,7 +5,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -66,7 +68,9 @@ public class NaverController {
             	articleVO.setOriginallink(article.get("originallink").toString());
             	articleVO.setLink(article.get("link").toString());
             	articleVO.setDescription(article.get("description").toString());
-            	articleVO.setPubDate(article.get("pubDate").toString());
+            	String date_s = article.get("pubDate").toString();
+            	SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            	articleVO.setPubDate(dt.parse(date_s));
             	articleList.add(articleVO);
             }
             naverVO.setItems(articleList);
