@@ -66,7 +66,7 @@ public class NaverController {
             	articleVO.setOriginallink(article.get("originallink").toString());
             	articleVO.setLink(article.get("link").toString());
             	articleVO.setDescription(article.get("description").toString());
-            	//articleVO.setPubDate(article.get("pubDate").toString());
+            	articleVO.setPubDate(article.get("pubDate").toString());
             	articleList.add(articleVO);
             }
             naverVO.setItems(articleList);
