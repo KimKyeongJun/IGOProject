@@ -51,7 +51,6 @@ var snum=0;
 			else if(tsts===1){		
 				navi.hide(300);
 				$(this).html("").addClass("ion-ios-menu");
-				//$(this).html("<i class='ion-md-menu'></i>");
 				tsts=0;
 			}
 		});
@@ -74,6 +73,51 @@ var snum=0;
 	});
 		
 	
+
+$(document).ready(function(){
+    // modalCenter
+    function modalCenter(){
+        var modal_w = $(".modal").width()/2;
+        $(".modal").css("margin-left", -modal_w);
+        var modal_h = $(".modal").height()/2;
+        $(".modal").css("margin-top", -modal_h);
+    }
+    modalCenter();
+    $(window).resize(function(){
+        modalCenter();
+    });
+    // modal on/off
+    function modalOn(text){
+        $(".modal").addClass("modal_on");
+        $(".modal_back").addClass("back_on");
+        $("body").addClass("body_lock");
+    }
+    function modalOff(){
+        $(".modal").removeClass("modal_on");
+        $(".modal_back").removeClass("back_on");
+        $("body").removeClass("body_lock");
+    }
+    $("#loginClick").click(function(){
+        modalOn();
+		$("#navM").hide(300);
+		$("#ham").html("").addClass("ion-ios-menu");
+    });
+    $(".modal_x").click(function(){
+        modalOff();
+		$("#navM").show(300);
+		$("#ham").removeClass('ion-ios-menu').html("<span class='mClose'></span>");				
+				$('.mClose').css("transform", "rotate(45deg)");
+				$('.mClose').css("transition", "all .6s cubic-bezier(0.000, 0.105, 0.035, 1.570)");
+				$('.mClose').css("transition-delay", "0.5s");	
+    });
+//    $(".modal_back").click(function(){
+//        modalOff();
+//		$("#navM").show(300);
+//    });
+});
+
+
+
 	
 
 

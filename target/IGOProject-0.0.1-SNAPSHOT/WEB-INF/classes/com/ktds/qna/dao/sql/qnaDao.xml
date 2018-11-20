@@ -18,7 +18,7 @@ VALUES				(
 						, #{title}
 						, #{content}
 						, SYSDATE
-						, 'rudwnsdl93@naver.com'
+						, #{email}
 					)
 </insert>
 
@@ -64,7 +64,8 @@ VALUES				(
 			, Q.EMAIL Q_EMAIL
 	FROM	MEMBER M
 			, QNA Q
-	WHERE	QNA_ID = #{qnaId}
+	WHERE	M.EMAIL = Q.EMAIL
+	AND		QNA_ID = #{qnaId}
 </select>
 
 <select id="selectAllQna" parameterType="QnaSearchVO" resultMap="qnaVO">
@@ -87,8 +88,9 @@ VALUES				(
 									, Q.EMAIL Q_EMAIL
 							FROM	MEMBER M
 									, QNA Q
+							WHERE	M.EMAIL = Q.EMAIL
 							<if test="searchKeyword != null and searchKeyword != '' ">
-							WHERE	TITLE LIKE '%' || #{searchKeyword} || '%'
+							AND		TITLE LIKE '%' || #{searchKeyword} || '%'
 							</if>
 							ORDER BY QNA_ID DESC
 						) A

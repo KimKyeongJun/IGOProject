@@ -14,6 +14,8 @@
 									, LOGIN_FAIL_COUNT
 									, LAST_LOGIN
                                     , ADMIN_YN
+									, APPROVAL_STATUS	
+									, PHONE
 								 )
 		VALUES					 (
 									#{email}
@@ -23,6 +25,8 @@
 									, 0
 									, SYSDATE
                                     , 'N'
+									, 'N'
+									, #{phone}
 								 )
     </insert>
 
@@ -34,6 +38,8 @@
 				, LOGIN_FAIL_COUNT loginFailCount
                 , LAST_LOGIN lastLogin
                 , ADMIN_YN adminYN
+				, APPROVAL_STATUS	approvalStatus
+				, PHONE phone
 		FROM	MEMBER
 		WHERE	EMAIL = #{email}
 		AND 	PASSWORD = #{password}
@@ -45,13 +51,13 @@
 		WHERE	EMAIL = #{email}
 	</select>
 	
-	<select id="selectOneEmail" parameterType="string" resultType="_int">
-		SELECT	COUNT(1)
+	<select id="selectOneEmail" parameterType="string" resultType="int">
+		SELECT	COUNT(*)
 		FROM	MEMBER
 		WHERE	EMAIL=#{email}
 	</select>
 	
-	<select id="isBlockUser" parameterType="string" resultType="_int">
+	<select id="isBlockUser" parameterType="string" resultType="int">
 		SELECT	LOGIN_FAIL_COUNT
 		FROM	MEMBER
 		WHERE	EMAIL=#{email}
@@ -69,6 +75,53 @@
 		SET		LOGIN_FAIL_COUNT = LOGIN_FAIL_COUNT + 1
 				, LAST_LOGIN = SYSDATE
 		WHERE	EMAIL = #{eamil}
+	</update>
+	
+	<update id="updateApprovalStatus" parameterType="string">
+		UPDATE	MEMBER
+		SET		APPROVAL_STATUS = 'Y'
+		WHERE	EMAIL = #{email}
+	</update>
+	
+	<update id="updateMemberUpdate" parameterType="MemberVO">
+		UPDATE	MEMBER
+		SET		NAME = #{name}
+		<if test="password !=''">
+				, PASSWORD = #{password}
+				, SALT = #{salt}
+		</if>
+				, PHONE = #{phone}
+		WHERE	EMAIL = #{email}
+	</update>
+	
+	<select id="selectMemberEmail" parameterType="MemberVO" resultType="MemberVO">
+		SELECT	EMAIL email
+				, NAME name
+				, PASSWORD password
+				, SALT salt
+				, LOGIN_FAIL_COUNT loginFailCount
+                , LAST_LOGIN lastLogin
+                , ADMIN_YN adminYN
+				, APPROVAL_STATUS approvalStatus
+				, PHONE phone
+		FROM	MEMBER
+		WHERE	NAME = #{name}
+		AND		PHONE = #{phone}
+	</select>
+	
+	<select id="selectMember" parameterType="MemberVO" resultType="_int">
+		SELECT	COUNT(1)
+		FROM	MEMBER
+		WHERE	EMAIL = #{email}
+		AND		NAME = #{name}
+		AND		PHONE = #{phone}
+	</select>
+	
+	<update id="updateMemberPw" parameterType="MemberVO">
+		UPDATE	MEMBER
+		SET		PASSWORD = #{password}
+				, SALT = #{salt}
+		WHERE	EMAIL = #{email}
 	</update>
 
 </mapper>

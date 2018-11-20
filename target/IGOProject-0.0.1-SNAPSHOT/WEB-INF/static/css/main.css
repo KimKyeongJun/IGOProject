@@ -1,13 +1,12 @@
 @charset "utf-8";
-/* I GO main.css*/
-
-@import url("common.css");
+/*@import url('common.css');
 @import url("core.css");
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic');
 @import url("subCom.css");
-@import url("search.css");
+@import url("search.css");*/
 
 
+/* I GO main.css*/
 /*************** 2. banner.CSS ***************/
 
 /******** 배너영역 **********/
@@ -75,14 +74,14 @@
 
 /*각 배너 li 배경이미지 셋팅*/
 #slider>li:nth-child(1){
-	background: url(../images/ban01.jpg) no-repeat 0/cover;
+	background: url(../img/ban01.jpg) no-repeat 0/cover;
 }
 #slider>li:nth-child(2){
-	background: url(../images/ban02.jpg) no-repeat 0/cover;
+	background: url(../img/ban02.jpg) no-repeat 0/cover;
 }
 
 #slider>li:nth-child(3){
-	background: url(../images/ban03.jpg) no-repeat 0/cover;
+	background: url(../img/ban03.jpg) no-repeat 0/cover;
 }
 
 
