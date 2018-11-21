@@ -11,17 +11,17 @@
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function(){
-		var emailAfter = $(`<div class="error"><span class="redPoint">*</span> E-Mail을 입력해 주세요.</div>`);
-		var nameAfter = $(`<div class="error"><span class="redPoint">*</span> 이름을 입력해 주세요.</div>`);
-		var passwordAfter = $(`<div class="error"> <span class="redPoint">*</span> Password를 입력해 주세요.</div>`);
+		var emailAfter = $('<div class="error"><span class="redPoint">*</span> E-Mail을 입력해 주세요.</div>');
+		var nameAfter = $('<div class="error"><span class="redPoint">*</span> 이름을 입력해 주세요.</div>');
+		var passwordAfter = $('<div class="error"> <span class="redPoint">*</span> Password를 입력해 주세요.</div>');
 		var emailRegex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-		var emailRegexAfter = $(`<div class="error"><span class="redPoint">*</span> E-Mail 형식이 맞지 않습니다.</div>`);
+		var emailRegexAfter = $('<div class="error"><span class="redPoint">*</span> E-Mail 형식이 맞지 않습니다.</div>');
 		var passwordRegex = /^(?=.*[a-zA-z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}/;
-		var passwordRegexAter = $(`<div class="error"> 비밀번호는 8글자 이상 20글자 이하 <br/>  대소문자, 숫자, 특수문자를 포함해야 합니다.</div>`);
-		var emailRegexboolAfter = $(`<div class="error"><span class="redPoint">*</span>  E-Mail 이미 존재합니다.</div>`);
-		var passwordConfirmAfter = $(`<div class="error"> <span class="redPoint">*</span> 비밀번호를 확인해 주세요. </div>`);
-		var phoneAfter = $(`<div class="error"><span class="redPoint">*</span> 연락처를 입력해 주세요. </div>`);
-		var emmailConfirmCheckAfter = $(`<div class="error"> <span class="redPoint">*</span> E-Mail을 확인해주세요. </div>`);
+		var passwordRegexAter = $('<div class="error"> 비밀번호는 8글자 이상 20글자 이하 <br/>  대소문자, 숫자, 특수문자를 포함해야 합니다.</div>');
+		var emailRegexboolAfter = $('<div class="error"><span class="redPoint">*</span>  E-Mail 이미 존재합니다.</div>');
+		var passwordConfirmAfter = $('<div class="error"> <span class="redPoint">*</span> 비밀번호를 확인해 주세요. </div>');
+		var phoneAfter = $('<div class="error"><span class="redPoint">*</span> 연락처를 입력해 주세요. </div>');
+		var emmailConfirmCheckAfter = $('<div class="error"> <span class="redPoint">*</span> E-Mail을 확인해주세요. </div>');
 		
 		$("#emailError").prepend(emailAfter);
 		$("#nameError").prepend(nameAfter);

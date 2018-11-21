@@ -32,10 +32,10 @@
 		
 		$(".joinBtn1").click(function() {
 			location.href = "<c:url value='/member/regist'/>";
-		})
+		});
 		$(".joinBtn2").click(function() {
 			location.href = "<c:url value='/member/find'/>";
-		})
+		});
 		// cookie에서 이메일 받아와서 변수에 넣기
 		var cookieId= getLogin();
 		
@@ -103,7 +103,7 @@
 			}
 			
 			$.post("<c:url value='/memberlogin'/>", 
-					$(`#logF`).serialize()
+					$('#logF').serialize()
 					, function(response) {
 				    if (response == "loginFail") {
 				    	alert("로그인에 실패하였습니다.");
@@ -209,5 +209,4 @@
 	<!-- 백그라운드 -->
 	<div class="modal_back"></div>
 
-</body>
-</html>
+
