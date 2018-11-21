@@ -12,7 +12,7 @@
 	box-sizing: border-box;
 }
 
-.sub_common>.headImg1, .sub_common>.headImg2{
+.sub_common>.headImg, .sub_common>.headImg1, .sub_common>.headImg2{
 	position: relative;
 	width: 100%;
 	height: 150px;
@@ -21,20 +21,28 @@
 	text-align: center;
 }
 
-.sub_common>.headImg1{	
-	background: url(../img/headImg_search.jpg)no-repeat 0/cover;	
+
+.sub_common>.subHeadMembers{	
+	background: url(../img/headImg_join.jpg)no-repeat 0/cover;
 }
 
-.sub_common>.headImg2{	
-	background: url(../img/headImg_login2.jpg)no-repeat 0/cover;
+.sub_common>.subHeadterms{
+	background: url(../img/headImg_terms.jpg)no-repeat center/cover;
 }
 
+.sub_common>.subHeadSerch{	
+	background: url(../img/headImg_search.jpg)no-repeat center/cover;	
+}
 
-.sub_common>.headImg1>h2,	
-.sub_common>.headImg2>h2,	
-.sub_common>.headImg3>h2,	
-.sub_common>.headImg4>h2,	
-.sub_common>.headImg5>h2{	
+.sub_common>.subHeadQna{	
+	background: url(../img/headImg_qna.jpg)no-repeat 0/cover;	
+}
+
+.sub_common>.subHeadNotice{	
+	background: url(../img/headImg_noti.jpg)no-repeat 0/cover;	
+}
+
+.sub_common>.headImg>h2{	
 	position: absolute;
 	display: inherit;
 	color: #fff;
@@ -96,6 +104,13 @@
 	left: 50%;
 	margin-left: -15px;
 
+}
+
+@media only screen and (max-width: 580px){
+	
+.sub_common>.headImg>h2{
+	line-height: 170px;
+}
 }
 
 /****************** pagination ********************/	
@@ -303,6 +318,8 @@
 	.bottonSearch>.bsInput{
 		width: 80%;
 	}
+	
+
 }
 @media only screen and (max-width: 770px){
 .sub_common>.headImg,

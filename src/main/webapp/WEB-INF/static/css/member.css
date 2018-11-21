@@ -22,7 +22,7 @@
 	width: 95%;
 	max-width: 800px;
 	height: auto;
-	min-height: 650px;
+	min-height: 700px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	margin: 0 auto;
@@ -81,7 +81,7 @@
 
 #emailComfirmBtn{
 	width: 10%;
-	min-width: 82px;
+	min-width: 84px;
 	border: 1px solid #355B84;
 	background-color: rgba(0, 51, 102, 0.8);
 	color: #fff;
@@ -185,7 +185,7 @@
 }
 
 
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 510px){
 #memForm{	
 	padding: 0;	
 }	

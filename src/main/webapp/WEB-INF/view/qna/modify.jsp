@@ -37,10 +37,10 @@
 	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>Q & A</h2></div>
+		<div class="headImg subHeadQna"><h2>Q &amp; A</h2></div>
 			<div class="headBox">
 			
-				<div class="heading"><h2 class="headTxt">Q & A</h2>
+				<div class="heading"><h2 class="headTxt">Q &amp; A</h2>
 				</div>	
 		</div>
 	</div>

@@ -156,7 +156,7 @@
 	<jsp:include page="/WEB-INF/view/common/header_layout.jsp" />
 
 	<div class="sub_common">
-		<div class="headImg1">
+		<div class="headImg subHeadMembers">
 			<h2>회원 정보 수정</h2>
 		</div>
 		<div class="headBox">

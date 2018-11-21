@@ -31,7 +31,7 @@
 	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>회원 정보 수정</h2></div>
+		<div class="headImg subHeadMembers"><h2>회원 정보 수정</h2></div>
 			<div class="headBox">			
 				<div class="heading"><h2 class="headTxt">비밀번호 확인</h2>
 			</div>	

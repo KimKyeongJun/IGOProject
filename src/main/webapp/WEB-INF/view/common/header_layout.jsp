@@ -151,22 +151,22 @@
 							<li class="tmenu" id="loginClick"><a href="#" title="LOGIN"><i
 									class="fa fa-sign-in MLIco"></i>LOGIN</a></li>
 							<li class="tmenu"><a href="<c:url value='/member/regist'/>" title="회원가입"> <i
-									class="icon ion-md-business MLIco"></i>회원가입
+									class="icon ion-md-person MLIco"></i>회원가입
 							</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="tmenu"><a href="<c:url value='/member/logout2'/>" title="LOGOUT"><i
-									class="fa fa-sign-in MLIco"></i>LOGOUT</a></li>
+									class="fa fa-sign-out MLIco"></i>LOGOUT</a></li>
 							<li class="tmenu"><a href="<c:url value='/member/passwordconfirm'/>" title="INFO">
 							<i class="icon ion-md-person MLIco"></i>${sessionScope._USER_.name}님</a></li>
 						</c:otherwise>
 					</c:choose>
 					<li class="tmenu"><a href="#" title="공지사항"> <i
-							class="icon ion-ios-business MLIco"></i>공지사항
+							class="icon ion-md-mail MLIco"></i>공지사항
 					</a></li>
 
 					<li class="tmenu"><a href="<c:url value='/qna'/>" title="Q & A"><i
-							class="far fa-flag MLIco"></i>Q & A</a></li>
+							class="icon ion-md-help MLIco"></i>Q &amp; A</a></li>
 				</ul>
 			</nav>
 		</div>

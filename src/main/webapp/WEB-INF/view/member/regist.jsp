@@ -249,7 +249,7 @@
 	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>회원가입</h2></div>
+		<div class="headImg subHeadMembers"><h2>회원가입</h2></div>
 			<div class="headBox">
 			
 				<div class="heading"><h2 class="headTxt">회원가입</h2>
@@ -315,7 +315,7 @@
         <li>
           <div class="checkWrap">
             <input type="checkbox" id="agreeChkBox" class="agreeChkBox">
-            이용약관에 동의 <a href="<c:url value='/html/terms.html'/>" target="_blank" class="viewBtn">이용약관보기 <i class="ion-md-search viewBtnI"></i></a> </div>
+            이용약관에 동의 <a href="<c:url value='/html/terms.html'/>"  onclick="window.open(this.href, '팝업이름','location=0, scrollbars=1');return false;" target="_blank" class="viewBtn">이용약관보기 <i class="ion-md-search viewBtnI"></i></a> </div>
         </li>
         <li>
           <div class="bottomBtn2">

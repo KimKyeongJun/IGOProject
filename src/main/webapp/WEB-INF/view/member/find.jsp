@@ -316,7 +316,7 @@
 	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>회원 정보 찾기</h2></div>
+		<div class="headImg subHeadMembers"><h2>회원 정보 찾기</h2></div>
 			<div class="headBox">
 			
 				<div class="heading"><h2 class="headTxt">회원 정보 찾기</h2>
