@@ -20,7 +20,6 @@
 			<tx:method name="update*" rollback-for="RuntimeException"/>
 			<tx:method name="regist*" rollback-for="RuntimeException"/>
 			<tx:method name="create*" rollback-for="RuntimeException"/>
-			<tx:method name="delete*" rollback-for="RuntimeException"/>
 		</tx:attributes>
 	</tx:advice>
 	
@@ -60,6 +59,5 @@
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-
-
+	
 </beans>
