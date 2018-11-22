@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <link href="<c:url value='/css/board.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script>
@@ -14,10 +11,8 @@
 		});
 	});
 </script>
-</head>
-<body>
 
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+	
 	
 	<div class="sub_common">
 		<div class="headImg subHeadQna"><h2>Q &amp; A</h2></div>
@@ -90,6 +85,4 @@
 </div>
 	
 
-	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
-</body>
-</html>
+<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />

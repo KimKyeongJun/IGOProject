@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"></jsp:include>
+	
 	<div class="sub_common">
 		<div class="headImg subHeadSerch">
 			<h2>검색결과</h2>
@@ -43,8 +38,6 @@
 						data-width="100%" data-height="500"></a>
 					<script async src="https://platform.twitter.com/widgets.js"
 						charset="utf-8"></script>
-
-
 				</div>
 
 
@@ -82,7 +75,5 @@
 		</div>
 	</section>
 
-	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"></jsp:include>
 
-</body>
-</html>

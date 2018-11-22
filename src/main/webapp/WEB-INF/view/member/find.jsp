@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <link href="<c:url value='/css/member.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js" />" type="text/javascript"></script>
 <script type="text/javascript">
@@ -312,8 +309,7 @@
 	}); 
 </script>
 </head>
-<body>
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+	
 	
 	<div class="sub_common">
 		<div class="headImg subHeadMembers"><h2>회원 정보 찾기</h2></div>
@@ -420,7 +416,4 @@
   </div>
 </section>
 	
-	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
-
-</body>
-</html>
+<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>

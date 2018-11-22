@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp" />
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <link href="<c:url value='/css/member.css'/>" rel="stylesheet" type="text/css">
-</head>
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"
 	type="text/javascript"></script>
 <script type="text/javascript">
@@ -151,9 +147,7 @@
 		});
 	});
 </script>
-<body>
 
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp" />
 
 	<div class="sub_common">
 		<div class="headImg subHeadMembers">
@@ -243,7 +237,5 @@
   </div>
 </section>
 
-	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
+<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
 
-</body>
-</html>

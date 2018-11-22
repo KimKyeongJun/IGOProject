@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="/IGOProject/css/main.css" rel="stylesheet" type="text/css">
 <script src="/IGOProject/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="/IGOProject/js/main.js" type="text/javascript"></script>
+<script src="/IGOProject/js/swiper.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
 		
@@ -16,7 +20,6 @@
 		});
 	});
 </script>
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 
 	<section id="banner">
 		<h2 class="bld">.</h2>
