@@ -5,9 +5,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -52,7 +57,9 @@ public class NaverController {
             JSONParser jsonParser = new JSONParser();
             JSONObject naverJson = (JSONObject) jsonParser.parse(response.toString());
             NaverVO naverVO = new NaverVO();
-            naverVO.setLastBuildDate(naverJson.get("lastBuildDate").toString());
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String convertDate = df.format(Date.parse(naverJson.get("lastBuildDate").toString()));
+            naverVO.setLastBuildDate(convertDate);
             naverVO.setTotal(Integer.parseInt(naverJson.get("total").toString()));
             naverVO.setStart(Integer.parseInt(naverJson.get("start").toString()));
             naverVO.setDisplay(Integer.parseInt(naverJson.get("display").toString()));
@@ -66,7 +73,8 @@ public class NaverController {
             	articleVO.setOriginallink(article.get("originallink").toString());
             	articleVO.setLink(article.get("link").toString());
             	articleVO.setDescription(article.get("description").toString());
-            	articleVO.setPubDate(article.get("pubDate").toString());
+            	convertDate = df.format(Date.parse(article.get("pubDate").toString()));
+            	articleVO.setPubDate(convertDate);
             	articleList.add(articleVO);
             }
             naverVO.setItems(articleList);

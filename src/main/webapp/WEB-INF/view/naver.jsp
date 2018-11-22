@@ -29,20 +29,20 @@
 	<c:forEach items="${naverVO.items}" var="article">
 	<div>
 		<div>
-			☆ title : ${article.title}
+			☆ title : <a href="${article.link}">${article.title}</a> (${article.pubDate})
 		</div>
-		<div>
+		<%-- <div>
 			☆ originLink : <a href="${article.originallink}">${article.originallink}</a>
 		</div>
 		<div>
 			☆ link : <a href="${article.link}">${article.link}</a>
-		</div>	
+		</div>	 --%>
 		<div>
 			☆ description : ${article.description}
 		</div>
-		<div>
+		<%-- <div>
 			☆ pubDate : ${article.pubDate}
-		</div>			
+		</div> --%>			
 	</div>
 	<hr>
 	</c:forEach>
