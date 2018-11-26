@@ -314,7 +314,7 @@
         </li>
         <li>
           <div class="checkWrap">
-            <input type="checkbox" id="agreeChkBox" class="agreeChkBox">
+            <input type="checkbox" id="agreeChkBox" class="agreeChkBox chkbox2">
             이용약관에 동의 <a href="<c:url value='/html/terms.html'/>"  onclick="window.open(this.href, '팝업이름','location=0, scrollbars=1');return false;" target="_blank" class="viewBtn">이용약관보기 <i class="ion-md-search viewBtnI"></i></a> </div>
         </li>
         <li>

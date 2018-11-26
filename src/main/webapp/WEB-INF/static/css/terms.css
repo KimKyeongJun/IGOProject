@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* narang login.CSS  */
+/* IGO terms.CSS  */
 
 /*******************메인폼***********************/
 #terms{	
@@ -32,16 +32,14 @@
 	text-align: left;
 	line-height: 38px;
 	margin-top: 30px;	
-	font-size: 16px;
-	
+	font-size: 16px;	
 }
 	
 #terms>.termsinfo ol li{	
 	display: inline-block;
 	width: 100%;
 	line-height: 22px;
-	margin-left: 10px;
-	
+	margin-left: 10px;	
 	font-weight: bold;
 }	
 	
@@ -61,7 +59,6 @@
 	margin-top: 0;
 }
 
-
 .termsinfo>p{
 	font-size: 13px;
 	margin: 10px;
@@ -72,10 +69,12 @@
 	display: block;
 	height: 20px;
 	width: 100%;
-	
 	border-bottom: 1px dashed #999;
 }
-/***************모바일*****************/
-@media only screen and (max-width: 740px){	
 
-}
+
+
+
+
+
+

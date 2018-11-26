@@ -147,27 +147,36 @@
       <!-- 댓글 출력 -->
 		
       <div class="cmt_contents reply">
-        	<c:forEach items="${replyList}" var="reply">
-      		<div class="replyDiv">
-          		<ul class="reTopWrap"><li class="member"> ${reply.memberVO.name} </li>
-          		<li class="if_date reT2"> <i class="fa fa-clock-o" aria-hidden="true"></i>${reply.regDate} </li>
-          		</ul>
-          		<p class="clickContent"> ${reply.content} </p>
-          		<c:if test="${reply.email eq sessionScope._USER_.email}">
-	          		<input type="hidden" class="replyId" name="replyId" value="${reply.replyId}" />
-	          		<ul class="bo_vc_act">
-	            		<li>
-	            			<a href="#" class="btn_b01 btn replyModi">
-	            				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>수정</a>
-	            		</li>
-	            		<li>
-	            			<a href="#" onclick="return comment_delete();" class="btn_b03 replyDel">
-	            			<i class="fa fa-trash-o" aria-hidden="true"></i>삭제</a>
-	            		</li>
+		<c:choose>
+			<c:when test="${not empty replyList}">
+	        	<c:forEach items="${replyList}" var="reply">
+	      		<div class="replyDiv">
+	          		<ul class="reTopWrap"><li class="member"> ${reply.memberVO.name} </li>
+	          		<li class="if_date reT2"> <i class="fa fa-clock-o" aria-hidden="true"></i>${reply.regDate} </li>
 	          		</ul>
-          		</c:if>
-      		</div>
-       		</c:forEach>
+	          		<p class="clickContent"> ${reply.content} </p>
+	          		<c:if test="${reply.email eq sessionScope._USER_.email}">
+		          		<input type="hidden" class="replyId" name="replyId" value="${reply.replyId}" />
+		          		<ul class="bo_vc_act">
+		            		<li>
+		            			<a href="#" class="btn_b01 btn replyModi">
+		            				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>수정</a>
+		            		</li>
+		            		<li>
+		            			<a href="#" onclick="return comment_delete();" class="btn_b03 replyDel">
+		            			<i class="fa fa-trash-o" aria-hidden="true"></i>삭제</a>
+		            		</li>
+		          		</ul>
+	          		</c:if>
+	      		</div>
+	       		</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<div class="replyDiv">
+					등록된 댓글이 없습니다.
+				</div>
+			</c:otherwise>
+		</c:choose>
       </div>
       <input type="hidden" value="" id="secret_comment_4">
       <textarea id="save_comment_4" style="display:none">ㅇ_ㅇ!</textarea>

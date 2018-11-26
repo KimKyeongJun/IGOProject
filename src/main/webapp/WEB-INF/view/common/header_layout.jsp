@@ -109,7 +109,7 @@
 				    }
 				    else if (response == "loginSuccess"){
 						alert("로그인에 성공하였습니다.");
-						location.href="<c:url value ='/index'/>";
+						location.href="<c:url value ='/'/>";
 				    } 
 				    else if (response == "block") {
 				    	alert("Password 3회이상 실패하여 1시간 동안 계정이 잠겼습니다. ");
@@ -138,7 +138,7 @@
 				<span class="close" onclick="searchToggle(this, event);"></span> <a
 					href="search.html"><div class="result-container"></div></a>
 			</div>
-			<a href="<c:url value="/index"/>" id="logo"></a>
+			<a href="<c:url value="/"/>" id="logo"></a>
 		</div>
 
 

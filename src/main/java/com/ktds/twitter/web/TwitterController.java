@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,13 +24,26 @@ import twitter4j.conf.ConfigurationBuilder;
 @Controller
 public class TwitterController {
 	
+	@Value("${OAuthConsumerKey}")
+	private String oAuthConsumerKey;
+	
+	@Value("${OAuthConsumerSecret}")
+	private String oAuthConsumerSecret;
+	
+	@Value("${OAuthAccessToken}")
+	private String oAuthAccessToken;
+	
+	@Value("${OAuthAccessTokenSecret}")
+	private String oAuthAccessTokenSecret;
+	
+	// Twitter에서 검색 결과를 가져오기
 	public QueryResult getTwitterData(String searchKeyword) {
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-			.setOAuthConsumerKey("")
-			.setOAuthConsumerSecret("")
-			.setOAuthAccessToken("")
-			.setOAuthAccessTokenSecret("");
+			.setOAuthConsumerKey(oAuthConsumerKey)
+			.setOAuthConsumerSecret(oAuthConsumerSecret)
+			.setOAuthAccessToken(oAuthAccessToken)
+			.setOAuthAccessTokenSecret(oAuthAccessTokenSecret);
 		
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
@@ -44,6 +58,8 @@ public class TwitterController {
 		return result;
 	}
 	
+	
+	// Twitter에서  가져온 데이터를 원하는 내용만 뽑아서 VO에 적재
 	public List<TwitterVO> makeTwitterDataList(String searchKeyword){
 		List<TwitterVO> twitterList = new ArrayList<TwitterVO>();
 		QueryResult result = getTwitterData(searchKeyword);

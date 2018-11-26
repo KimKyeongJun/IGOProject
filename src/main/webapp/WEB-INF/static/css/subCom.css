@@ -4,9 +4,7 @@
 .sub_common{
 	position: relative;
 	width: 100%;
-/*	min-width: 760px;*/
 	height: auto;
-/*	min-height: 550px;*/
 	margin: 0 auto;
 	text-align: center;
 	box-sizing: border-box;
@@ -18,8 +16,7 @@
 	height: 200px;
 	margin-top: 80px;
 	margin-bottom: 50px;
-	text-align: center;
-}
+	text-align: center;}
 
 
 .sub_common>.subHeadMembers{	
@@ -106,24 +103,27 @@
 
 }
 
-@media only screen and (max-width: 580px){
-	
-.sub_common>.headImg>h2{
-	line-height: 170px;
-}
-}
 
-/****************** pagination ********************/	
+
+/****************** pagination ********************/
+
+.pg_wrap:before{
+	content:"";
+	display: block;
+	clear: both;
+	top: 30px;
+}
 .pg_wrap{
 	position: relative;
+	display: inline-block;
 	width: 100%;
+	max-width: 1300px;	
 	height: auto;
-	top: 20px;
-	min-height: 100px;
+	min-height: 80px;
+	top: 30px;	
 	margin: 0 auto;
-	text-align: center;
-	overflow: hidden;	
 	margin-bottom: 30px;
+	text-align: center;
 }	
 	
 .pg_wrap .pagination{
@@ -135,8 +135,7 @@
 	white-space: nowrap;
 	width: 100%;
 	min-width: 30px;
-	height: 50px;	
-	margin-bottom: 5px;
+	height: 50px;
 	text-align: center;
 }
 .pageNum:before{
@@ -176,8 +175,7 @@
 .pagination a.active {
     background-color: #1eb4cf;
     color: #fff;
-    border-radius: 5px;
-	
+    border-radius: 5px;	
 }
 
 .pagination a:hover:not(.active) {
@@ -187,101 +185,60 @@
 	color: #fff;
 }
 
-.pagination a .prevButton{
-	
-}
-
-/*리스트로 가기 버튼*/
-
-/********버튼부모********/
-.goListWrap{
-	position: relative;
-	width: 100%;
-	max-width: 1000px;
-	height: auto;
-	min-height: 50px;
-	margin: 0 auto;
-	padding: 0;
-	margin-top: 80px;
-	text-align: center;
-	white-space: nowrap;
-	box-sizing: border-box;
-}
-
-.goListBtn{	/*버튼3*/
-	position: relative;
-    float: right;
-	width: 100%; 
-	height: 50px;
-	padding: 2px 15px;
-	font-size: 17px;
-	line-height: 50px;
-	box-sizing: border-box;
-	border-radius: 5px;	
-	background-color: #3389d7;
-	color: #ffffff;
-}
-
-.goListBtn a{/*버튼 글자색 공통*/
-	color: #ffffff;
-}
-
-.goListBtn:hover{
-	background-color:#7accc8;
-}
+/********* pagination End *************/
 
 .bottonSearch:before{
 	content: "";
 	display: block;
 	clear: both;
-	margin-top: 40px;
+	margin-top: 20px;
 }
+
 .bottonSearch{
 	position: relative;
 	display: block;
-	width: 90%;
-	height: 50px;
-	max-width: 800px;
-	min-width: 200px;	
-	margin: 0 auto;
+	width: 50%;
+	max-width: 700px;
+	min-width: 100px;
+	height: 40px;		
+	margin: 0 auto !important;
+	text-align: center;
+	box-sizing: border-box;	
 }
 
-.bottonSearch>.bsInput, .bottonSearch>.bsResetBtn, .bsBtn {
-	position: relative;
-	display: inline-block;
-	float: left;
-	margin: 0 3px;
-	line-height: 40px;
-	height: 40px;
-	padding: 0 5px !important;
-	border-radius: 5px;
-	box-sizing: border-box;
-	
-}
-.bottonSearch>.bsInput{
-	width: 83%;
-	min-width: 150px;
-	border:1px solid #666;	
-}
-.bsBtn, .bottonSearch>.bsResetBtn{
-	width: 40px;
-	height: 40px;
-	border: 1px solid #ccc;
-	border: 1px solid #063768;
-	float: left;
-	color: #063768;
-}
-
-.bottonSearch i{
+.bottonSearch>.bsInput{/*******입력창********/
 	position: relative;
 	display: block;
-	color: #063768;
-	text-align: center;	
-	vertical-align: middle;
+	width: 76%;
+	max-width: 500px;
+	border:1px solid #666;
+	font-size: 14px;
+	color:#777;
+	float: left;
+	padding: 0 5px;
+	border-radius: 5px;
+	box-sizing: border-box;	
+	line-height: 38px;
+	height: 40px;
+}
+
+.bottonSearch>.bsResetBtn, .bottonSearch>.bsBtn{ /*버튼 2개 셋팅*/
+	position: relative;	
+	float: left;
+	width: 40px;
+	height: 40px;
+	border: 1px solid #355B84;	
+	padding: 0 5px;
+	border-radius: 5px;
+	box-sizing: border-box;	
+}
+
+.bottonSearch i{/*버튼 2개의 아이콘*/
+	position: relative;
+	display: block;	
 	line-height: 30px;
 	font-size: 100%;
 	font: normal 26px "Ionicons";
-	background-color: transparent;
 	border: none;
 	cursor: pointer;
 	z-index: 99;	
@@ -295,12 +252,24 @@
 	-webkit-font-smoothing: antialiased;
 }
 
-.bsBtn>.ion-md-search{		
+.bottonSearch>.bsBtn{/*검색버튼*/
+	background-color: #355B84;
+	margin: 0 3px;
+}
+
+.bsBtn>i{		
 	top: 0;
 	left: 0;
+	color:#fff;
 }
+
+.bottonSearch>.bsResetBtn{/*리셋버튼*/
+	color: #355B84;
+}
+
 .bsBtn:hover{
-	background-color: #063768;
+	background-color: #1eb4cf;
+	border: #fff;
 }
 .bsBtn:hover .ion-md-search{
 	color: #fff;
@@ -313,30 +282,143 @@
 }
 
 /******** 모바일 *********/
-
-@media only screen and (max-width: 840px){
-	.bottonSearch>.bsInput{
-		width: 80%;
-	}
-	
-
+@media only screen and (max-width: 900px){
+.bottonSearch>.bsInput{
+	width: 70%;
+}	
 }
+
+
 @media only screen and (max-width: 770px){
-.sub_common>.headImg,
-.sub_common>.headImg2,
-.sub_common>.headImg3,
-.sub_common>.headImg4,
-.sub_common>.headImg5{
+.sub_common>.headImg{
 	margin-top: 60px;
 }
+	
+.bottonSearch{
+	width: 75%;
+}
+}
+
+
+
+@media only screen and (max-width: 550px){
+.bottonSearch{
+	width: 80%;
+}	
 .bottonSearch>.bsInput{
-		width: 73%;
-	}
+	width: 66%;
+}
+}
+
+@media only screen and (max-width: 400px){
+.bottonSearch>.bsInput{
+	width: 50%;
+}
 }
 
 
-@media only screen and (max-width: 580px){
-	.bottonSearch>.bsInput{
-		width: 60%;
-	}
+	
+	
+
+/*********************404ERROR*************************/
+#errorWrap4, #errorWrap5{		
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	text-align: center;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
 }
+#errorWrap4{		
+	background-color: #355B84;
+}
+
+#errorWrap4>.errUl,
+#errorWrap5>.errUl {
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 1300px;
+	height: 100%;
+	margin: 0 auto;		
+}
+
+#errorWrap4>.errUl>li,
+#errorWrap5>.errUl>li {
+	position: relative;
+	display: block;
+	width: 100%;
+	text-align: center;
+	float: left;
+	margin: 30px 0;	
+}
+
+#errorWrap4>.errUl>.errImg,
+#errorWrap5>.errUl>.errImg {
+	width: 100%;
+	max-width:479px;
+	margin: 30px 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#errorWrap4>.errUl>.errImg{		
+	background: url(../img/404.png)no-repeat top/100% 100%;	
+}
+
+#errorWrap5>.errUl>.errImg{	
+	background: url(../img/500.png)no-repeat top/100% 100%;	
+}
+
+#errorWrap4>.errUl>.errImg::before,
+#errorWrap5>.errUl>.errImg::before {
+	content: '';
+	display: block;
+	padding-top: 80%;/*가로크기에 대한 80%*/
+}
+
+#errorWrap4>.errUl>.errImg::after,
+#errorWrap4>.errUl>.errImg::after {
+	content: '';
+	position: relative;
+	display: inline-block;
+	clear: both;
+}
+#errorWrap4>.errUl>.errTxt,
+#errorWrap5>.errUl>.errTxt {		
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#errorWrap4>.errUl>.errTxt{
+	color: #fff;
+}
+#errorWrap5>.errUl>.errTxt {
+	color: #355B84;
+}
+
+#errorWrap4>.errUl>.errBtn a,
+#errorWrap5>.errUl>.errBtn a{
+	padding: 10px 20px;
+    margin: 0 auto;
+    background-color: #7accc8;    
+    border-radius: 5px;
+    font-size: 20px;
+    margin-right: 3px;
+    vertical-align: middle;
+    cursor: pointer;
+	font-weight: bold;
+	color: #FFF;
+}
+
+#errorWrap4>.errUl>.errBtn a{
+	border: 1px solid #355B84;
+}
+
+#errorWrap5>.errUl>.errBtn a{
+	border: 1px solid #fff;
+}
+
+

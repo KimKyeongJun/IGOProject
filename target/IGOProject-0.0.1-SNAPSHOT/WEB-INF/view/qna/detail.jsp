@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <link href="<c:url value='/css/board.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='/js/jquery-3.3.1.min.js'/>" type="text/javascript"></script>
 <script type="text/javascript">
@@ -84,16 +81,14 @@
 		});
 	});
 </script>
-</head>
-<body>
 
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+	
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>Q & A</h2></div>
+		<div class="headImg subHeadQna"><h2>Q &amp; A</h2></div>
 			<div class="headBox">
 			
-				<div class="heading"><h2 class="headTxt">Q & A</h2>
+				<div class="heading"><h2 class="headTxt">Q &amp; A</h2>
 				</div>	
 		</div>
 	</div>
@@ -214,7 +209,5 @@ $(function() {
 </script> 
 </article>
 
-	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
+<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
 	
-</body>
-</html>

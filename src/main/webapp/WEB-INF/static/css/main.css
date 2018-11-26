@@ -1,12 +1,10 @@
 @charset "utf-8";
 /* I GO main.css*/
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic&subset=korean');
 @import url("common.css");
 @import url("core.css");
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic');
 @import url("subCom.css");
 @import url("search.css");
-@import url("login.css");
 @import url("board.css");
 @import url("member.css");
 @import url("terms.css");
@@ -59,23 +57,17 @@
 #slider .mainTxt span{
 	font-size: 45px;
 }
-
 #slider .mainTxt a{
 	color: #fff;
 	line-height: 60px;
 	text-shadow: 2px 2px 1px #333;	
 }
-
 /*opacity가 1로 변경될 class*/
 .opaView{
-	opacity: 1 !important;/*우선적용*/
-	z-index: 2;/*보이는 li를 가장위로 올리기*/
-	cursor: pointer;/*손가락모양*/
+	opacity: 1 !important;
+	z-index: 2;/*보이는 li를 위로 올리기*/
+	cursor: pointer;
 }
-
-
-
-
 
 /*각 배너 li 배경이미지 셋팅*/
 #slider>li:nth-child(1){
@@ -88,7 +80,6 @@
 #slider>li:nth-child(3){
 	background: url(../img/ban03.jpg) no-repeat 0/cover;
 }
-
 
 .inbox{
 	position: relative;
@@ -115,7 +106,6 @@
 	height: 59px;
 	z-index: 3;
 	text-shadow: 2px 2px 1px #333;
-
 }
 
 .ab1{/*왼쪽버튼*/
@@ -124,9 +114,9 @@
 .ab2{/*오른쪽버튼*/
 	right: 25px;	
 }
-/*이동버튼에 마우스 오버시 배경이미지 위치변경하기*/
+
 .abtn:hover{
-	background-position: 0 -49px;/*y축 위로 이동*/
+	background-position: 0 -49px;
 	color: #21a6a9;
 }
 
@@ -149,8 +139,7 @@
 }
 
 .bulletBox a:hover{
-	color: #1eb4cf;
-	
+	color: #1eb4cf;	
 }
 
 .bulletBox a:active {
@@ -171,8 +160,6 @@
 	max-height: 480px;	
 	margin-top: 0px;
 }
-	
-
 	
 .abtn{
 	font-size: 30px;
@@ -273,7 +260,6 @@
 .searchList>ul>li{
 	position: relative;	
 	display: inline-block;
-/*	width: auto;*/
 	min-width: 100px;	
 	height: auto;
 	min-height: 70px;		

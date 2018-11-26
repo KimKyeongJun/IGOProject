@@ -1,26 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <link href="<c:url value='/css/member.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js" />" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
-		var emailAfter = $(`<div class="error"> <span class=redPoint>* </span> E-Mail을 입력해 주세요.</div>`);
-		var emailFindnameAfter = $(`<div class="error"> <span class=redPoint>* </span> 이름을 입력해 주세요.</div>`);
-		var passwordFindnameAfter = $(`<div class="error"> <span class=redPoint>* </span> 이름을 입력해 주세요.</div>`);
-		var passwordAfter = $(`<div class="error"> <span class=redPoint>* </span> Password를 입력해 주세요.</div>`);
+		var emailAfter = $('<div class="error"> <span class=redPoint>* </span> E-Mail을 입력해 주세요.</div>');
+		var emailFindnameAfter = $('<div class="error"> <span class=redPoint>* </span> 이름을 입력해 주세요.</div>');
+		var passwordFindnameAfter = $('<div class="error"> <span class=redPoint>* </span> 이름을 입력해 주세요.</div>');
+		var passwordAfter = $('<div class="error"> <span class=redPoint>* </span> Password를 입력해 주세요.</div>');
 		var emailRegex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-		var emailRegexAfter = $(`<div class="error"> <span class=redPoint>* </span> E-Mail 형식이 맞지 않습니다.</div>`);
+		var emailRegexAfter = $('<div class="error"> <span class=redPoint>* </span> E-Mail 형식이 맞지 않습니다.</div>');
 		var passwordRegex = /^(?=.*[a-zA-z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}/;
-		var passwordRegexAter = $(`<div class="error"> <span class=redPoint>* </span> 비밀번호는 8글자 이상 20글자 이하 <br/>  대소문자, 숫자, 특수문자를 포함해야 합니다.</div>`);
-		var passwordConfirmAfter = $(`<div class="error"> <span class=redPoint>* </span> 비밀번호를 확인해 주세요. </div>`);
-		var emailFindphoneAfter = $(`<div class="error"> <span class=redPoint>* </span> 연락처를 입력해 주세요. </div>`);
-		var passwordFindphoneAfter = $(`<div class="error"> <span class=redPoint>* </span> 연락처를 입력해 주세요. </div>`);
-		var emmailConfirmCheckAfter = $(`<div class="error"> <span class=redPoint>* </span> E-Mail을 확인해주세요. </div>`);
+		var passwordRegexAter = $('<div class="error"> <span class=redPoint>* </span> 비밀번호는 8글자 이상 20글자 이하 <br/>  대소문자, 숫자, 특수문자를 포함해야 합니다.</div>');
+		var passwordConfirmAfter = $('<div class="error"> <span class=redPoint>* </span> 비밀번호를 확인해 주세요. </div>');
+		var emailFindphoneAfter = $('<div class="error"> <span class=redPoint>* </span> 연락처를 입력해 주세요. </div>');
+		var passwordFindphoneAfter = $('<div class="error"> <span class=redPoint>* </span> 연락처를 입력해 주세요. </div>');
+		var emmailConfirmCheckAfter = $('<div class="error"> <span class=redPoint>* </span> E-Mail을 확인해주세요. </div>');
 		
 		$("#eFindNameError").prepend(emailFindnameAfter);
 		$("#eFindPhoneError").prepend(emailFindphoneAfter);
@@ -312,11 +309,10 @@
 	}); 
 </script>
 </head>
-<body>
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+	
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>회원 정보 찾기</h2></div>
+		<div class="headImg subHeadMembers"><h2>회원 정보 찾기</h2></div>
 			<div class="headBox">
 			
 				<div class="heading"><h2 class="headTxt">회원 정보 찾기</h2>
@@ -420,7 +416,4 @@
   </div>
 </section>
 	
-	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
-
-</body>
-</html>
+<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>

@@ -157,11 +157,11 @@
 }
 
 .snsList>ul.tabs>li:nth-child(1){	
-	background: url(../img/tab_logo1.png) no-repeat 50%;
+	background: url(../img/tab_logo.png) no-repeat 50%;
 }
 
  .snsList>ul.tabs>li:nth-child(2){
-	background: url(../img/tab_logo2.png) no-repeat 50%;
+	background: url(../img/tab_logo1.png) no-repeat 50%;
 }
 
 

@@ -20,6 +20,14 @@
 		mapping="/css/**" />
 	<mvc:resources location="/WEB-INF/static/html/"
 		mapping="/html/**" />
+		
+	<mvc:interceptors>
+		<mvc:interceptor >
+			<mvc:mapping path="/sns/**"/>
+			<bean	id="logInterceptor"
+					class="com.ktds.common.interceptors.LogInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -34,10 +42,10 @@
 		<s:intercept-url pattern="/member/regist" access="permitAll"/>
 		<s:intercept-url pattern="/member" access="permitAll"/>
 		<s:intercept-url pattern="/member/**" access="permitAll"/>
-		<s:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_ADMIN' , 'ROLE_USER')"/> 
+		<s:intercept-url pattern="/qna/regist" access="hasAnyRole('ROLE_ADMIN' , 'ROLE_USER')"/> 
 		<s:csrf disabled="true" />
 		<s:form-login 
-			login-page="/member/login"
+			login-page="/"
 			username-parameter="securityEmail"
 			password-parameter="password"
 			login-processing-url="/memberlogin" 
@@ -48,11 +56,11 @@
 		<!-- Security Logout 처리 -->
 		<s:logout
 			logout-url="/member/logout2"
-			logout-success-url="/qna"
+			logout-success-url="/"
 			invalidate-session="true"
 		/>
 		<!-- 중복 로그인 제어 -->
-		<s:session-management invalid-session-url="/index">
+		<s:session-management invalid-session-url="/">
 			<s:concurrency-control
 				max-sessions="1"
 				expired-url="/member/login"
@@ -69,5 +77,8 @@
 	<s:authentication-manager>
 		<s:authentication-provider ref="userService"/>
 	</s:authentication-manager>
+	
+	<context:property-placeholder
+		location="/WEB-INF/spring/settings.properties" />
 	
 </beans>

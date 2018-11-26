@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <link href="<c:url value='/css/board.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script>
@@ -14,15 +11,13 @@
 		});
 	});
 </script>
-</head>
-<body>
 
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+	
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>Q & A</h2></div>
+		<div class="headImg subHeadQna"><h2>Q &amp; A</h2></div>
 			<div class="headBox">
-				<div class="heading"><h2 class="headTxt">Q & A</h2>
+				<div class="heading"><h2 class="headTxt">Q &amp; A</h2>
 			</div>	
 		</div>
 	</div>
@@ -30,7 +25,7 @@
 	<div id="con_lf"> 
   
   <!-- 게시판 목록 시작 { -->
-  <div id="bo_list" style="width:100%">
+  <div id="bo_list">
     <div class="tbl_head01 tbl_wrap">
       <table>
        
@@ -46,14 +41,12 @@
           <c:choose>
             <c:when test="${not empty qnaList}">
               <c:forEach items="${qnaList}" var="qnaVO">
-                <div class="contentWrapper">
-                  <tr class="">
+                  <tr>
                     <td class="tac number box">${qnaVO.rnum}</td>
                     <td class="subject box detail" data-qnaid="${qnaVO.qnaId}"><%-- <a href="<c:url value='/qna/detail/${qnaVO.qnaId}'/>"> --%>${qnaVO.title}<!-- </a> --></td>
                     <td class="tac sv_use writer box">${qnaVO.memberVO.name}</td>
                     <td class="tac create-date box">${qnaVO.regDate}</td>
                   </tr>
-                </div>
               </c:forEach>
             </c:when>
             <c:otherwise>
@@ -92,6 +85,4 @@
 </div>
 	
 
-	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
-</body>
-</html>
+<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
