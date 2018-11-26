@@ -2,6 +2,7 @@ package com.ktds.member.service;
 
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.ktds.approval.biz.ApprovalBiz;
@@ -17,6 +18,12 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private ApprovalBiz approvalBiz;
+	
+	@Value("${hostSMTPid}")
+	private String hostSMTPid;
+	
+	@Value("${hostSMTPpwd}")
+	private String hostSMTPpwd;
 	
 	@Override
 	public boolean registOneMember(MemberVO memberVO) {
@@ -52,8 +59,6 @@ public class MemberServiceImpl implements MemberService {
 		// Mail Server 설정
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.naver.com";
-		String hostSMTPid = "igoproj@naver.com";
-		String hostSMTPpwd = "projectigo201!";
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "igoproj@naver.com";

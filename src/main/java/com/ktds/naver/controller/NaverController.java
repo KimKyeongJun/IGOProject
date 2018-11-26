@@ -16,6 +16,7 @@ import org.joda.time.format.DateTimeFormatter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,12 +28,16 @@ import com.ktds.naver.vo.NaverVO;
 @Controller
 public class NaverController {
 	
+	@Value("${clientId}")
+	private String clientId;	//애플리케이션 클라이언트 아이디값
+	
+	@Value("${clientSecret}")
+	private String clientSecret;	//애플리케이션 클라이언트 시크릿값
+	
 	@GetMapping("/search/naver/{keyword}")
 	public ModelAndView doSearchNaverAction(@PathVariable String keyword) {
 		ModelAndView view = new ModelAndView("naver");
         try {
-        	String clientId = "amL4JcIrkzw6Glbrtmbo";//애플리케이션 클라이언트 아이디값";
-        	String clientSecret = "z6HjT8Q4Qk";//애플리케이션 클라이언트 시크릿값";
         	
             String text = URLEncoder.encode(keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/news.json?query="+ text; // json 결과
