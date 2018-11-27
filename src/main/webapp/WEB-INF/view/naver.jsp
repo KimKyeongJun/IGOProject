@@ -29,7 +29,7 @@
 	<c:forEach items="${naverVO.items}" var="article">
 	<div>
 		<div>
-			☆ title : <a href="${article.link}">${article.title}</a> (${article.pubDate})
+			☆ title : ${article.title} (${article.pubDate}) <a href="${article.link}">링크</a>
 		</div>
 		<%-- <div>
 			☆ originLink : <a href="${article.originallink}">${article.originallink}</a>
