@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.naver.vo.ArticleVO;
 import com.ktds.naver.vo.NaverVO;
+import com.ktds.sns.vo.SnsVO;
 
 @Controller
 public class NaverController {
@@ -61,15 +62,15 @@ public class NaverController {
             }
             JSONParser jsonParser = new JSONParser();
             JSONObject naverJson = (JSONObject) jsonParser.parse(response.toString());
-            NaverVO naverVO = new NaverVO();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String convertDate = df.format(Date.parse(naverJson.get("lastBuildDate").toString()));
+            /*NaverVO naverVO = new NaverVO();
             naverVO.setLastBuildDate(convertDate);
             naverVO.setTotal(Integer.parseInt(naverJson.get("total").toString()));
             naverVO.setStart(Integer.parseInt(naverJson.get("start").toString()));
-            naverVO.setDisplay(Integer.parseInt(naverJson.get("display").toString()));
+            naverVO.setDisplay(Integer.parseInt(naverJson.get("display").toString()));*/
             
-            List<ArticleVO> articleList = new ArrayList<>();
+            List<SnsVO> list = new ArrayList<>();
             JSONArray articleJson = (JSONArray) naverJson.get("items");
             for(int i=0; i<articleJson.size(); i++) {
             	JSONObject article = (JSONObject) articleJson.get(i);
@@ -80,11 +81,11 @@ public class NaverController {
             	articleVO.setDescription(article.get("description").toString());
             	convertDate = df.format(Date.parse(article.get("pubDate").toString()));
             	articleVO.setPubDate(convertDate);
-            	articleList.add(articleVO);
+            	SnsVO snsVO = new SnsVO(articleVO.getTitle(), articleVO.getLink(), articleVO.getDescription(), articleVO.getPubDate());
+            	list.add(snsVO);
             }
-            naverVO.setItems(articleList);
             br.close();
-            view.addObject("naverVO", naverVO);
+            view.addObject("list", list);
             view.addObject("keyword", keyword);
         } catch (Exception e) {
             System.out.println(e);
