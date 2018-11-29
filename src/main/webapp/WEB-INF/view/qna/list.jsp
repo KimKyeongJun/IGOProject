@@ -71,6 +71,8 @@
          </div>           
       </form>
    </div>
+   
+   
 	
     <div class="btn_confirm">
       <ul class="btn_bo_user">

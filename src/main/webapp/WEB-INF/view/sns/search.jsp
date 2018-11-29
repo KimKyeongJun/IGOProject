@@ -17,7 +17,7 @@
 			</div>
 			<div class="resultTxt">
 				<span class="rt1">#</span>
-				<p>검색결과(텍스트양에따라 width달라짐)</p>
+				<p>${searchKeyword}</p>
 			</div>
 		</div>
 	</div>

@@ -109,9 +109,10 @@
 
 .pg_wrap:before{
 	content:"";
+	position: relative;
 	display: block;
 	clear: both;
-	top: 30px;
+	top: 50px;
 }
 .pg_wrap{
 	position: relative;
@@ -122,7 +123,9 @@
 	min-height: 80px;
 	top: 30px;	
 	margin: 0 auto;
-	margin-bottom: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-bottom: 50px;
 	text-align: center;
 }	
 	
@@ -197,20 +200,17 @@
 .bottonSearch{
 	position: relative;
 	display: block;
-	width: 50%;
-	max-width: 700px;
-	min-width: 100px;
+	width: 60%;
 	height: 40px;		
 	margin: 0 auto !important;
 	text-align: center;
-	box-sizing: border-box;	
+	box-sizing: border-box;
 }
 
 .bottonSearch>.bsInput{/*******입력창********/
 	position: relative;
-	display: block;
-	width: 76%;
-	max-width: 500px;
+	display: block;	
+	width: calc(100% - 89px);
 	border:1px solid #666;
 	font-size: 14px;
 	color:#777;
@@ -265,6 +265,7 @@
 
 .bottonSearch>.bsResetBtn{/*리셋버튼*/
 	color: #355B84;
+	margin: 0;
 }
 
 .bsBtn:hover{
@@ -282,43 +283,24 @@
 }
 
 /******** 모바일 *********/
-@media only screen and (max-width: 900px){
-.bottonSearch>.bsInput{
-	width: 70%;
-}	
-}
+
 
 
 @media only screen and (max-width: 770px){
 .sub_common>.headImg{
 	margin-top: 60px;
 }
-	
-.bottonSearch{
-	width: 75%;
-}
-}
-
-
-
-@media only screen and (max-width: 550px){
 .bottonSearch{
 	width: 80%;
 }	
-.bottonSearch>.bsInput{
-	width: 66%;
-}
 }
 
-@media only screen and (max-width: 400px){
-.bottonSearch>.bsInput{
-	width: 50%;
+@media only screen and (max-width: 520px){
+.bottonSearch{
+	width: 100%;
+	padding: 0 5px 0 10px;
 }
-}
-
-
-	
-	
+}	
 
 /*********************404ERROR*************************/
 #errorWrap4, #errorWrap5{		
@@ -403,22 +385,24 @@
 #errorWrap5>.errUl>.errBtn a{
 	padding: 10px 20px;
     margin: 0 auto;
-    background-color: #7accc8;    
+    background-color: #7accc8;
+    border: 1px solid #355B84;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 22px;
     margin-right: 3px;
     vertical-align: middle;
     cursor: pointer;
 	font-weight: bold;
 	color: #FFF;
+	line-height: 24px;
 }
 
 #errorWrap4>.errUl>.errBtn a{
 	border: 1px solid #355B84;
 }
-
 #errorWrap5>.errUl>.errBtn a{
 	border: 1px solid #fff;
 }
+
 
 

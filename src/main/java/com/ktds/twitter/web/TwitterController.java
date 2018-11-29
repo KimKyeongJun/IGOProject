@@ -9,9 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ktds.twitter.vo.TwitterVO;
+import com.ktds.sns.vo.SnsVO;
 
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -19,6 +20,7 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.URLEntity;
 import twitter4j.conf.ConfigurationBuilder;
 
 @Controller
@@ -60,13 +62,22 @@ public class TwitterController {
 	
 	
 	// Twitter에서  가져온 데이터를 원하는 내용만 뽑아서 VO에 적재
-	public List<TwitterVO> makeTwitterDataList(String searchKeyword){
-		List<TwitterVO> twitterList = new ArrayList<TwitterVO>();
+	public List<SnsVO> makeTwitterDataList(String searchKeyword){
+		List<SnsVO> twitterList = new ArrayList<SnsVO>();
 		QueryResult result = getTwitterData(searchKeyword);
 		
 		for (Status status : result.getTweets() ) {
 			Date d = new Date();
 			String date = null;
+			
+			URLEntity[] urls = status.getURLEntities();
+			String url = null;
+			
+			for(URLEntity urlEntity : urls) {
+				url = urlEntity.getURL();
+				System.out.println("!!!!!!!!!!!!!!!" + url);
+				System.out.println("===================");
+			}
 			
 			long seconds = d.getTime()-status.getCreatedAt().getTime();
 			
@@ -91,19 +102,17 @@ public class TwitterController {
 				String convertDate = transFormat.format(status.getCreatedAt());
 				date = convertDate;
 			}
-			TwitterVO twitterVO = new TwitterVO( "@"+status.getUser().getScreenName(),  date, status.getText() );
-			twitterList.add(twitterVO);
+			SnsVO snsVO = new SnsVO( "@"+status.getUser().getScreenName(), url, status.getText(), date );
+			twitterList.add(snsVO);
 		}
 		return twitterList;
 	}
 	
-	@GetMapping("/twitter/search/{searchKeyword}")
-	public ModelAndView viewTwitterSearchPage(@PathVariable String searchKeyword) {
-		ModelAndView view = new ModelAndView("search");
-		List<TwitterVO> twitterList = makeTwitterDataList(searchKeyword);
-		view.addObject("twitterList", twitterList);
-		return view;
+	@GetMapping("/search/twitter/{searchKeyword}")
+	@ResponseBody
+	public List<SnsVO> viewTwitterSearchPage(@PathVariable String searchKeyword) {
+		List<SnsVO> twitterList = makeTwitterDataList(searchKeyword);
+		return twitterList;
 	}
-	
 
 }

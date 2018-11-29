@@ -69,16 +69,15 @@
 	cursor: pointer;
 }
 
-/*각 배너 li 배경이미지 셋팅*/
-#slider>li:nth-child(1){
+#slider>li.slider1{
 	background: url(../img/ban01.jpg) no-repeat 0/cover;
 }
-#slider>li:nth-child(2){
-	background: url(../img/ban02.jpg) no-repeat 0/cover;
+#slider>li.slider2{
+	background: url(../img/ban03.jpg) no-repeat 0/cover;
 }
 
-#slider>li:nth-child(3){
-	background: url(../img/ban03.jpg) no-repeat 0/cover;
+#slider>li.slider3{
+	background: url(../img/ban02.jpg) no-repeat 0/cover;
 }
 
 .inbox{
@@ -101,9 +100,9 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;	
 	top: 60%;
-	transform: translateY(-50%);/*세로중앙이동*/
+	transform: translateY(-50%);
 	width: 45px;
-	height: 59px;
+	height: 50px;
 	z-index: 3;
 	text-shadow: 2px 2px 1px #333;
 }
@@ -135,22 +134,23 @@
 	color: #fff;
 	margin: 0 15px;
 	font-size: 1.1em;
-	text-shadow: 2px 2px 1px #333;
+	
 }
 
 .bulletBox a:hover{
 	color: #1eb4cf;	
 }
 
-.bulletBox a:active {
+.bulletBox a.swiper-pagination-bullet-active {
+	color: #1eb4cf;	
 	font-weight: bold;
+	text-shadow: 1px 1px 1px #333;
 }
 
 .bulletBox > a > span{
 	color: #EBCF71;
 	margin-right: 2px;
 }
-
 
 
 /******** 모바일 *********/
@@ -162,9 +162,9 @@
 }
 	
 .abtn{
-	font-size: 30px;
-	width: 25px;
-	height: 49px;
+	font-size: 40px;
+	width: 30px;
+	height: 35px;
 }
 	
 #slider .mainTxt{
@@ -172,7 +172,7 @@
 }	
 	
 #slider .mainTxt span{
-	font-size: 25px;
+	font-size: 33px;
 	line-height: 20px;
 }
 	
@@ -181,6 +181,24 @@
 }
 }
 
+@media only screen and (max-width: 400px){
+.abtn{
+	font-size: 30px;
+	width: 30px;
+	height: 35px;
+}	
+#slider .mainTxt{
+	font-size: 18px;
+}	
+	
+#slider .mainTxt span{
+	font-size: 28px;
+	line-height: 20px;
+}
+.bulletBox a{
+	font-size: 14px;
+}	
+}
 
 /*************** 3. 검색 영역 ***************/
 #searchWrap{
