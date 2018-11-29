@@ -1,12 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
 	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="/IGOProject/css/main.css" rel="stylesheet" type="text/css">
+<script src="/IGOProject/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="/IGOProject/js/main.js" type="text/javascript"></script>
+<script src="/IGOProject/js/swiper.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$().ready(function() {
+		
+		$("#searchBtn").click(function() {		
+			if($("#searchKeyword").val() == '') {
+				alert("검색어를 입력해주세요.");
+				$("#searchKeyword").focus();
+				return;
+			}
+			var url = "<c:url value='/sns/search/'/>"+$("#searchKeyword").val();
+			location.href = url;
+		});
+	});
+</script>
 
 	<section id="banner">
 		<h2 class="bld">.</h2>
@@ -47,7 +60,7 @@
 		<h2>실시간 검색 하기</h2>
 		<h3>많이 검색 해 주세요!</h3>
 		<div class="searchBox">
-			<input type="text" class="searchBar" /> <a href="#searchList"><i
+			<input type="text" class="searchBar" id="searchKeyword" /> <a id="searchBtn"><i
 				class="ion-md-search"></i></a>
 		</div>
 		<div class="searchList">
@@ -67,5 +80,3 @@
 	</section>
 	
 	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
-</body>
-</html>

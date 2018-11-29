@@ -31,7 +31,7 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
-	@GetMapping("/index")
+	@GetMapping("/")
 	public String viewMainPage() {
 		return "common/index";
 	}

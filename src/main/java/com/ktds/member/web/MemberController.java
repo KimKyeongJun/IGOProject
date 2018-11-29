@@ -131,7 +131,6 @@ public class MemberController {
 	@ResponseBody
 	public boolean doMemberModifyAction(@ModelAttribute MemberVO memberVO, @SessionAttribute(Session.USER) MemberVO loginMemberVO) {
 		memberVO.setEmail(loginMemberVO.getEmail());
-		System.out.println("MemberController 출력" + memberVO.getEmail());
 		boolean isModify = this.memberService.modifyMemberUpdate(memberVO);
 		return isModify;
 	}

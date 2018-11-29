@@ -3,23 +3,71 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+	xmlns:s="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-		
-		
-		<mvc:annotation-driven />
-		<context:component-scan base-package="com.ktds" />
-		<mvc:resources location="/WEB-INF/static/js/" mapping="/js/**" />
-		<mvc:resources location="/WEB-INF/static/img/" mapping="/img/**" />
-		<mvc:resources location="/WEB-INF/static/css/" mapping="/css/**" />
-		
-		<bean 
-		id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+
+
+	<mvc:annotation-driven />
+	<context:component-scan base-package="com.ktds" />
+	<mvc:resources location="/WEB-INF/static/js/"
+		mapping="/js/**" />
+	<mvc:resources location="/WEB-INF/static/img/"
+		mapping="/img/**" />
+	<mvc:resources location="/WEB-INF/static/css/"
+		mapping="/css/**" />
+	<mvc:resources location="/WEB-INF/static/html/"
+		mapping="/html/**" />
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/" />
-		<property name="suffix" value=".jsp" />	
+		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<s:http auto-config="true" use-expressions="true">
+		<s:intercept-url pattern="/" access="permitAll"/>
+		<s:intercept-url pattern="/memberlogin" access="permitAll"/>
+		<s:intercept-url pattern="/member/login" access="permitAll"/>
+		<s:intercept-url pattern="/member/regist" access="permitAll"/>
+		<s:intercept-url pattern="/member" access="permitAll"/>
+		<s:intercept-url pattern="/member/**" access="permitAll"/>
+		<s:intercept-url pattern="/board/**" access="hasAnyRole('ROLE_ADMIN' , 'ROLE_USER')"/> 
+		<s:csrf disabled="true" />
+		<s:form-login 
+			login-page="/member/login"
+			username-parameter="securityEmail"
+			password-parameter="password"
+			login-processing-url="/memberlogin" 
+			authentication-success-handler-ref="authenticationHandler"
+			authentication-failure-handler-ref="authenticationHandler"
+			always-use-default-target="true"
+		/>
+		<!-- Security Logout 처리 -->
+		<s:logout
+			logout-url="/member/logout2"
+			logout-success-url="/qna"
+			invalidate-session="true"
+		/>
+		<!-- 중복 로그인 제어 -->
+		<s:session-management invalid-session-url="/index">
+			<s:concurrency-control
+				max-sessions="1"
+				expired-url="/member/login"
+			/>
+			<!-- expired-url 은 첫번째 로그인 한 것이 튕김. -->
+		</s:session-management>
+	</s:http>
+	<!-- Spring Security가 처리할 인증 객체 생성 -->
+	<!-- <bean 	id="userService"
+			class="com.ktds.UserService">
+	</bean> -->
 
-
+	<!-- userService 객체를 Spring Security authenticationManager 에 등록 -->
+	<s:authentication-manager>
+		<s:authentication-provider ref="userService"/>
+	</s:authentication-manager>
+	
 </beans>

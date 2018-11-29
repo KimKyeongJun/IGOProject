@@ -47,7 +47,7 @@ public class MemberVO {
 	}
 
 	public String getPassword() {
-		return filter.doFilter(password);
+		return password;
 	}
 
 	public void setPassword(String password) {
