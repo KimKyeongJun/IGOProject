@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktds.naver.vo.ArticleVO;
@@ -36,10 +37,12 @@ public class NaverController {
 	private String clientSecret;	//애플리케이션 클라이언트 시크릿값
 	
 	@GetMapping("/search/naver/{keyword}")
-	public ModelAndView doSearchNaverAction(@PathVariable String keyword) {
-		ModelAndView view = new ModelAndView("naver");
+	@ResponseBody
+	public List<SnsVO> doSearchNaverAction(@PathVariable String keyword) {
+
+        List<SnsVO> list = new ArrayList<>();
+        
         try {
-        	
             String text = URLEncoder.encode(keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/news.json?query="+ text; // json 결과
             //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
@@ -63,14 +66,13 @@ public class NaverController {
             JSONParser jsonParser = new JSONParser();
             JSONObject naverJson = (JSONObject) jsonParser.parse(response.toString());
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String convertDate = df.format(Date.parse(naverJson.get("lastBuildDate").toString()));
-            /*NaverVO naverVO = new NaverVO();
+            /*String convertDate = df.format(Date.parse(naverJson.get("lastBuildDate").toString()));
+            NaverVO naverVO = new NaverVO();
             naverVO.setLastBuildDate(convertDate);
             naverVO.setTotal(Integer.parseInt(naverJson.get("total").toString()));
             naverVO.setStart(Integer.parseInt(naverJson.get("start").toString()));
             naverVO.setDisplay(Integer.parseInt(naverJson.get("display").toString()));*/
             
-            List<SnsVO> list = new ArrayList<>();
             JSONArray articleJson = (JSONArray) naverJson.get("items");
             for(int i=0; i<articleJson.size(); i++) {
             	JSONObject article = (JSONObject) articleJson.get(i);
@@ -79,18 +81,17 @@ public class NaverController {
             	articleVO.setOriginallink(article.get("originallink").toString());
             	articleVO.setLink(article.get("link").toString());
             	articleVO.setDescription(article.get("description").toString());
-            	convertDate = df.format(Date.parse(article.get("pubDate").toString()));
+            	String convertDate = df.format(Date.parse(article.get("pubDate").toString()));
             	articleVO.setPubDate(convertDate);
             	SnsVO snsVO = new SnsVO(articleVO.getTitle(), articleVO.getLink(), articleVO.getDescription(), articleVO.getPubDate());
             	list.add(snsVO);
             }
             br.close();
-            view.addObject("list", list);
-            view.addObject("keyword", keyword);
+            
         } catch (Exception e) {
             System.out.println(e);
         }
         
-        return view;
+        return list;
 	}
 }
