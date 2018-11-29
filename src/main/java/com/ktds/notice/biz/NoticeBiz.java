@@ -2,21 +2,20 @@ package com.ktds.notice.biz;
 
 import com.ktds.notice.vo.NoticeSearchVO;
 import com.ktds.notice.vo.NoticeVO;
+import com.ktds.qna.vo.QnaSearchVO;
+import com.ktds.qna.vo.QnaVO;
 
 import io.github.seccoding.web.pager.explorer.PageExplorer;
 
 public interface NoticeBiz {
 
-	public boolean createNotice( NoticeVO noticeVO);
+	public boolean registOneNotice(NoticeVO noticeVO);
 	
-	/*public boolean updateNotice( NoticeVO noticeVO);*/
+	public NoticeVO readOneNotice(String noticeId);
 	
-	public boolean deleteOneNotice( String noticeId);
+	public PageExplorer readAllNotice(NoticeSearchVO noticeSearchVO);
 	
-	public NoticeVO readOneNotice( String noticeId );
 	
-	public PageExplorer readAllNotices( NoticeSearchVO NoticeSearchVO );
-
 	public boolean modifyOneNotice(NoticeVO noticeVO);
 
 }

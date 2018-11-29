@@ -9,19 +9,21 @@ import org.springframework.stereotype.Repository;
 
 import com.ktds.notice.vo.NoticeSearchVO;
 import com.ktds.notice.vo.NoticeVO;
+import com.ktds.qna.dao.QnaDao;
 
 @Repository
 public class NoticeDaoImpl extends SqlSessionDaoSupport implements NoticeDao {
 
 	@Autowired
+	
 	@Override
 	public void setSqlSessionTemplate( SqlSessionTemplate sqlSessionTemplate ) {
 		super.setSqlSessionTemplate(sqlSessionTemplate);
 	}
 	
 	@Override
-	public int insertNotice(NoticeVO noticeVO) {
-		return this.getSqlSession().insert("NoticeDao.insertNotice", noticeVO);
+	public int insertOneNotice(NoticeVO noticeVO) {
+		return this.getSqlSession().insert("NoticeDao.insertOneNotice", noticeVO);
 	}
 
 	/*
@@ -37,23 +39,18 @@ public class NoticeDaoImpl extends SqlSessionDaoSupport implements NoticeDao {
 	}
 
 	@Override
-	public int deleteOneNotice(String noticeId) {
-		return this.getSqlSession().delete("NoticeDao.deleteOneNotice", noticeId);
+	public List<NoticeVO> selectAllNotice( NoticeSearchVO noticeSearchVO ) {
+		return this.getSqlSession().selectList("NoticeDao.selectAllNotice", noticeSearchVO);
 	}
 
 	@Override
-	public List<NoticeVO> selectAllNotices( NoticeSearchVO noticeSearchVO ) {
-		return this.getSqlSession().selectList("NoticeDao.selectAllNotices", noticeSearchVO);
+	public int selectAllNoticeCount(NoticeSearchVO noticeSearchVO) {
+		return this.getSqlSession().selectOne("NoticeDao.selectAllNoticeCount", noticeSearchVO);
 	}
 
 	@Override
-	public int selectAllNoticesCount(NoticeSearchVO noticeSearchVO) {
-		return this.getSqlSession().selectOne("NoticeDao.selectAllNoticesCount", noticeSearchVO);
-	}
-
-	@Override
-	public int modifyOneNotice(NoticeVO noticeVO) {
-		return this.getSqlSession().update("NoticeDao.modifyOneNotice", noticeVO);
+	public int updateOneNotice(NoticeVO noticeVO) {
+		return getSqlSession().update("NoticeDao.updateOneNotice", noticeVO);
 	}
 
 }

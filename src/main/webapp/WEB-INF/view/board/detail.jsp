@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -22,7 +23,6 @@
 				</div>	
 		</div>
 	</div>
-	
 	
 	<article id="bo_v" >
   		<header>
@@ -60,5 +60,6 @@
 </article>
 
 	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>
+
 </body>
 </html>

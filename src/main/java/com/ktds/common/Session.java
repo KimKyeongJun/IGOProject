@@ -7,5 +7,6 @@ public interface Session {
 	public String TOKEN = "_TOKEN_";
 	public String USER = "_USER_";
 	public String CSRF_TOKEN = "CSRF_TOKEN_";
+	public String NOTICESEARCH = "_NOTICESEARCH_";
 
 }

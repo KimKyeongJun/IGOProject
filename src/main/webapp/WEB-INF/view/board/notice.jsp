@@ -1,28 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
 <meta charset="UTF-8">
 <link href="<c:url value='/css/board.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script>
 	$().ready(function() {
 		$(".detail").click(function() {			
-			location.href = "<c:url value='/board/detail/'/>"+$(this).data('boardid');
+			location.href = "<c:url value='/board/detail/'/>"+$(this).data('noticeid');
 		});
 	});
 </script>
-</head>
-<body>
-
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>공지사항</h2></div>
+		<div class="headImg subHeadQna"><h2>공 &amp; 지</h2></div>
 			<div class="headBox">
-				<div class="heading"><h2 class="headTxt">공지사항</h2>
+				<div class="heading"><h2 class="headTxt">공 &amp; 지</h2>
 			</div>	
 		</div>
 	</div>
@@ -30,7 +26,7 @@
 	<div id="con_lf"> 
   
   <!-- 게시판 목록 시작 { -->
-  <div id="bo_list" style="width:100%">
+  <div id="bo_list">
     <div class="tbl_head01 tbl_wrap">
       <table>
        
@@ -46,14 +42,12 @@
           <c:choose>
             <c:when test="${not empty noticeList}">
               <c:forEach items="${noticeList}" var="noticeVO">
-                <div class="contentWrapper">
-                  <tr class="">
+                  <tr>
                     <td class="tac number box">${noticeVO.rnum}</td>
                     <td class="subject box detail" data-noticeid="${noticeVO.noticeId}"><%-- <a href="<c:url value='/qna/detail/${qnaVO.qnaId}'/>"> --%>${noticeVO.title}<!-- </a> --></td>
                     <td class="tac sv_use writer box">${noticeVO.memberVO.name}</td>
                     <td class="tac create-date box">${noticeVO.regDate}</td>
                   </tr>
-                </div>
               </c:forEach>
             </c:when>
             <c:otherwise>
@@ -71,15 +65,15 @@
          <div class="pageNum">
          	${pagenation}
          </div>
-         <!--<div class="bottonSearch">
+   <!--       
+         <div class="bottonSearch">
             <input type="text" name="searchKeyword" value="${noticeSearchVO.searchKeyword}" placeholder="제목" class="bsInput">
             <button type="submit" value="검색" class="bsBtn"><i class="icon ion-md-search"></i></button>
 			 <a href="<c:url value='/qna/init'/>" class="bsResetBtn"><i class="icon ion-md-refresh"></i></a>			 
-         </div>
-           -->           
+         </div>           
       </form>
    </div>
-	
+   -->	
     <div class="btn_confirm">
       <ul class="btn_bo_user">
       	<c:if test="${not empty sessionScope._USER_}">
@@ -93,6 +87,4 @@
 </div>
 	
 
-	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
-</body>
-</html>
+<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />

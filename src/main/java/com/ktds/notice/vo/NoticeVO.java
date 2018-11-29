@@ -19,8 +19,8 @@ public class NoticeVO {
     private String viewCount;
 	private MemberVO memberVO;
 	private String token;
-	
-	private int rnum;
+    private int rnum;
+    
 	public int getRnum() {
 		return rnum;
 	}
@@ -93,19 +93,6 @@ public class NoticeVO {
 
 	public void setToken(String token) {
 		this.token = token;
-	}
-	
-	@Override
-	public String toString() {
-		return "NoticeVO [noticeId=" + noticeId + ", content=" + content + ", email=" + email + ", regDate=" + regDate
-				+ ", qnaId=" + noticeId + ", memberVO=" + memberVO + ", token=" + token + "]";
-	}
-
-	public MultipartFile getFile() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
+	}		
 
 }

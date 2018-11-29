@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>    
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,7 @@
 				$("#wr_content").focus();
 				return;
 			}
-			$.post("<c:url value='/board/notice'/>"
+			$.post("<c:url value='/board/write'/>"
 					, $("#registForm").serialize()
 					, function(response) {
 						if(response) {
@@ -33,8 +34,6 @@
 	});
 </script>
 <body>
-
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 	
 	<div class="sub_common">
 		<div class="headImg1"><h2>공지사항</h2></div>

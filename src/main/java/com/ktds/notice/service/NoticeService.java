@@ -2,19 +2,27 @@ package com.ktds.notice.service;
 
 import com.ktds.notice.vo.NoticeSearchVO;
 import com.ktds.notice.vo.NoticeVO;
+import com.ktds.qna.vo.QnaSearchVO;
+import com.ktds.qna.vo.QnaVO;
+import com.ktds.reply.vo.ReplyVO;
+
+import java.util.List;
+
 import com.ktds.member.vo.MemberVO;
 
 import io.github.seccoding.web.pager.explorer.PageExplorer;
 
 public interface NoticeService {
 	
-	public boolean createNotice( NoticeVO noticeVO );
-	/*public boolean updateNotice( NoticeVO noticeVO );*/
-	public NoticeVO readOneNotice( String noticeId, MemberVO memberVO );
-	public NoticeVO readOneNotice( String noticeId );
-	public boolean deleteOneNotice( String noticeId );
-	public PageExplorer readAllNotices( NoticeSearchVO noticeSearchVO );
+public boolean registOneNotice(NoticeVO noticeVO);
+	
+	public NoticeVO readOneNotice(String noticeId);
+	
+	public PageExplorer readAllNotice(NoticeSearchVO noticeSearchVO);
+	
 	public boolean modifyOneNotice(NoticeVO noticeVO);
+
+	public List<ReplyVO> readRepliesByNotice(String noticeId);
 	
 }
 
