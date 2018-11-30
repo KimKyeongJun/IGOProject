@@ -14,6 +14,8 @@
 		<typeAlias type="com.ktds.notice.vo.NoticeVO" alias="NoticeVO"/>
 		<typeAlias type="com.ktds.notice.vo.NoticeSearchVO" alias="NoticeSearchVO"/>
 		<typeAlias type="com.ktds.approval.vo.ApprovalVO" alias="ApprovalVO"/>
+		<typeAlias type="com.ktds.transport.vo.BusVO" alias="BusVO"/>
+		<typeAlias type="com.ktds.transport.vo.SubwayVO" alias="SubwayVO"/>
 	</typeAliases>
 
 </configuration>

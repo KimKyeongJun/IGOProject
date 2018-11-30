@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="TransportDao">
+  
+  	<resultMap type="BusVO" id="BusResultMap">
+  		<id property="busId" column="BUS_ID" />
+  		<result property="lineId" column="LINE_ID" />
+  		<result property="busName" column="BUS_NAME" />
+  		<result property="num" column="NUM" />
+  		<result property="sectionId" column="SECTION_ID" />
+  		<result property="busstopId" column="BUSSTOP_ID" />
+  		<result property="busstopName" column="BUSSTOP_NAME" />
+  		<result property="latitude" column="LATITUDE" />
+  		<result property="longitude" column="LONGITUDE" />
+  	</resultMap>
+  	
+  	<select id="selectBusList" resultMap="BusResultMap">
+  		SELECT	BUS_ID
+  				, LINE_ID
+  				, BUS_NAME
+  				, NUM
+  				, SECTION_ID
+  				, BUSSTOP_ID
+  				, BUSSTOP_NAME
+  				, LATITUDE
+  				, LONGITUDE
+  		FROM BUS
+  	</select>
+  	
+  	<select id="selectSubwayList" resultType="SubwayVO">
+  		SELECT	SUB_LINE subLine
+  		FROM	SUBWAY_LINE
+  	</select>
+  	
+  </mapper>

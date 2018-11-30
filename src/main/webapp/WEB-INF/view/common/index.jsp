@@ -6,6 +6,7 @@
 <script src="/IGOProject/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="/IGOProject/js/main.js" type="text/javascript"></script>
 <script src="/IGOProject/js/swiper.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 	$().ready(function() {
 		
@@ -18,6 +19,7 @@
 			var url = "<c:url value='/sns/search?searchKeyword='/>"+$("#searchKeyword").val();
 			location.href = url;
 		});
+		
 	});
 </script>
 
