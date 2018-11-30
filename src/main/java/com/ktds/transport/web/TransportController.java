@@ -24,8 +24,8 @@ public class TransportController {
 		List<String> subwayList = this.transportService.readSubwayList();
 		
 		Map<String, List> result = new HashMap<>();
-		result.put("Bus", busList);
 		result.put("Subway", subwayList);
+		result.put("Bus", busList);
 		
 		return result;
 	}

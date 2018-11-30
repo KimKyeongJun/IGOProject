@@ -6,24 +6,6 @@
 <script src="/IGOProject/js/main.js" type="text/javascript"></script>
 <script src="/IGOProject/js/swiper.min.js" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery-ui.min.js' />" type="text/javascript"></script>
-<style>
-.ui-autocomplete {
-    max-height: 500px;
-    overflow-y: scroll;
-    /* prevent horizontal scrollbar */
-    overflow-x: hidden;
-}
-  /* IE 6 doesn't support max-height
-   * we use height instead, but this forces the menu to always be this tall
-   */
-
-.ui-autocomplete-category {
-    font-weight: bold;
-    padding: .2em .4em;
-    margin: .8em 0 .2em;
-    line-height: 1.5;
-}
-</style>
 <script type="text/javascript">
 	$().ready(function() {
 		
@@ -60,7 +42,7 @@
 		        $.each( items, function( index, item ) {
 		          var li;
 		          if ( item.category != currentCategory ) {
-		            ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+		            ul.append( "<li class='ui-autocomplete-category "+item.category+"'>" + item.category + "</li>" );
 		            currentCategory = item.category;
 		          }
 		          li = that._renderItemData( ul, item );
@@ -75,7 +57,7 @@
 		      delay: 0,
 		      source: data ,
 		      open: function() {
-			        $("ul.ui-menu").width( $(this).innerWidth() );
+			        $("ul.ui-menu").width( $(this).width() );
 			    } 
 		    });
 		

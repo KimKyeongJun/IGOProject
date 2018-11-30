@@ -3,8 +3,52 @@
 <jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="<c:url value='/js/jquery-3.3.1.min.js'/>"></script>
+<script src="<c:url value='/js/jquery-ui.min.js' />" type="text/javascript"></script>
 <script>
 	$().ready(function() {
+		
+		var data = [];
+		$.get("<c:url value='/transport/read' />"
+			  , function(response) {
+					$.each(response, function( index, value ) {
+					  	$.each(value, function( i ) {
+						  	data.push({'category': index, 'label': value[i]});
+						});
+					});
+					console.log(data); 
+			  }
+		);
+		
+		$.widget( "custom.catcomplete", $.ui.autocomplete, {
+		      _create: function() {
+		        this._super();
+		        this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+		      },
+		      _renderMenu: function( ul, items ) {
+		        var that = this,
+		          currentCategory = "";
+		        $.each( items, function( index, item ) {
+		          var li;
+		          if ( item.category != currentCategory ) {
+		            ul.append( "<li class='ui-autocomplete-category "+item.category+"'>" + item.category + "</li>" );
+		            currentCategory = item.category;
+		          }
+		          li = that._renderItemData( ul, item );
+		          if ( item.category ) {
+		            li.attr( "aria-label", item.category + " : " + item.label );
+		          }
+		        });
+		      }
+		});
+		 
+		$( ".searchBar" ).catcomplete({
+		      delay: 0,
+		      source: data ,
+		      open: function() {
+			        $("ul.ui-menu").width( $(this).innerWidth() );
+			    } 
+		});
+		
 		var keyword = "${searchKeyword}";
 		setInterval(function() {
 			$.post("<c:url value='/search/twitter'/>",
