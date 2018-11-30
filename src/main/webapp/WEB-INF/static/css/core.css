@@ -3,12 +3,8 @@
 
 /*웹폰트*/
 @font-face {
-font-family: 'Nanum Gothic', sans-serif;
-font-family: 'Montserrat', sans-serif;
+	font-family: 'Nanum Gothic', 'Montserrat', sans-serif;
 }
-
-
-
 html,body{
 	margin: 0 ;
 	padding: 0;
@@ -17,7 +13,7 @@ html,body{
 }
 body{
 	color: #41495c;
-	font-family: 'Montserrat','Nanum Gothic', sans-serif;
+	font-family: 'Nanum Gothic', 'Montserrat', sans-serif;
 	font-size: 15px;/*글자크기 기본은 16px(12pt)*/
 	overflow-x: hidden;
 	margin: 0 auto;
@@ -42,18 +38,17 @@ ul::after, ol::after, .clb::after{/*float해제*/
 	display: block;
 	clear: both;
 }
-li, dl{/*옆으로 흐르게*/
+li, dl{
 	float: left;
 }
 
 a{
 	color: #41495c;
-/*	letter-spacing: -1px;글자간격*/
 	text-decoration: none;/*밑줄없앰*/
 }
 
 body, button, h1, h2,h3,h4,h5,h6, input, select, table, textarea{
-	font-family: 'Nanum Gothic','Montserrat', sans-serif;
+	font-family: 'Nanum Gothic', 'Montserrat', sans-serif;
 	font-size: 16px;
 	line-height: 1.267em;/*19px*/
 }
@@ -98,16 +93,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 	opacity: 0; 
 }
 
-/*#joinInfo ul li input[type=password],
-.idFind input[type=password]
-#joinInfo ul li input[type=text],
-#joinInfo ul li input[type=password],
-#joinInfo ul li>#email1
-*/
 input[type=text],
-input[type=password]{
-/*	font-family: 'Nanum Gothic', sans-serif, 'Verdana';*/
-	font-family: 'Nanum Gothic','Montserrat', sans-serif;
+input[type=password],
+input[type=email]{
+	font-family: 'Nanum Gothic', 'Montserrat', sans-serif;
+	padding-left: 15px;
 /*	font-weight: bold;*/
 }
 
@@ -119,11 +109,10 @@ h2{
 	line-height:30px;
 	color:#41495c;
 	letter-spacing:0.025em;
-	font-family:'Nanum Gothic','Montserrat', sans-serif;
+	font-family: 'Nanum Gothic', 'Montserrat', sans-serif;
 }
 
-.msg_sound_only, .sound_only {
-    display: inline-block !important;
+.msg_sound_only, .sound_only {   
     position: absolute;
     top: 0;
     left: 0;

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="/IGOProject/css/main.css" rel="stylesheet" type="text/css">
 <script src="/IGOProject/js/jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -15,46 +15,36 @@
 				$("#searchKeyword").focus();
 				return;
 			}
-			var url = "<c:url value='/sns/search/'/>"+$("#searchKeyword").val();
+			var url = "<c:url value='/sns/search?searchKeyword='/>"+$("#searchKeyword").val();
 			location.href = url;
 		});
 	});
 </script>
 
 	<section id="banner">
-		<h2 class="bld">.</h2>
-
-		<div class="swiper-container swiper-container-horizontal">
-			<ul id="slider" class="swiper-wrapper">
-				<li class="opaView swiper-slide slider1 swiper-slide-active"><span
-					class="bld">지하철고장</span>
-					<p class="mainTxt">
-						<a href="#"><span>고장난 지하철</span><b></b>이대로 지각인가..</a>
-					</p></li>
-				<li class="swiper-slide slider2 swiper-slide-next"><span
-					class="bld">아이고</span>
-					<p class="mainTxt">
-						<a href="#"><span>아이고</span><b></b>집에 언제가</a>
-					</p></li>
-				<li class="swiper-slide slider3"><span class="bld">길이
-						막혀</span>
-					<p class="mainTxt">
-						<a href="#"><span>길이막혀</span><b></b>어디든 다 막혀</a>
-					</p></li>
-			</ul>
-
-			<div class="inbox">
-				<a href="#" class="abtn ab1"><i class="fas fa-arrow-circle-left"></i></a>
-				<a href="#" class="abtn ab2"><i
-					class="fas fa-arrow-circle-right"></i></a>
-
-				<aside class="bulletBox">
-					<a href="#"><span>#</span>지하철고장</a> <a href="#"><span>#</span>교통지옥</a>
-					<a href="#"><span>#</span>어디로가나</a>
-				</aside>
-			</div>
-		</div>
-	</section>
+	<h2 class="bld">.</h2>
+		
+	<div class="swiper-container swiper-container-horizontal">
+		<ul id="slider" class="swiper-wrapper">
+			<li class="opaView swiper-slide slider1" ><span class="bld">지하철고장</span>
+				<p class="mainTxt"><a href="#"><span>고장난 지하철</span><b></b>이대로 지각인가..</a></p>
+			</li>
+			<li class="swiper-slide slider2" ><span class="bld">길이막혀</span>
+				<p class="mainTxt"><a href="#"><span>길이막혀</span><b></b>어디든 다 막혀</a></p>
+			</li>
+			<li class="swiper-slide slider3" ><span class="bld">아이고</span>
+				<p class="mainTxt"><a href="#"><span>아이고</span><b></b>집에 언제가</a></p>			
+			</li>							
+		</ul>	
+		
+		<div class="inbox">
+			<a href="#" class="abtn ab1"><i class="fas fa-arrow-circle-left"></i></a>
+			<a href="#" class="abtn ab2"><i class="fas fa-arrow-circle-right"></i></a>
+			
+			<aside class="bulletBox"></aside>
+		</div>	
+	</div>
+</section>	
 
 	<section id="searchWrap">
 		<h2>실시간 검색 하기</h2>

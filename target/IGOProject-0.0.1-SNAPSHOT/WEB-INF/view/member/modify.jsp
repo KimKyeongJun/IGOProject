@@ -1,23 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/view/common/header_layout.jsp" />
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <link href="<c:url value='/css/member.css'/>" rel="stylesheet" type="text/css">
-</head>
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"
 	type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
-		var passwordAfter = $(`<div class="error"> <span class=redPoint>* </span> 비밀번호를 입력해주세요. <br/>  입력하지 않을 시 기존 비밀번호를 유지합니다.</div>`);
-		var passwordConfirmAfter = $(`<div class="error"> <span class=redPoint>* </span> 비밀번호를 확인해 주세요. <br/>  입력하지 않을 시 기존 비밀번호를 유지합니다.</div>`);
-		var nameAfter = $(`<div class="error"> <span class=redPoint>* </span> 이름을 입력해 주세요.</div>`);
-		var phoneAfter = $(`<div class="error"> <span class=redPoint>* </span> 연락처를 입력해 주세요. </div>`);
+		var passwordAfter = $('<div class="error"> <span class=redPoint>* </span> 비밀번호를 입력해주세요. <br/>  입력하지 않을 시 기존 비밀번호를 유지합니다.</div>');
+		var passwordConfirmAfter = $('<div class="error"> <span class=redPoint>* </span> 비밀번호를 확인해 주세요. <br/>  입력하지 않을 시 기존 비밀번호를 유지합니다.</div>');
+		var nameAfter = $('<div class="error"> <span class=redPoint>* </span> 이름을 입력해 주세요.</div>');
+		var phoneAfter = $('<div class="error"> <span class=redPoint>* </span> 연락처를 입력해 주세요. </div>');
 		var passwordRegex = /^(?=.*[a-zA-z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}/;
-		var passwordRegexAter = $(`<div class="error"> <span class=redPoint>* </span> 비밀번호는 8글자 이상 20글자 이하 <br/>  대소문자, 숫자, 특수문자를 포함해야 합니다.</div>`);
+		var passwordRegexAter = $('<div class="error"> <span class=redPoint>* </span> 비밀번호는 8글자 이상 20글자 이하 <br/>  대소문자, 숫자, 특수문자를 포함해야 합니다.</div>');
 						
 		$("#passwordError").prepend(passwordAfter); 
 		$("#passwordConfirmError").prepend(passwordConfirmAfter);
@@ -151,12 +147,10 @@
 		});
 	});
 </script>
-<body>
 
-	<jsp:include page="/WEB-INF/view/common/header_layout.jsp" />
 
 	<div class="sub_common">
-		<div class="headImg1">
+		<div class="headImg subHeadMembers">
 			<h2>회원 정보 수정</h2>
 		</div>
 		<div class="headBox">
@@ -243,7 +237,5 @@
   </div>
 </section>
 
-	<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
+<jsp:include page="/WEB-INF/view/common/footer_layout.jsp" />
 
-</body>
-</html>

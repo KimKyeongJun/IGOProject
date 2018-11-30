@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ktds.twitter.vo.TwitterVO;
+import com.ktds.sns.vo.SnsVO;
 
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -18,39 +19,67 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.URLEntity;
 import twitter4j.conf.ConfigurationBuilder;
 
 @Controller
 public class TwitterController {
 	
+	@Value("${OAuthConsumerKey}")
+	private String oAuthConsumerKey;
+	
+	@Value("${OAuthConsumerSecret}")
+	private String oAuthConsumerSecret;
+	
+	@Value("${OAuthAccessToken}")
+	private String oAuthAccessToken;
+	
+	@Value("${OAuthAccessTokenSecret}")
+	private String oAuthAccessTokenSecret;
+	
+	// Twitter에서 검색 결과를 가져오기
 	public QueryResult getTwitterData(String searchKeyword) {
+		System.out.println("==================");
+		System.out.println(oAuthConsumerKey);
+		System.out.println(oAuthConsumerSecret);
+		System.out.println(oAuthAccessToken);
+		System.out.println(oAuthAccessTokenSecret);
+		System.out.println("==================");
+		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-			.setOAuthConsumerKey("")
-			.setOAuthConsumerSecret("")
-			.setOAuthAccessToken("")
-			.setOAuthAccessTokenSecret("");
+			.setOAuthConsumerKey(oAuthConsumerKey)
+			.setOAuthConsumerSecret(oAuthConsumerSecret)
+			.setOAuthAccessToken(oAuthAccessToken)
+			.setOAuthAccessTokenSecret(oAuthAccessTokenSecret);
 		
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
 		QueryResult result = null;
 		Query query = new Query(searchKeyword);
-		
 		try {
 			result = twitter.search(query);
 		} catch (TwitterException e) {
+			System.out.println("!!!!!!"+e.getMessage());
 		}
-		
 		return result;
 	}
 	
-	public List<TwitterVO> makeTwitterDataList(String searchKeyword){
-		List<TwitterVO> twitterList = new ArrayList<TwitterVO>();
+	// Twitter에서  가져온 데이터를 원하는 내용만 뽑아서 VO에 적재
+	public List<SnsVO> makeTwitterDataList(String searchKeyword){
+		List<SnsVO> twitterList = new ArrayList<SnsVO>();
 		QueryResult result = getTwitterData(searchKeyword);
 		
-		for (Status status : result.getTweets() ) {
+		for ( Status status : result.getTweets() ) {
 			Date d = new Date();
 			String date = null;
+			
+			URLEntity[] urls = status.getURLEntities();
+			String url = null;
+			
+			for(URLEntity urlEntity : urls) {
+				url = urlEntity.getURL();
+			}
 			
 			long seconds = d.getTime()-status.getCreatedAt().getTime();
 			
@@ -75,19 +104,17 @@ public class TwitterController {
 				String convertDate = transFormat.format(status.getCreatedAt());
 				date = convertDate;
 			}
-			TwitterVO twitterVO = new TwitterVO( "@"+status.getUser().getScreenName(),  date, status.getText() );
-			twitterList.add(twitterVO);
+			SnsVO snsVO = new SnsVO( "@"+status.getUser().getScreenName(), url, status.getText(), date );
+			twitterList.add(snsVO);
 		}
 		return twitterList;
 	}
 	
-	@GetMapping("/twitter/search/{searchKeyword}")
-	public ModelAndView viewTwitterSearchPage(@PathVariable String searchKeyword) {
-		ModelAndView view = new ModelAndView("search");
-		List<TwitterVO> twitterList = makeTwitterDataList(searchKeyword);
-		view.addObject("twitterList", twitterList);
-		return view;
+	@PostMapping("/search/twitter")
+	@ResponseBody
+	public List<SnsVO> viewTwitterSearchPage(@RequestParam String searchKeyword) {
+		List<SnsVO> twitterList = makeTwitterDataList(searchKeyword);
+		return twitterList;
 	}
-	
 
 }

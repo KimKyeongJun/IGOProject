@@ -21,15 +21,10 @@
 		<a id="favoriteBtn">즐겨찾기O</a>
 		<a id="favoriteXBtn">즐겨찾기X</a>
 	</div>
-	<div>lastBuildDate : ${naverVO.lastBuildDate}</div>
-	<div>total : ${naverVO.total}</div>
-	<div>start : ${naverVO.start}</div>
-	<div>display : ${naverVO.display}</div>
-	<hr><hr>
-	<c:forEach items="${naverVO.items}" var="article">
+	<c:forEach items="${list}" var="list">
 	<div>
 		<div>
-			☆ title : <a href="${article.link}">${article.title}</a> (${article.pubDate})
+			☆ title : ${list.id} (${list.date}) <a href="${list.url}">링크</a>
 		</div>
 		<%-- <div>
 			☆ originLink : <a href="${article.originallink}">${article.originallink}</a>
@@ -38,7 +33,7 @@
 			☆ link : <a href="${article.link}">${article.link}</a>
 		</div>	 --%>
 		<div>
-			☆ description : ${article.description}
+			☆ description : ${list.text}
 		</div>
 		<%-- <div>
 			☆ pubDate : ${article.pubDate}

@@ -45,7 +45,7 @@ public class MemberController {
 	
 	@PostMapping("/member/regist")
 	public ModelAndView doRegistNewMemberAction(@Validated({MemberValidator.Regist.class}) @ModelAttribute MemberVO memberVO , Errors errors) {
-		ModelAndView view = new ModelAndView("redirect:/index");
+		ModelAndView view = new ModelAndView("redirect:/");
 		
 		if ( errors.hasErrors() ) {
 			view.setViewName("redirect:/member/regist?error=1");

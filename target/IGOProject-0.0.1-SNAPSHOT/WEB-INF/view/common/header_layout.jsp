@@ -24,18 +24,17 @@
 	rel="stylesheet">
 <script src="/IGOProject/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="/IGOProject/js/common.js" type="text/javascript"></script>
-<script src="/IGOProject/js/main.js" type="text/javascript"></script>
-<script src="/IGOProject/js/swiper.min.js" type="text/javascript"></script>
+
  <script type="text/javascript">
 	$().ready(function(){
 		
 		
 		$(".joinBtn1").click(function() {
 			location.href = "<c:url value='/member/regist'/>";
-		})
+		});
 		$(".joinBtn2").click(function() {
 			location.href = "<c:url value='/member/find'/>";
-		})
+		});
 		// cookie에서 이메일 받아와서 변수에 넣기
 		var cookieId= getLogin();
 		
@@ -103,14 +102,14 @@
 			}
 			
 			$.post("<c:url value='/memberlogin'/>", 
-					$(`#logF`).serialize()
+					$('#logF').serialize()
 					, function(response) {
 				    if (response == "loginFail") {
 				    	alert("로그인에 실패하였습니다.");
 				    }
 				    else if (response == "loginSuccess"){
 						alert("로그인에 성공하였습니다.");
-						location.href="<c:url value ='/index'/>";
+						location.href="<c:url value ='/'/>";
 				    } 
 				    else if (response == "block") {
 				    	alert("Password 3회이상 실패하여 1시간 동안 계정이 잠겼습니다. ");
@@ -139,7 +138,7 @@
 				<span class="close" onclick="searchToggle(this, event);"></span> <a
 					href="search.html"><div class="result-container"></div></a>
 			</div>
-			<a href="<c:url value="/index"/>" id="logo"></a>
+			<a href="<c:url value="/"/>" id="logo"></a>
 		</div>
 
 
@@ -151,22 +150,22 @@
 							<li class="tmenu" id="loginClick"><a href="#" title="LOGIN"><i
 									class="fa fa-sign-in MLIco"></i>LOGIN</a></li>
 							<li class="tmenu"><a href="<c:url value='/member/regist'/>" title="회원가입"> <i
-									class="icon ion-md-business MLIco"></i>회원가입
+									class="icon ion-md-person MLIco"></i>회원가입
 							</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="tmenu"><a href="<c:url value='/member/logout2'/>" title="LOGOUT"><i
-									class="fa fa-sign-in MLIco"></i>LOGOUT</a></li>
+									class="fa fa-sign-out MLIco"></i>LOGOUT</a></li>
 							<li class="tmenu"><a href="<c:url value='/member/passwordconfirm'/>" title="INFO">
 							<i class="icon ion-md-person MLIco"></i>${sessionScope._USER_.name}님</a></li>
 						</c:otherwise>
 					</c:choose>
 					<li class="tmenu"><a href="#" title="공지사항"> <i
-							class="icon ion-ios-business MLIco"></i>공지사항
+							class="icon ion-md-mail MLIco"></i>공지사항
 					</a></li>
 
 					<li class="tmenu"><a href="<c:url value='/qna'/>" title="Q & A"><i
-							class="far fa-flag MLIco"></i>Q & A</a></li>
+							class="icon ion-md-help MLIco"></i>Q &amp; A</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -209,5 +208,4 @@
 	<!-- 백그라운드 -->
 	<div class="modal_back"></div>
 
-</body>
-</html>
+

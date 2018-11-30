@@ -25,6 +25,6 @@ public class ApprovalController {
 			this.approvalService.deleteApprovalKey(approvalVO);
 		}
 		
-		return "redirect:/index";
+		return "redirect:/";
 	}
 }
