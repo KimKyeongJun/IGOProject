@@ -34,17 +34,18 @@
 	<section id="pwconWrap">
 		<div id="pwconForm">
 			<form:form id="passwordConfirmForm">
-				<div>
-					<input type="hidden" id="email" name="email" value="${sessionScope._USER_.email}" />
-				</div>
-				<div>
+			<div>
+				<input type="hidden" id="email" name="email" value="${sessionScope._USER_.email}" />
+			</div>
+			<ul>
+				<li>
 					<label for="fpassword">비밀번호 입력</label>
 					<input type="password" id="fpassword" name="password" placeholder="비밀번호 입력" />
-				</div>
-				
-				<div>
+				</li>
+				<li>
 					<input type="button" id="confirmBtn" value="확인"/>
-				</div>
+				</li>
+			</ul>
 			</form:form>
 		</div>
 	</section>

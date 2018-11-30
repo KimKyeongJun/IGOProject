@@ -24,7 +24,7 @@
 	<section id="banner">
 	<h2 class="bld">.</h2>
 		
-	<div class="swiper-container swiper-container-horizontal">
+	<div class="swiper-container">
 		<ul id="slider" class="swiper-wrapper">
 			<li class="opaView swiper-slide slider1" ><span class="bld">지하철고장</span>
 				<p class="mainTxt"><a href="#"><span>고장난 지하철</span><b></b>이대로 지각인가..</a></p>
@@ -41,7 +41,7 @@
 			<a href="#" class="abtn ab1"><i class="fas fa-arrow-circle-left"></i></a>
 			<a href="#" class="abtn ab2"><i class="fas fa-arrow-circle-right"></i></a>
 			
-			<aside class="bulletBox"></aside>
+			<aside class="bulletBox"></aside>					
 		</div>	
 	</div>
 </section>	

@@ -11,7 +11,6 @@
 <link href="/IGOProject/css/core.css" rel="stylesheet" type="text/css">
 <link href="/IGOProject/css/search.css" rel="stylesheet" type="text/css">
 <link href="/IGOProject/css/subCom.css" rel="stylesheet" type="text/css">
-<link href="/IGOProject/css/swiper1.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
 <link href="https://unpkg.com/ionicons@4.4.6/dist/css/ionicons.min.css"

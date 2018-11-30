@@ -39,12 +39,6 @@ public class TwitterController {
 	
 	// Twitter에서 검색 결과를 가져오기
 	public QueryResult getTwitterData(String searchKeyword) {
-		System.out.println("==================");
-		System.out.println(oAuthConsumerKey);
-		System.out.println(oAuthConsumerSecret);
-		System.out.println(oAuthAccessToken);
-		System.out.println(oAuthAccessTokenSecret);
-		System.out.println("==================");
 		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
@@ -60,7 +54,6 @@ public class TwitterController {
 		try {
 			result = twitter.search(query);
 		} catch (TwitterException e) {
-			System.out.println("!!!!!!"+e.getMessage());
 		}
 		return result;
 	}
