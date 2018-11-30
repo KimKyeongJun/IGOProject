@@ -1,5 +1,9 @@
 package com.ktds.transport.web;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +17,16 @@ public class TransportController {
 	@Autowired
 	private TransportService transportService;
 
-	@GetMapping
+	@GetMapping("/transport/read")
 	@ResponseBody
-	public void doGetTransportDataAction() {
+	public Map<String, List> doGetTransportDataAction() {
+		List<String> busList = this.transportService.readBusList();
+		List<String> subwayList = this.transportService.readSubwayList();
 		
+		Map<String, List> result = new HashMap<>();
+		result.put("Bus", busList);
+		result.put("Subway", subwayList);
+		
+		return result;
 	}
 }

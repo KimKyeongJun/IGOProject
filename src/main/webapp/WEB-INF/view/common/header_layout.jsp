@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>IGO</title>
-<link href="/IGOProject/css/main.css" rel="stylesheet" type="text/css">
-<link href="/IGOProject/css/common.css" rel="stylesheet" type="text/css">
-<link href="/IGOProject/css/core.css" rel="stylesheet" type="text/css">
-<link href="/IGOProject/css/search.css" rel="stylesheet" type="text/css">
+<link href="/IGOProject/css/main.css" rel="stylesheet" type="text/css"/>
+<link href="/IGOProject/css/common.css" rel="stylesheet" type="text/css"/>
+<link href="/IGOProject/css/core.css" rel="stylesheet" type="text/css"/>
+<link href="/IGOProject/css/search.css" rel="stylesheet" type="text/css"/>
 <link href="/IGOProject/css/subCom.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />

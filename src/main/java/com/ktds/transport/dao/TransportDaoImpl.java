@@ -20,12 +20,12 @@ public class TransportDaoImpl extends SqlSessionDaoSupport implements TransportD
 	}
 
 	@Override
-	public List<BusVO> selectBusList() {
+	public List<String> selectBusList() {
 		return this.getSqlSession().selectList("TransportDao.selectBusList");
 	}
 
 	@Override
-	public List<SubwayVO> selectSubwayList() {
+	public List<String> selectSubwayList() {
 		return this.getSqlSession().selectList("TransportDao.selectSubwayList");
 	}
 }

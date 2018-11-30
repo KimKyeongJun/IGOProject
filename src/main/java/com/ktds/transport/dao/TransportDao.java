@@ -7,8 +7,8 @@ import com.ktds.transport.vo.SubwayVO;
 
 public interface TransportDao {
 	
-	public List<BusVO> selectBusList();
+	public List<String> selectBusList();
 	
-	public List<SubwayVO> selectSubwayList();
+	public List<String> selectSubwayList();
 
 }

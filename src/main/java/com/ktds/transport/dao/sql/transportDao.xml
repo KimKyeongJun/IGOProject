@@ -17,21 +17,13 @@
   		<result property="longitude" column="LONGITUDE" />
   	</resultMap>
   	
-  	<select id="selectBusList" resultMap="BusResultMap">
-  		SELECT	BUS_ID
-  				, LINE_ID
-  				, BUS_NAME
-  				, NUM
-  				, SECTION_ID
-  				, BUSSTOP_ID
-  				, BUSSTOP_NAME
-  				, LATITUDE
-  				, LONGITUDE
-  		FROM BUS
+  	<select id="selectBusList" resultType="string">
+  		SELECT	DISTINCT BUS_NAME
+  		FROM 	BUS
   	</select>
   	
-  	<select id="selectSubwayList" resultType="SubwayVO">
-  		SELECT	SUB_LINE subLine
+  	<select id="selectSubwayList" resultType="string">
+  		SELECT	SUB_LINE
   		FROM	SUBWAY_LINE
   	</select>
   	
