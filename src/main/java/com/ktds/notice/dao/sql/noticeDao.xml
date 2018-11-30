@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeDao">
+	
+	<resultMap type="NoticeVO" id="noticeVO">
+	<id column="NOTICE_ID" property="noticeId"/>
+	<result column="RNUM" property="rnum"/>
+	<result column="TITLE" property="title"/>
+	<result column="CONTENT" property="content"/>
+	<result column="REG_DATE" property="regDate"/>
+	<result column="Q_EMAIL" property="email"/>
+	<association property="memberVO" javaType="MemberVO">
+		<id column="M_EMAIL" property="email"/>
+		<result column="NAME" property="name"/>
+		<result column="PASSWORD" property="password"/>
+		<result column="SALT" property="salt"/>
+		<result column="LOGIN_FAIL_COUNT" property="loginFailCount"/>
+		<result column="LAST_LOGIN" property="lastLogin"/>
+		<result column="ADMIN_YN" property="adminYN"/>
+	</association>
+	</resultMap>	
+	<!--		
+	<resultMap type="NoticeVO" id="noticeVO">
+		<id property="noticeId" column="NOTICE_ID" />
+		<result column="RNUM" property="rnum"/>
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="regDate" column="REG_DATE" />
+		<result property="viewCount" column="VIEWCOUNT" />
+		<result property="email" column="B_EMAIL" />
+		<association property="memberVO" javaType="MemberVO">
+			<id property="email" column="M_EMAIL" />
+			<result property="name" column="NAME" />
+			<result property="password" column="PASSWORD" />
+			<result property="salt" column="SALT" />
+			<result property="loginFailCount" column="LOGIN_FAIL_COUNT" />
+			<result property="lastLogin" column="LAST_LOGIN" />
+			<result property="adminYN" column="ADMIN_YN" />
+			<result property="approvalStatus" column="APPROVAL_STATUS" />
+			<result property="phone" column="PHONE" />
+		</association>
+	</resultMap>
+	-->
+
+	<insert id="insertOneNotice" parameterType="NoticeVO">
+		INSERT INTO NOTICE (
+  							NOTICE_ID
+  							, TITLE
+  							, CONTENT
+  							, REG_DATE
+  							, VIEWCOUNT 							
+  							, EMAIL
+   						  ) 
+		VALUES ( 			
+					NEXTVALUE('NO',NOTICE_ID_SEQ.NEXTVAL)					
+					, #{title}
+					, #{content}
+					, SYSDATE				
+					, 0
+					, #{email}
+		)
+	</insert>
+	
+	<update id="updateOneNotice" parameterType="NoticeVO">
+		UPDATE NOTICE
+		SET		TITLE = #{title}
+				, CONTENT = #{content}
+				, REG_DATE = SYSDATE
+		WHERE	NOTICE_ID = #{noticeId}
+	
+	</update>
+	
+	<select id="selectOneNotice" parameterType="string" resultMap="noticeVO">
+	SELECT	M.EMAIL M_EMAIL
+			, M.NAME
+			, M.PASSWORD
+			, M.SALT
+			, M.LOGIN_FAIL_COUNT
+			, M.LAST_LOGIN
+			, M.ADMIN_YN
+			, Q.NOTICE_ID
+			, Q.TITLE
+			, Q.CONTENT
+			, Q.REG_DATE
+			, Q.EMAIL Q_EMAIL
+	FROM	MEMBER M
+			, NOTICE Q
+	WHERE	M.EMAIL = Q.EMAIL
+	AND		NOTICE_ID = #{noticeId}
+</select>
+	
+	<!--
+	<select id="selectOneNotice" parameterType="string" resultMap="qnaVO">
+		SELECT	B.NOTICE_ID
+  				, B.TITLE
+  				, B.CONTENT
+  				, B.REG_DATE
+  				, B.VIEWCOUNT
+  				, B.EMAIL B_EMAIL
+  				, M.EMAIL M_EMAIL
+  				, M.NAME
+				, M.PASSWORD
+				, M.SALT
+				, M.LOGIN_FAIL_COUNT
+				, M.LAST_LOGIN
+				, M.ADMIN_YN
+		FROM	NOTICE B
+				, MEMBERS M
+		WHERE	B.EMAIL = M.EMAIL
+		AND		NOTICE_ID = #{noticeId}
+	</select>
+	
+	-->
+
+	<select id="selectAllNotice" parameterType="NoticeSearchVO" resultMap="noticeVO">
+		SELECT	*
+		FROM	(
+					SELECT	A.*
+							, ROWNUM RNUM
+					FROM	(
+								SELECT	M.EMAIL M_EMAIL
+									, M.NAME
+									, M.PASSWORD
+									, M.SALT
+									, M.LOGIN_FAIL_COUNT
+									, M.LAST_LOGIN
+									, M.ADMIN_YN
+									, Q.NOTICE_ID
+									, Q.TITLE
+									, Q.CONTENT
+									, Q.REG_DATE
+									, Q.EMAIL Q_EMAIL
+							FROM	MEMBER M
+									, NOTICE Q
+							WHERE	M.EMAIL = Q.EMAIL
+							<if test="searchKeyword != null and searchKeyword != '' ">
+							AND		TITLE LIKE '%' || #{searchKeyword} || '%'
+							</if>
+							ORDER BY NOTICE_ID DESC
+						) A
+				WHERE	ROWNUM <![CDATA[<=]]> #{endRow}
+			)
+	WHERE	RNUM >= #{startRow}
+</select>
+	
+	<select id="selectAllNoticeCount" parameterType="NoticeSearchVO" resultType="_int">
+		SELECT	COUNT(1)
+		FROM	NOTICE
+	<if test="searchKeyword != null and searchKeyword != '' ">
+	WHERE	TITLE	LIKE '%' || #{searchKeyword} || '%'
+	</if>
+</select>
+</mapper>
+	<!--
+	<delete id="deleteOneNotice" parameterType="_int">
+		DELETE	NOTICE
+		WHERE	ID = #{id}
+	</delete>
+	-->	
