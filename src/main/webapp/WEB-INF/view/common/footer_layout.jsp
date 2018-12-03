@@ -19,7 +19,7 @@
 		</div>
 		<div class="fMtxt">
 			<address>
-				서울특별시 서초구 효령로 176 KTDS 2층, 대표번호 : 02-1234-6875
+				서울특별시 서초구 효령로 176 KTDS 2층, 대표번호 : 02-1234-6	875
 				<p>COPYRIGHT 2018 © I GO. ALL RIGHT RESERVED.</p>
 			</address>
 		</div>
