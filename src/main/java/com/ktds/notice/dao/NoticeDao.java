@@ -16,5 +16,7 @@ public interface NoticeDao {
 	public int selectAllNoticeCount( NoticeSearchVO noticeSearchVO );
 
 	public int updateOneNotice(NoticeVO noticeVO);
+	
+	public int updateOneNoticeViewCount(String noticeId);
 
 }

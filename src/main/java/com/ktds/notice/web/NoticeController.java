@@ -1,7 +1,5 @@
 package com.ktds.notice.web;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,8 +19,6 @@ import com.ktds.member.vo.MemberVO;
 import com.ktds.notice.service.NoticeService;
 import com.ktds.notice.vo.NoticeSearchVO;
 import com.ktds.notice.vo.NoticeVO;
-import com.ktds.qna.vo.QnaVO;
-import com.ktds.reply.vo.ReplyVO;
 
 import io.github.seccoding.web.pager.explorer.PageExplorer;
 
@@ -32,18 +28,13 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	/*
-	@GetMapping("/")
-	public String viewMainPage() {
-		return "common/index";
-	}
-	*/
-	@GetMapping("/board/write")
+	
+	@GetMapping("/notice/write")
 	public String viewWritePage() {
-		return "/board/write";
+		return "notice/write";
 	}
 	
-	@PostMapping("/board/write")
+	@PostMapping("/notice/write")
 	@ResponseBody
 	public boolean doOneNoticeRegistAction(@ModelAttribute NoticeVO noticeVO, HttpSession session) {
 		
@@ -57,34 +48,12 @@ public class NoticeController {
 		boolean isRegist = this.noticeService.registOneNotice(noticeVO);
 		return isRegist;
 	}
-	
-	@RequestMapping("/board/notice")
-	public ModelAndView viewNoticeListPage( 
-			@ModelAttribute NoticeSearchVO noticeSearchVO 
-			, HttpServletRequest request ) {
-		PageExplorer pageExplorer = this.noticeService.readAllNotice(noticeSearchVO);
-		
-		
-		ModelAndView view = new ModelAndView("board/notice");
-		view.addObject("noticeList", pageExplorer.getList());
-		view.addObject("pagenation", pageExplorer.make());
-		return view;
-	}
-	
-	/*
-	boolean isSuccess = noticeService.registOneNotice(noticeVO);
 
-	return isSuccess;
-	
-	*/
-	
-	
-
-	@RequestMapping("/board")
+	@RequestMapping("/notice")
 	public ModelAndView viewNoticeListPage(@ModelAttribute NoticeSearchVO noticeSearchVO, HttpServletRequest request
 			, HttpSession session) {
 				if ( noticeSearchVO.getSearchKeyword() == null ) {
-					noticeSearchVO = (NoticeSearchVO) session.getAttribute(Session.QNASEARCH);
+					noticeSearchVO = (NoticeSearchVO) session.getAttribute(Session.NOTICESEARCH);
 					if ( noticeSearchVO == null ) {
 						noticeSearchVO = new NoticeSearchVO();
 						noticeSearchVO.setPageNo(0);
@@ -95,7 +64,7 @@ public class NoticeController {
 				
 				session.setAttribute(Session.NOTICESEARCH, noticeSearchVO);
 				
-				ModelAndView view = new ModelAndView("board/notice");
+				ModelAndView view = new ModelAndView("notice/notice");
 				view.addObject("noticeList", pageExplorer.getList());
 				view.addObject("pagenation", pageExplorer.make());
 				view.addObject("noticeSearchVO", noticeSearchVO);
@@ -109,33 +78,37 @@ public class NoticeController {
 	}
 	*/
 	
-	@GetMapping("/board/detail/{noticeId}")
+	@GetMapping("/notice/updateviewcount/{noticeId}")
+	public String doUpdateOneNoticeViewCountAction(@PathVariable String noticeId) {
+		boolean isUpdate = this.noticeService.updateOneNoticeViewCount(noticeId);
+		return "redirect:/notice/detail/"+noticeId;
+	}
+	
+	@GetMapping("/notice/detail/{noticeId}")
 	public ModelAndView viewNoticeDetailPage(@PathVariable String noticeId) {
-		ModelAndView view = new ModelAndView("board/detail");
+		ModelAndView view = new ModelAndView("notice/detail");
 		NoticeVO noticeVO = this.noticeService.readOneNotice(noticeId);
 		
-		List<ReplyVO> replyList = this.noticeService.readRepliesByNotice(noticeId);
-		
 		view.addObject("noticeVO", noticeVO);
-		view.addObject("replyList", replyList);
 		return view;
 	}
 	
-	@GetMapping("/board/modify/{noticeId}")
+	@GetMapping("/notice/modify/{noticeId}")
 	public ModelAndView viewOneNoticeModifyPage(@PathVariable String noticeId) {
-		ModelAndView view = new ModelAndView("board/modify");
+		ModelAndView view = new ModelAndView("notice/modify");
 		NoticeVO noticeVO = noticeService.readOneNotice(noticeId);
 		view.addObject("noticeVO", noticeVO);
 		return view;
 	}
 	
-	@PostMapping("/board/modify")
+	@PostMapping("/notice/modify")
 	@ResponseBody
 	public boolean doOneNoticeModifyAction(NoticeVO noticeVO, @SessionAttribute(Session.TOKEN) String token) {
 		boolean isModify = false;
 		if ( token.equals(noticeVO.getToken()) ){
 			isModify = this.noticeService.modifyOneNotice(noticeVO);	
 		}
+		System.out.println("!!!!!!!!!!!!!!!!!"+isModify);
 		return isModify;
 	}
 	

@@ -23,11 +23,11 @@
 				$("#wr_content").focus();
 				return;
 			}
-			$.post("<c:url value='/board/write'/>"
+			$.post("<c:url value='/notice/write'/>"
 					, $("#registForm").serialize()
 					, function(response) {
 						if(response) {
-							location.href='<c:url value="/board/notice"/>';
+							location.href='<c:url value="/notice"/>';
 						}
 			});
 		});
@@ -36,15 +36,14 @@
 <body>
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>공지사항</h2></div>
+		<div class="headImg subHeadNotice"><h2>공지사항</h2></div>
 			<div class="headBox">
-			
 				<div class="heading"><h2 class="headTxt">공지사항</h2>
-				</div>	
+			</div>	
 		</div>
 	</div>
 	
-	<c:url var="qnaResist"  value="/board/notice" />
+	<c:url var="qnaResist"  value="/notice" />
 	
 	<section id="bo_w">
 		<h2 class="sound_only">자유게시판 글쓰기</h2>
@@ -70,7 +69,7 @@
 		</div> 
 
 		<div class="btn_confirm write_div">
-			<a href="<c:url value="/board/notice"/>" class="btn_cancel btn"><i class="icon ion-md-close" aria-hidden="true"></i>취소</a>
+			<a href="<c:url value="/notice"/>" class="btn_cancel btn"><i class="icon ion-md-close" aria-hidden="true"></i>취소</a>
 			<button type="button" value="작성완료" id="qnaBtn" accesskey="s" class="btn_submit btn"><i class="icon ion-md-create"></i>등록</button>
 		</div>
 	</form>

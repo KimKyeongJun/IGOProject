@@ -2,8 +2,6 @@ package com.ktds.notice.vo;
 
 import javax.validation.constraints.NotEmpty;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.ktds.member.vo.MemberVO;
 import com.nhncorp.lucy.security.xss.XssFilter;
 

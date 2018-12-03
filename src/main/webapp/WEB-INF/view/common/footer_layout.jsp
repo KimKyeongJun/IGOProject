@@ -11,7 +11,7 @@
 				<li> <a href="<c:url value='/html/terms.html'/>"  onclick="window.open(this.href, '팝업이름','location=0, scrollbars=1');return false;">이용약관</a></li>
 				<li> <a href="<c:url value='/html/privacy.html'/>"  onclick="window.open(this.href, '팝업이름','location=0, scrollbars=1');return false;">개인정보취급방침</a></li>
 
-				<li><a href="<c:url value='/qna'/>">고객센터</a></li>
+				<li><a href="<c:url value='/notice'/>">고객센터</a></li>
 			</ul>
 		</div>
 		<div class="fTop">

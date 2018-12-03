@@ -3,6 +3,10 @@
 
 
 /* 게시판 목록 list */
+.detail:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
 #con_lf{
 	position: relative;
 	width: 90%;

@@ -18,11 +18,11 @@
 				$("#wr_content").focus();
 				return;
 			}
-			$.post("<c:url value='/board/modify'/>"
+			$.post("<c:url value='/notice/modify'/>"
 					, $("#registForm").serialize()
 					, function(response) {
 						if(response) {
-							location.href='<c:url value="/board/detail/${noticeVO.noticeId}"/>';
+							location.href='<c:url value="/notice/detail/${noticeVO.noticeId}"/>';
 						}
 			});
 		});
@@ -30,23 +30,22 @@
 </script>
 
 	<div class="sub_common">
-		<div class="headImg subHeadQna"><h2>Q &amp; A</h2></div>
+		<div class="headImg subHeadNotice"><h2>공지사항</h2></div>
 			<div class="headBox">
-			
-				<div class="heading"><h2 class="headTxt">Q &amp; A</h2>
-				</div>	
+				<div class="heading"><h2 class="headTxt">공지사항</h2>
+			</div>	
 		</div>
 	</div>
 	
-	<c:url var="qnaResist"  value="/board/write" />
+	<c:url var="qnaResist"  value="/notice/write" />
 	
 	<section id="bo_w">
 		<h2 class="sound_only">자유게시판 글쓰기</h2>
 
 	<!-- 게시물 작성/수정 시작 { -->
 	<form id="registForm">
-		<input type="hidden" id="token" name="token" value="${sessionScope._TOKEN_}" />
-		<input type="hidden" id="token" name="noticeId" value="${noticeVO.noticeId}" />
+		<input type="hidden" name="token" value="${sessionScope._TOKEN_}" />
+		<input type="hidden" name="noticeId" value="${noticeVO.noticeId}" />
 		<div class="bo_w_tit write_div">
 			<label for="wr_subject" class="sound_only">제목<strong>필수</strong></label>
 			
@@ -65,7 +64,7 @@
 		</div> 
 
 		<div class="btn_confirm write_div">
-			<a href="<c:url value="/board/detail/${noticeVO.noticeId}"/>" class="btn_cancel btn"><i class="icon ion-md-close" aria-hidden="true"></i>취소</a>
+			<a href="<c:url value="/notice/detail/${noticeVO.noticeId}"/>" class="btn_cancel btn"><i class="icon ion-md-close" aria-hidden="true"></i>취소</a>
 			<button value="작성완료" id="qnaBtn" accesskey="s" class="btn_submit btn"><i class="icon ion-md-create"></i>수정</button>
 		</div>
 	</form>

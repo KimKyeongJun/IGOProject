@@ -201,7 +201,7 @@
 							<i class="icon ion-md-person MLIco"></i>${sessionScope._USER_.name}님</a></li>
 						</c:otherwise>
 					</c:choose>
-					<li class="tmenu"><a href="#" title="공지사항"> <i
+					<li class="tmenu"><a href="<c:url value='/notice'/>" title="공지사항"> <i
 							class="icon ion-md-mail MLIco"></i>공지사항
 					</a></li>
 

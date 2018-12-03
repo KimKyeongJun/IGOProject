@@ -40,16 +40,15 @@ public class NoticeBizImpl implements NoticeBiz{
 		return pageExplorer;
 
 	}
-	/*
-	@Override
-	public boolean updateNotice(NoticeVO noticeVO) {
-		return noticeDao.updateNotice(noticeVO)>0;
-		
-	}
-	*/
+	
 	@Override
 	public boolean modifyOneNotice(NoticeVO noticeVO) {
 		return noticeDao.updateOneNotice(noticeVO)>0;
+	}
+	
+	@Override
+	public boolean updateOneNoticeViewCount(String noticeId) {
+		return this.noticeDao.updateOneNoticeViewCount(noticeId) > 0;
 	}
 
 }

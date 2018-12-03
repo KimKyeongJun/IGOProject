@@ -16,22 +16,22 @@
 	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 	
 	<div class="sub_common">
-		<div class="headImg1"><h2>공지사항</h2></div>
+		<div class="headImg subHeadNotice"><h2>공지사항</h2></div>
 			<div class="headBox">
-			
 				<div class="heading"><h2 class="headTxt">공지사항</h2>
-				</div>	
+			</div>	
 		</div>
 	</div>
 	
 	<article id="bo_v" >
   		<header>
     		<h2 id="bo_v_title"> <span class="bo_v_tit"> ${noticeVO.title}</span> </h2>
-  	</header>
+  		</header>
   		<section id="bo_v_info">
     		<h2>페이지 정보</h2>
     		<span class="sound_only">작성자</span>
     		<span class="sv_member">${noticeVO.memberVO.name}</span>
+    		<span> 조회수 ${noticeVO.viewCount}</span>
     		<strong class="if_date">
     			<span class="sound_only">작성일</span>
     			<i class="fa fa-clock-o" aria-hidden="true"></i> 
@@ -52,8 +52,10 @@
   	<!-- 게시물 상단 버튼 시작 { -->
   	<div id="bo_v_top">	
 	    <ul class="bo_v_com">
-			<li><a href="<c:url value='/board/modify/${noticeVO.noticeId}'/>" onclick="comment_box('4', 'cu'); return false;" class="btn_b03 replyModi"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 수정</a></li>
-	      	<li><a href="<c:url value='/board'/>" class="btn_b01 btn"><i class="fa fa-list" aria-hidden="true"></i> 목록</a></li>
+	    	<c:if test="${sessionScope._USER_.email eq noticeVO.memberVO.email}">
+				<li><a href="<c:url value='/notice/modify/${noticeVO.noticeId}'/>" onclick="comment_box('4', 'cu'); return false;" class="btn_b03 replyModi"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 수정</a></li>
+	    	</c:if>
+		      	<li><a href="<c:url value='/notice'/>" class="btn_b01 btn"><i class="fa fa-list" aria-hidden="true"></i> 목록</a></li>
 	    </ul>
   	</div>
   <!-- } 게시물 상단 버튼 끝 --> 
