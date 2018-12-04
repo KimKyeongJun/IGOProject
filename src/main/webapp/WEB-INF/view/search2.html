@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>igo 검색결과</title>
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<link href="https://unpkg.com/ionicons@4.4.6/dist/css/ionicons.min.css" rel="stylesheet">
+<link rel="shortcut icon" href="img/favicon2.ico" type="image/x-icon">
+<link rel="icon" href="img/favicon2.ico" type="image/x-icon">
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/common.js"></script>
+<script src="jquery-ui.min.js/"></script>	
+<script type="text/javascript">
+$().ready(function() {
+		var keyword = "${searchKeyword}";
+		setInterval(function() {
+			$.post("<c:url value='/search/twitter'/>",
+					{searchKeyword: keyword},
+					function(response) {
+						for(var i in response) {
+							console.log(response[i]);
+						}
+					});
+		}, 10000);
+	
+	
+	
+	});	
+	///////// search Tab  /////////////	
+$().ready(function() {
+
+	$(function () {
+	$(".tab_content").hide();
+	$(".tab_content:first").show();
+
+	$("ul.tabs li").click(function () {
+		
+		$("ul.tabs li").removeClass("active").css("color", "#fff");
+		$(this).addClass("active");
+		
+		$(".tab_content").hide()
+		var activeTab = $(this).attr("data-link");
+		$("#" + activeTab).fadeIn()
+	});
+		
+});//////// click /////////////////
+});
+	
+</script>
+</head>
+<header id="header">
+  <div id="top"><i id="ham" class="ion-ios-menu"></i>
+    <div class="search-wrapper">
+      <div class="input-holder">
+        <input type="text" name="search" class="search-input" placeholder="Type to search">
+        <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+      </div>
+      <span class="close" onclick="searchToggle(this, event);"></span><a href="search.html">
+      <div class="result-container"></div>
+      </a></div>
+    <a href="#" id="logo"></a></div>
+  <div class="nav_wrapperM">
+    <nav id="navM" class="menuM">
+      <ul class="active">
+        <li class="tmenu" id="loginClick"><a href="#" title="LOGIN"><i class="fa fa-sign-in MLIco"></i>LOGIN</a></li>
+        <li class="tmenu"><a href="regist.html" title="회원가입"><i class="icon ion-md-person MLIco"></i>회원가입</a></li>
+        <li class="tmenu"><a href="notice.html" title="공지사항"><i class="icon ion-md-mail MLIco"></i>공지사항</a></li>
+        <li class="tmenu"><a href="qna.html" title="Q &amp; A"><i class="icon ion-md-help MLIco"></i>Q &amp; A</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- 모달창 -->
+<div class="modal">
+  <section id="login">
+    <div class="meminfo">
+      <form id="logF" method="post" action="loginSet.jsp">
+        <div class="memWrap">
+          <div class="minput"><!--아이디-->
+            <label for="mid">아이디</label>
+            <input type="text" id="memail" name="memail" maxlength="40" placeholder="이메일을 입력하세요">
+          </div>
+          <div class="minput"><!--비번-->
+            <label for="mpw">비밀번호</label>
+            <input type="password" id="mpw" name="mpw" maxlength="20" placeholder="비밀번호를 입력하세요">
+          </div>
+          <input type="submit" id="sbtn" value="LOGIN">
+          <span class="checkWrap">
+          <input type="checkbox" id="chkbox">
+          아이디 저장</span></div>
+        <!--버튼2개박스-->
+        <div class="btnWrap">
+          <ul>
+            <li class="joinBtn joinBtn1"><a href="#" class="on">회원가입</a></li>
+            <li class="joinBtn joinBtn2"><a href="#.jsp">ID/PW 찾기</a></li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </section>
+  <div class="modal_x">X &nbsp; &nbsp; CLOSE</div>
+</div>
+<!-- 백그라운드 -->
+<div class="modal_back"></div>
+
+<!--	<jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>-->
+
+<body>
+<div class="sub_common">
+  <div class="headImg subHeadSerch">
+    <h2>검색결과</h2>
+  </div>
+  <div class="headBox">
+    <div class="heading">
+      <h2 class="headTxt">검색결과</h2>
+    </div>
+    <div class="resultTxt"> <span class="rt1">#</span>
+      <p>${searchKeyword}</p>
+    </div>
+  </div>
+</div>
+<div class="searchBox">
+  <input type="text" class="searchBar searchKeyword"/>
+  <a href="#searchList"><i class="ion-md-search"></i></a> </div>
+<section id="searchSns">
+  <div class="snsList">
+    <ul class="tabs">
+      <li class="active" data-link="tab1">
+        <div class="tabLogo1"></div>
+      </li>
+      <div class="tabIco"><i class="icon ion-md-refresh"></i></div>
+      <li data-link="tab2">
+        <div class="tabLogo2"></div>
+      </li>
+      <div class="tabIco"><i class="icon ion-md-refresh"></i></div>
+    </ul>
+    <!-- .tab_container -->
+    <div class="tab_container"> 
+      <!-- #tab1 -->
+      <div id="tab1" class="tab_content"> 
+   
+        
+         <c:forEach items="${twitterList}" var="twitter">
+          <ul class="snsCon">
+            <li>
+              	<p class="snsId">${twitter.id}</p>
+              	<p class="snsDate">${twitter.date}</p>              
+            </li>
+            <li class="snsText">${twitter.text}</li>
+            <li class="snsUrl"><a href="#">${twitter.url}</a></li>
+          </ul>
+        </c:forEach>
+      </div>
+      
+      <!-- #tab2 -->
+      <div id="tab2" class="tab_content">
+        <c:forEach items="${twitterList}" var="twitter">
+          <ul class="snsCon">
+				<li>
+              	<p class="snsId">@LeeHia5</p>
+              	<p class="snsDate">13초 전</p>              
+            	</li>
+				<li class="snsText">RT @ALittleBraver92: 뉴스 📣
+				  지하철 운행은 시작했습니다. 2호선 타시면 만날 수 있고 예쁘고 따뜻한 방탄과 함께 2019년으로 고고!!!
+				  2호선 215편성 5호칸 입니다🚇🚉
+
+				  Welcome to BTS train! Have fun…
+			  	</li>
+				<li class="snsUrl">
+					<a href="#">https://twitter.com/Starbucks</a>
+			  </li>
+          </ul>
+		  <ul class="snsCon">
+				<li>
+              	<p class="snsId">@LeeHia5</p>
+              	<p class="snsDate">13초 전</p>              
+            	</li>
+				<li class="snsText">RT @ALittleBraver92: 뉴스 📣
+				  지하철 운행은 시작했습니다. 2호선 타시면 만날 수 있고 예쁘고 따뜻한 방탄과 함께 2019년으로 고고!!!
+				  2호선 215편성 5호칸 입니다🚇🚉
+
+				  Welcome to BTS train! Have fun…
+			  	</li>
+				<li class="snsUrl">
+					<a href="#">https://twitter.com/Starbucks</a>
+			  </li>
+          </ul>
+        </c:forEach>
+      </div>
+    </div>
+  </div>
+</section>
+	
+<footer id="info">
+  <button type="button" id="top_btn"><i class="fa fa-arrow-up" aria-hidden="true"></i><span class="sound_only">상단으로</span></button>
+  <div class="fMenu">
+    <ul class="imenu">
+      <li><a href="terms.html">이용약관</a></li>
+      <li><a href="privacy.html">개인정보취급방침</a></li>
+      <li><a href="notice.html">공지사항</a></li>
+    </ul>
+  </div>
+  <div class="fTop"> <a href="#">
+    <div id="fLogo"></div>
+    </a> </div>
+  <div class="fMtxt">
+    <address>
+    서울특별시 서초구 효령로 176 KTDS 2층,  대표번호 : 02-1234-6875
+    <p>COPYRIGHT  2018 © I GO. ALL RIGHT RESERVED.</p>
+    </address>
+  </div>
+</footer>
+<!--<jsp:include page="/WEB-INF/view/common/footer_layout.jsp"/>-->
+
+</body>
+</html>

@@ -6,10 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>IGO</title>
-<link href="/IGOProject/css/main.css" rel="stylesheet" type="text/css"/>
 <link href="/IGOProject/css/common.css" rel="stylesheet" type="text/css"/>
+<link href="/IGOProject/css/main.css" rel="stylesheet" type="text/css"/>
 <link href="/IGOProject/css/core.css" rel="stylesheet" type="text/css"/>
-<link href="/IGOProject/css/search.css" rel="stylesheet" type="text/css"/>
 <link href="/IGOProject/css/subCom.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
@@ -30,45 +29,45 @@
 		
 		var data = [];
 		$.get("<c:url value='/transport/read' />"
-			  , function(response) {
-					$.each(response, function( index, value ) {
-					  	$.each(value, function( i ) {
-						  	data.push({'category': index, 'label': value[i]});
+				  , function(response) {
+						$.each(response, function( index, value ) {
+						  	$.each(value, function( i ) {
+							  	data.push({'category': index, 'label': value[i]});
+							});
 						});
-					});
-					console.log(data); 
-			  }
+						console.log(data); 
+				  }
 		);
 		
 		$.widget( "custom.catcomplete", $.ui.autocomplete, {
-		      _create: function() {
-		        this._super();
-		        this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
-		      },
-		      _renderMenu: function( ul, items ) {
-		        var that = this,
-		          currentCategory = "";
-		        $.each( items, function( index, item ) {
-		          var li;
-		          if ( item.category != currentCategory ) {
-		            ul.append( "<li class='ui-autocomplete-category "+item.category+"'>" + item.category + "</li>" );
-		            currentCategory = item.category;
-		          }
-		          li = that._renderItemData( ul, item );
-		          if ( item.category ) {
-		            li.attr( "aria-label", item.category + " : " + item.label );
-		          }
-		        });
-		      }
-		    });
-		 
-		    $( ".search-input" ).catcomplete({
-		      delay: 0,
-		      source: data ,
-		      open: function() {
-			        $("ul.ui-menu").width( $(this).innerWidth() );
-			    } 
-		    });
+            _create: function() {
+              this._super();
+              this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+            },
+            _renderMenu: function( ul, items ) {
+              var that = this,
+                currentCategory = "";
+              $.each( items, function( index, item ) {
+                var li;
+                if ( item.category != currentCategory ) {
+                  ul.append( "<li class='ui-autocomplete-category "+item.category+"'>" + item.category + "</li>" );
+                  currentCategory = item.category;
+                }
+                li = that._renderItemData( ul, item );
+                if ( item.category ) {
+                  li.attr( "aria-label", item.category + " : " + item.label );
+                }
+              });
+            }
+         });
+       
+         $( ".search-input" ).catcomplete({
+	     	 delay: 0,
+	     	 source: data,
+			 open: function() {
+	                 $("ul.ui-menu").width( $(this).width() );
+	         } 	 
+	    });
 		
 		$(".joinBtn1").click(function() {
 			location.href = "<c:url value='/member/regist'/>";
@@ -170,7 +169,7 @@
 			<i id="ham" class="ion-ios-menu"></i>
 			<div class="search-wrapper">
 				<div class="input-holder">
-					<input type="text" name="search" class="search-input"
+					<input type="text" name="search" class="search-input searchKeyword"
 						placeholder="Type to search">
 					<button class="search-icon" onclick="searchToggle(this, event);">
 						<span></span>

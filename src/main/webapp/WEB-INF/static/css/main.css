@@ -4,11 +4,10 @@
 @import url("common.css");
 @import url("core.css");
 @import url("subCom.css");
-@import url("search.css");
 @import url("board.css");
 @import url("member.css");
 @import url("terms.css");
-
+@import url("search.css");
 
 /*************** 2. banner.CSS ***************/
 
@@ -200,6 +199,110 @@
 }	
 }
 
+
+/**********자동완성 START *********/
+#ui-id-2::before{
+	position:relative;
+	content:'';
+	display:block;
+	clear:both;
+}
+#ui-id-2 {
+	position: relative; 
+	width: calc(100%-20px) ;
+	height: 200px;
+	display: none;	
+	border: 1px solid #063768;
+	padding: 0 10px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-color: #fff;
+	text-align: left;
+
+	z-index:1 !important;
+	transform:translateX(-50%); 
+}
+
+
+#ui-id-2 .ui-menu-item{   /*ul>li*/
+	position: relative;
+	display: block;	
+	width: 100%;
+	font-size: 14px;
+	margin: 0;	
+	padding: 10px;
+    cursor: pointer;    
+}
+
+#ui-id-2 .ui-menu-item:hover{
+	background-color: #e9e9e9; 
+}
+
+#ui-id-2 .ui-menu-item a{
+	text-decoration: none;
+    display: block;
+    padding: 2px .4em;
+    line-height: 1.5;
+    min-height: 0;
+    font-weight: 400;
+	width: 100%;
+}
+
+#ui-id-2 .ui-menu-item-wrapper{
+	position: relative;
+    padding: 3px 1em 3px .4em;
+}
+
+
+ .ui-autocomplete-category::before{
+	content: '';
+	display: block;
+	position: relative;
+	width: 25px;
+	height: 25px;
+	float:left;
+	margin-right: 10px;	
+}
+
+.Bus::before{
+	background: url(../img/sns2.png) no-repeat 0/cover;
+}
+.Subway::Before{
+	background: url(../img/sns1.png) no-repeat 0/cover;
+}
+
+.ui-autocomplete-category {
+    font-weight: bold;
+    padding: .2em .4em;
+    margin: .8em 0 .2em;
+    line-height: 1.5;
+}
+
+
+
+.ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.searchBox:after{
+	content: '';
+	display: block;
+	clear: both;
+	margin-bottom: 50px ;
+}
+/**********자동완성 END ********/
+
+
+
+
+
 /*************** 3. 검색 영역 ***************/
 #searchWrap{
 	position: relative;
@@ -240,14 +343,8 @@
 	border-radius: 55px;
 	margin-bottom: 30px;	
 	margin: 0 auto;	
-	padding-left: 20px;outline: none;
-}
-
-.ion-md-search{
-	position: absolute;
-	right: 5px;
-	top: 15px;
-	font-size: 30px;
+	padding-left: 20px;
+	outline: none;
 }
 
 .searchList{

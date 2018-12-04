@@ -98,9 +98,18 @@ input[type=password],
 input[type=email]{
 	font-family: 'Nanum Gothic', 'Montserrat', sans-serif;
 	padding-left: 15px;
-/*	font-weight: bold;*/
 }
 
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: transparent !important;
+    background-image: none !important;
+    color: #41495c !important;
+	width: 100%;
+}
+
+input[type=text]::-ms-clear {
+  display:none;
+}
 
 /*******본문서체*****/
 h2{
@@ -110,6 +119,9 @@ h2{
 	color:#41495c;
 	letter-spacing:0.025em;
 	font-family: 'Nanum Gothic', 'Montserrat', sans-serif;
+}
+h3{
+	font-size: 20px;
 }
 
 .msg_sound_only, .sound_only {   
@@ -128,5 +140,8 @@ h2{
 @media only screen and (max-width: 650px){
 h2{
 	font-size:26px;
+}
+h3{
+	font-size: 18px;
 }	
 }

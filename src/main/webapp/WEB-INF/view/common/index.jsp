@@ -2,12 +2,54 @@
 	pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/view/common/header_layout.jsp"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="/IGOProject/js/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="/IGOProject/js/main.js" type="text/javascript"></script>
 <script src="/IGOProject/js/swiper.min.js" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery-ui.min.js' />" type="text/javascript"></script>
 <script type="text/javascript">
 	$().ready(function() {
+		var data = [];
+		$.get("<c:url value='/transport/read' />"
+				  , function(response) {
+						$.each(response, function( index, value ) {
+						  	$.each(value, function( i ) {
+							  	data.push({'category': index, 'label': value[i]});
+							});
+						});
+						console.log(data); 
+				  }
+		);
+		
+		$.widget( "custom.catcomplete", $.ui.autocomplete, {
+            _create: function() {
+              this._super();
+              this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
+            },
+            _renderMenu: function( ul, items ) {
+              var that = this,
+                currentCategory = "";
+              $.each( items, function( index, item ) {
+                var li;
+                if ( item.category != currentCategory ) {
+                  ul.append( "<li class='ui-autocomplete-category "+item.category+"'>" + item.category + "</li>" );
+                  currentCategory = item.category;
+                }
+                li = that._renderItemData( ul, item );
+                if ( item.category ) {
+                  li.attr( "aria-label", item.category + " : " + item.label );
+                }
+              });
+            }
+         });
+       
+         $( "#searchKeyword" ).catcomplete({
+	     	 delay: 0,
+	     	 source: data,
+			 open: function() {
+				 var wid = $(this).width();
+				 $("ul.ui-menu").width( wid*0.9 ); 
+				 $("#ui-id-2").css("left","50.5%");
+	         } 	 
+	    });
+		
 		
 		$("#searchBtn").click(function() {		
 			if($("#searchKeyword").val() == '') {
@@ -18,48 +60,6 @@
 			var url = "<c:url value='/sns/search?searchKeyword='/>"+$("#searchKeyword").val();
 			location.href = url;
 		});
-		
-		var data = [];
-		$.get("<c:url value='/transport/read' />"
-			  , function(response) {
-					$.each(response, function( index, value ) {
-					  	$.each(value, function( i ) {
-						  	data.push({'category': index, 'label': value[i]});
-						});
-					});
-					console.log(data); 
-			  }
-		);
-		
-		$.widget( "custom.catcomplete", $.ui.autocomplete, {
-		      _create: function() {
-		        this._super();
-		        this.widget().menu( "option", "items", "> :not(.ui-autocomplete-category)" );
-		      },
-		      _renderMenu: function( ul, items ) {
-		        var that = this,
-		          currentCategory = "";
-		        $.each( items, function( index, item ) {
-		          var li;
-		          if ( item.category != currentCategory ) {
-		            ul.append( "<li class='ui-autocomplete-category "+item.category+"'>" + item.category + "</li>" );
-		            currentCategory = item.category;
-		          }
-		          li = that._renderItemData( ul, item );
-		          if ( item.category ) {
-		            li.attr( "aria-label", item.category + " : " + item.label );
-		          }
-		        });
-		      }
-		    });
-		 
-		    $( "#searchKeyword" ).catcomplete({
-		      delay: 0,
-		      source: data ,
-		      open: function() {
-			        $("ul.ui-menu").width( $(this).width() );
-			    } 
-		    });
 		
 	});
 </script>
@@ -93,7 +93,7 @@
 		<h2>실시간 검색 하기</h2>
 		<h3>많이 검색 해 주세요!</h3>
 		<div class="searchBox">
-			<input type="text" class="searchBar" id="searchKeyword" /> <a id="searchBtn"><i
+			<input type="text" class="searchBar searchKeyword" id="searchKeyword" /> <a id="searchBtn"><i
 				class="ion-md-search"></i></a>
 		</div>
 		<div class="searchList">

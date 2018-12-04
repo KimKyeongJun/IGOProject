@@ -4,7 +4,7 @@
 /*************** 1. TOP 영역 ***************/
 #header{
 	position: fixed;
-	z-index: 99999;
+	z-index:9;
 	top: 0;
 	left: 50%;
 	width: 100%;
@@ -430,7 +430,8 @@
 
 /******************************검색******************/
 .search-wrapper {
-	position: absolute;
+	position: relative;
+	float: right;
 	-webkit-transform: translateY(-50%);
 	-moz-transform: translateY(-50%);
 	transform: translateY(-50%);
@@ -625,13 +626,8 @@
 
 
 
-@media screen and (max-width: 740px) {
-.input-holder {
-	width: 60%;
-}		
-}
 @media screen and (max-width: 570px) {
-.search-wrapper.active .input-holder {
+.search-wrapper.active .input-holder  {
 	width:310px;
 	right: 0px;
 }
@@ -639,40 +635,53 @@
 /******검색끝******/
 
 
-
 /**********자동완성 START *********/
 
-.ui-menu{
+
+#ui-id-1::before{
+	position:relative;
+	display:block;
+	content:'';
+	clear:both;
+	margin-top:10px;
+}
+
+
+#ui-id-1 .ui-menu{
 	position: relative; 
-	width: calc(100%-20px) !important; 
+	width: 100% ;
 	height: 200px;
 	display: block;	
-	border: 1px solid #d4d4d4;
+	border: 1px solid #063768;
 	padding: 0 10px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 	background-color: #fff;
 	text-align: left;
-	margin-left:20px;
-	box-sizing:border-box !important;
+	left: 5px;
+	color:#41495c;
+	margin-top:30px;
+	top:30px !important;
+	z-index:1;
 }
 
-.ui-menu .ui-menu-item{   /*ul>li*/
+#ui-id-1 .ui-menu .ui-menu-item{   /*ul>li*/
 	position: relative;
 	display: block;	
 	width: 100%;
 	font-size: 14px;
-/*	margin-left: 10px;*/
 	margin: 0;	
 	padding: 10px;
     cursor: pointer;
+	color:#41495c;
+	z-index:1;
 }
 
-.ui-menu .ui-menu-item:hover{
+#ui-id-1 .ui-menu .ui-menu-item:hover{
 	background-color: #e9e9e9; 
 }
 
-.ui-menu .ui-menu-item a{
+#ui-id-1 .ui-menu .ui-menu-item a{
 	text-decoration: none;
     display: block;
     padding: 2px .4em;
@@ -680,15 +689,16 @@
     min-height: 0;
     font-weight: 400;
 	width: 100%;
+	
 }
 
-.ui-menu .ui-menu-item-wrapper{
+#ui-id-1 .ui-menu .ui-menu-item-wrapper{
 	position: relative;
     padding: 3px 1em 3px .4em;
 }
 
 
-.ui-autocomplete-category::before{
+#ui-id-1 .ui-autocomplete-category::before{
 	content: '';
 	display: block;
 	position: relative;
@@ -705,7 +715,7 @@
 	background: url(../img/sns1.png) no-repeat 0/cover;
 }
 
-.ui-autocomplete-category {
+#ui-id-1 .ui-autocomplete-category {
     font-weight: bold;
     padding: .2em .4em;
     margin: .8em 0 .2em;
@@ -714,7 +724,7 @@
 
 
 
-.ui-helper-hidden-accessible {
+#ui-id-1 .ui-helper-hidden-accessible {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -725,29 +735,18 @@
     width: 1px;
 }
 
-.searchBox:after{
+#ui-id-1  .searchBox:after{
 	content: '';
 	display: block;
 	clear: both;
 	margin-bottom: 50px ;
 }
+
+
+
+
+
 /**********자동완성 END ********/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

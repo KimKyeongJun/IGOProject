@@ -1,4 +1,3 @@
-//  공통 JS
 /////////// search Ico  /////////////
  function searchToggle(obj, evt){
             var container = $(obj).closest('.search-wrapper');
@@ -14,6 +13,15 @@
                   // clear and hide result container when we press close
                   container.find('.result-container').fadeOut(100, function(){$(this).empty();});
             }
+        }
+
+		function submitFn(obj, evt){
+            value = $(obj).find('.search-input').val().trim();
+            $(obj).find('.result-container').fadeIn(100);
+
+            evt.preventDefault();
+			obj.action = "search.jsp";
+
         }
 
        
@@ -110,10 +118,10 @@ $(document).ready(function(){
 				$('.mClose').css("transition", "all .6s cubic-bezier(0.000, 0.105, 0.035, 1.570)");
 				$('.mClose').css("transition-delay", "0.5s");	
     });
-//    $(".modal_back").click(function(){
-//        modalOff();
-//		$("#navM").show(300);
-//    });
+
+	
+		$(".joinBtn1").click(function(){location.href="#";});
+		$(".joinBtn2").click(function(){location.href="#";});
 });
 
 
