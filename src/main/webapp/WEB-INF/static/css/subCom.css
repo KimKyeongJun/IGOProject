@@ -43,9 +43,9 @@
 	position: absolute;
 	display: inherit;
 	color: #fff;
-	line-height: 200px;
 	left: 50%;
-	transform: translateX(-50%);
+	top:50%;
+	transform: translate(-50%, -50%);
 	white-space: nowrap;
 }
 
